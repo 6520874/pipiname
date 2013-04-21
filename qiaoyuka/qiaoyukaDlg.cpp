@@ -167,9 +167,8 @@ void CqiaoyukaDlg::OnTimer(UINT_PTR nIDEvent)
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
    if(nIDEvent == TIMER_CHECKQYK)
    {
-      CWnd *hQiaoYuKa = FindWindow(NULL,_T("巧遇卡"));
+        CWnd *hQiaoYuKa = FindWindow(NULL,_T("查找联系人"));
      
-
 	  if(hQiaoYuKa != NULL)
 	  {
 		  m_hQyk = hQiaoYuKa->GetSafeHwnd();
@@ -191,10 +190,9 @@ BOOL CALLBACK CqiaoyukaDlg::OEnumWindowsProc(HWND hwnd,
 {
    
 	CqiaoyukaDlg * dlg = (CqiaoyukaDlg *)lParam;
-    
 	TCHAR  strWindowName[256] = {0};
 	TCHAR  strClassName[256] = {0};
-	
+
 	GetClassName(hwnd,strClassName,256);
 	CString csClasswName(strClassName); 
 
@@ -202,16 +200,23 @@ BOOL CALLBACK CqiaoyukaDlg::OEnumWindowsProc(HWND hwnd,
 	 {
          ::GetWindowText(hwnd,strWindowName,256);
 		  CString  csWindowName(strWindowName);
-
-			if(csWindowName!= _T("巧遇卡"))
+             
+		  DWORD dwId = 0;
+          GetWindowThreadProcessId(hwnd,&dwId);
+           
+		   //Sethotkey
+		    if(dwId == )
+              
+			if(csWindowName!= _T("查找联系人"))
 			{
-              dlg->m_hTalk = hwnd;
-			  return  FALSE;
+				dlg->m_hTalk = hwnd;
+				return  FALSE;
 			}
 	 }
    
 return TRUE;
 }
+
 void CqiaoyukaDlg::OnBnClickedButtonSend()
 {
 	// TODO: 在此添加控件通知处理程序代码
@@ -220,32 +225,26 @@ void CqiaoyukaDlg::OnBnClickedButtonSend()
 		CRect  cli;
 		::GetWindowRect(m_hQyk,cli);
 
-         SetCursorPos(cli.left+120,cli.top+150);
+         SetCursorPos(cli.left+120,cli.top+180);
 		//获取最前面的窗口是否是巧遇卡
 		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
 		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
-		Sleep(5000);
+		Sleep(1000);
 		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
 		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
-		Sleep(5000);
-		//GetDesktopWindow()
-		//GetTopWindow()	 AfxBeginThread()
+		Sleep(1000);
 		EnumWindows(OEnumWindowsProc,(LPARAM)this);
 
 		if(m_hTalk != NULL)
 		{
 			::GetWindowRect(m_hTalk,cli);
-			  SetCursorPos(cli.right-100,cli.bottom-150);
+			  SetCursorPos(cli.right-250,cli.bottom-110);
 			  mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
-			  mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
-			   //Sleep(100);
-			 // keybd_event(VK_CONTROL, 0, 0, 0   );//按下Ctrl键 
-			 // keybd_event('v', 0, 0, 0);//按下v键 
-			  //Sleep(10);//           '延时10毫秒 
-			  
-              //CString  cs;
-			  //cs.Format(_T("left:%d top:%d right:%d bottom:%d"),cli.left,cli.top,cli.right,cli.bottom);
-			  //AfxMessageBox(cs);
+			    mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
+			  keybd_event(VK_CONTROL, 0, 0, 0 );//按下Ctrl键 
+			  keybd_event(56, 0, 0, 0);//按下v键 
+			  keybd_event(VK_CONTROL,0,KEYEVENTF_KEYUP,0);//然后松开键盘
+			  keybd_event(56,0,KEYEVENTF_KEYUP,0);//然后松开键盘
 		}
        //AfxMessageBox(_T("122121"));
 	}
