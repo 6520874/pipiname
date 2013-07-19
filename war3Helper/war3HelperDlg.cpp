@@ -339,7 +339,7 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
-	m_hyperlink.SetURL(L"http://pipi.1kapp.com");
+	m_hyperlink.SetURL(L"http://blog.sina.com.cn/s/blog_ac930a9f01018ouq.html");
 
 	TCHAR strWar3Path[MAX_PATH] = {0};
 	GetPrivateProfileString(L"war3path",L"path",L" ",strWar3Path,256,m_strDir+_T("//war3set.ini"));
