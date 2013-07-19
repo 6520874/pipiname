@@ -1,0 +1,252 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(中华人民共和国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""res\\war3Helper.rc2""  // 非 Microsoft Visual C++ 编辑的资源\r\n"
+    "#include ""l.CHS\\afxres.rc""      // 标准组件\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\war3Helper.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于魔兽改键"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,20,20
+    LTEXT           "我是sf，谢谢使用本软件",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2013",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "确定",IDOK,113,41,50,14,WS_GROUP
+END
+
+IDD_WAR3HELPER_DIALOG DIALOGEX 0, 0, 218, 235
+STYLE DS_ABSALIGN | DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER | DS_CENTERMOUSE | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "魔兽改键全屏"
+MENU IDR_MENU1
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT14,43,37,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT15,96,37,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,43,59,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,96,59,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,43,81,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,96,81,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    GROUPBOX        "自定义包裹快捷键",IDC_STATIC,7,2,114,96
+    RTEXT           "小键盘7：",IDC_STATIC,10,37,32,9
+    RTEXT           "小键盘4：",IDC_STATIC,10,59,32,9
+    RTEXT           "小键盘1：",IDC_STATIC,10,81,32,9
+    RTEXT           "小键盘5：",IDC_STATIC,60,59,33,9
+    RTEXT           "小键盘2：",IDC_STATIC,61,81,32,9
+    RTEXT           "小键盘8：",IDC_STATIC,61,37,32,9
+    RTEXT           "当前war3状态状态：",IDC_STATIC,18,18,64,9
+    CTEXT           "未启动",IDC_STATUS,84,18,23,8,SS_NOTIFY
+    EDITTEXT        IDC_EDIT2,141,26,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT8,141,44,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,183,26,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT10,141,62,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT9,183,44,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT12,141,80,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT11,183,62,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    GROUPBOX        "自定义技能键",IDC_STATIC,136,3,67,95
+    RTEXT           "改为",IDC_STATIC,161,27,17,9
+    LTEXT           "  old     ||    new",IDC_STATIC,143,14,54,9
+    RTEXT           "改为",IDC_STATIC,161,45,17,9
+    RTEXT           "改为",IDC_STATIC,161,63,17,9
+    RTEXT           "改为",IDC_STATIC,161,81,17,9
+    EDITTEXT        IDC_EDIT13,183,80,17,12,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    PUSHBUTTON      "设置魔兽启动路径",IDC_BUTTON1,150,103,61,21
+    EDITTEXT        IDC_EDIT1,7,105,142,19,ES_AUTOHSCROLL
+    PUSHBUTTON      "启动游戏",IDC_StartGame,150,163,48,32
+    CONTROL         133,IDC_STATIC,"Static",SS_BITMAP | WS_BORDER,7,125,93,87
+    LTEXT           "http://www.cnblogs.com/pipicfan/",IDC_HYPERLINK,7,216,109,8,SS_NOTIFY
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080403a8"
+        BEGIN
+            VALUE "FileDescription", "魔兽bug v0.1"
+            VALUE "FileVersion", "1.2"
+            VALUE "ProductName", "魔兽改键助手1.2"
+            VALUE "ProductVersion", "1.2"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 936
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_WAR3HELPER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 211
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 226
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP3             BITMAP                  "res\\xuemo.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU 
+BEGIN
+    POPUP "帮助"
+    BEGIN
+        MENUITEM "我发现了bug",                     ID_32771
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "关于 war3Helper(&A)..."
+END
+
+#endif    // 中文(中华人民共和国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "res\war3Helper.rc2"  // 非 Microsoft Visual C++ 编辑的资源
+#include "l.CHS\afxres.rc"      // 标准组件
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
