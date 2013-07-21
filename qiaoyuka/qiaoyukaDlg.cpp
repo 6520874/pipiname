@@ -103,11 +103,11 @@ BOOL CqiaoyukaDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
-    //m_hyperlink.SetColors(RGB(255,0,0));
+
     m_hyperlink.SetURL(L"http://blog.sina.com.cn/s/blog_ac930a9f01018ouq.html");
 	// TODO: 在此添加额外的初始化代码
     m_Static_DiaoSiNiXi.SetURL(_T("http://blog.sina.com.cn/s/blog_8335c2af01013j8a.html"));
-   SetTimer(TIMER_CHECKQYK,1000,0);
+    SetTimer(TIMER_CHECKQYK,1000,0);
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -189,10 +189,38 @@ void CqiaoyukaDlg::OnBnClickedButtonSend()
 	if(m_hQyk != NULL)
 	{  
 		CRect  cli;
-		::GetClientRect(m_hQyk,cli);
-		  ScreenToClient(cli);
-		//mouse_event(
+		::GetWindowRect(m_hQyk,cli);
+		//ScreenToClient(cli);
+         
+         SetCursorPos(cli.left+100,cli.top+150);
+		 
+		 //获取最前面的窗口是否是巧遇卡
+		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
+		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
+        Sleep(1000);
+		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
+		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
+		 Sleep(100);
+		//GetDesktopWindow()
+		//GetTopWindow()
 
+		CWnd *hTalk =   FindWindow(_T("TXGuiFoundation"),NULL);
+		if(hTalk != NULL)
+		{
+			::GetWindowRect(hTalk->GetSafeHwnd(),cli);
+			  SetCursorPos(cli.right-100,cli.bottom-150);
+			  mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
+			  mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
+			   Sleep(100);
+			  //keybd_event(VK_CONTROL, 0, 0, 0   );//按下Ctrl键 
+			  //keybd_event('v', 0, 0, 0);//按下v键 
+			  //Sleep(10);//           '延时10毫秒 
+			  
+              //CString  cs;
+			  //cs.Format(_T("left:%d top:%d right:%d bottom:%d"),cli.left,cli.top,cli.right,cli.bottom);
+			  //AfxMessageBox(cs);
+		}
+       //AfxMessageBox(_T("122121"));
 	}
 	else
 	{
