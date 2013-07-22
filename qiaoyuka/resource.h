@@ -11,6 +11,7 @@
 #define IDC_EDIT_TALK                   1001
 #define IDC_BUTTON_SEND                 1002
 #define IDC_EDIT3                       1003
+#define IDC_EDITMOUSECLICK              1003
 #define IDC_STATICMEI                   1004
 #define IDC_STATICDS                    1005
 #define IDC_STATICDSNIXI                1005

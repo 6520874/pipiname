@@ -61,6 +61,7 @@ void CqiaoyukaDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_QIAOYUKAEXE, m_Edit_QiaoyukaExe);
 	DDX_Control(pDX, IDC_STATICMEI, m_hyperlink);
 	DDX_Control(pDX, IDC_STATICDSNIXI, m_Static_DiaoSiNiXi);
+	DDX_Control(pDX, IDC_EDITMOUSECLICK, m_EClickTime);
 }
 
 BEGIN_MESSAGE_MAP(CqiaoyukaDlg, CDialog)
@@ -215,6 +216,11 @@ return TRUE;
 void CqiaoyukaDlg::OnBnClickedButtonSend()
 {
 	// TODO: 在此添加控件通知处理程序代码
+
+	CString  csClickTime;
+	m_EClickTime.GetWindowText(csClickTime);
+	 
+    int iClickTime =  atoi(CW2A(csClickTime));
 	if(m_hQyk != NULL)
 	{  
 		CRect  cli;
@@ -224,10 +230,11 @@ void CqiaoyukaDlg::OnBnClickedButtonSend()
 		//获取最前面的窗口是否是巧遇卡
 		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
 		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
-		Sleep(5000);
+		//根据不同的网速设置延时间隔
+        Sleep(iClickTime);
 		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
 		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
-		Sleep(5000);
+		Sleep(iClickTime);
 		//GetDesktopWindow()
 		//GetTopWindow()	 AfxBeginThread()
 		EnumWindows(OEnumWindowsProc,(LPARAM)this);

@@ -46,4 +46,5 @@ public:
 	static BOOL CALLBACK OEnumWindowsProc( HWND hwnd, LPARAM lParam );
 private:
 	CHyperLink m_Static_DiaoSiNiXi;
+	CEdit m_EClickTime;
 };
