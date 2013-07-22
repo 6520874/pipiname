@@ -1,0 +1,38 @@
+﻿
+变量类型	前缀
+全局变量	g_
+const 常量	c_
+类成员变量	m_
+静态变量	s_
+
+
+变量类型		前缀
+临时变量		tmp
+指针			p
+函数			fn
+句柄			h
+布尔			b
+char			ch
+unsigned char		by
+int			i
+unsigned int		u
+float			f
+double			lf
+long long		ll
+unsigned long long	ull
+char* 字符串	str
+
+
+枚举 enum class *** {};	em
+结构体			st
+union			un
+string			str
+CString                 cs
+
+STL 类库 如 list map vector 之类
+如list<int> 		n***List
+vector<double>		lf***Vec
+map<Struct TT>		stTT***Map
+
+write by 6520874  2013年7月22日17:04:32 
+ If you need to add please send mail to 6520874@163.com
