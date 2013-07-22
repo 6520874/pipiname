@@ -40,8 +40,10 @@ public:
 	afx_msg void OnBnClickedButtonSend();
 private:
 	CBrush   m_brush; 
+	HWND     m_hTalk;
 public:
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	static BOOL CALLBACK OEnumWindowsProc( HWND hwnd, LPARAM lParam );
 private:
 	CHyperLink m_Static_DiaoSiNiXi;
 };

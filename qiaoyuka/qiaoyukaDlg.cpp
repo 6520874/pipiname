@@ -52,6 +52,7 @@ CqiaoyukaDlg::CqiaoyukaDlg(CWnd* pParent /*=NULL*/)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	m_hQyk = NULL;
+	m_hTalk =NULL;
 }
 
 void CqiaoyukaDlg::DoDataExchange(CDataExchange* pDX)
@@ -183,6 +184,34 @@ void CqiaoyukaDlg::OnTimer(UINT_PTR nIDEvent)
 	CDialog::OnTimer(nIDEvent);
 }
 
+
+BOOL CALLBACK CqiaoyukaDlg::OEnumWindowsProc(HWND hwnd,
+							  LPARAM lParam
+							  )
+{
+   
+	CqiaoyukaDlg * dlg = (CqiaoyukaDlg *)lParam;
+    
+	TCHAR  strWindowName[256] = {0};
+	TCHAR  strClassName[256] = {0};
+	
+	GetClassName(hwnd,strClassName,256);
+	CString csClasswName(strClassName); 
+
+	if(csClasswName ==_T("TXGuiFoundation"))
+	 {
+         ::GetWindowText(hwnd,strWindowName,256);
+		  CString  csWindowName(strWindowName);
+
+			if(csWindowName!= _T("巧遇卡"))
+			{
+              dlg->m_hTalk = hwnd;
+			  return  FALSE;
+			}
+	 }
+   
+return TRUE;
+}
 void CqiaoyukaDlg::OnBnClickedButtonSend()
 {
 	// TODO: 在此添加控件通知处理程序代码
@@ -190,30 +219,28 @@ void CqiaoyukaDlg::OnBnClickedButtonSend()
 	{  
 		CRect  cli;
 		::GetWindowRect(m_hQyk,cli);
-		//ScreenToClient(cli);
-         
-         SetCursorPos(cli.left+100,cli.top+150);
-		 
-		 //获取最前面的窗口是否是巧遇卡
-		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
-		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
-        Sleep(1000);
-		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
-		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
-		 Sleep(100);
-		//GetDesktopWindow()
-		//GetTopWindow()
 
-		CWnd *hTalk =   FindWindow(_T("TXGuiFoundation"),NULL);
-		if(hTalk != NULL)
+         SetCursorPos(cli.left+120,cli.top+150);
+		//获取最前面的窗口是否是巧遇卡
+		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
+		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
+		Sleep(5000);
+		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
+		mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
+		Sleep(5000);
+		//GetDesktopWindow()
+		//GetTopWindow()	 AfxBeginThread()
+		EnumWindows(OEnumWindowsProc,(LPARAM)this);
+
+		if(m_hTalk != NULL)
 		{
-			::GetWindowRect(hTalk->GetSafeHwnd(),cli);
+			::GetWindowRect(m_hTalk,cli);
 			  SetCursorPos(cli.right-100,cli.bottom-150);
 			  mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
 			  mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
-			   Sleep(100);
-			  //keybd_event(VK_CONTROL, 0, 0, 0   );//按下Ctrl键 
-			  //keybd_event('v', 0, 0, 0);//按下v键 
+			   //Sleep(100);
+			 // keybd_event(VK_CONTROL, 0, 0, 0   );//按下Ctrl键 
+			 // keybd_event('v', 0, 0, 0);//按下v键 
 			  //Sleep(10);//           '延时10毫秒 
 			  
               //CString  cs;
