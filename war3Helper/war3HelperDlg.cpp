@@ -284,10 +284,9 @@ void Cwar3HelperDlg::CheckFullScreen()
 		return;
 	}
 
-
 	if(valueheight!=screenheight_real || valuewidth!=screenwidth_real)
 	{ 
-		AfxMessageBox(L"检测到魔兽全屏模式没有开启,按确定开启全屏模式");
+	    MessageBox(L"检测到魔兽全屏模式没有开启,按确定开启",_T("魔兽一键局域网"),MB_OK|MB_ICONWARNING);
 	}
 
 	if(valuewidth!=screenwidth_real)
@@ -340,7 +339,7 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
-	m_hyperlink.SetURL(L"http://blog.sina.com.cn/s/blog_ac930a9f01018ouq.html");
+	m_hyperlink.SetURL(L" ");
 
 	TCHAR strWar3Path[MAX_PATH] = {0};
 	GetPrivateProfileString(L"war3path",L"path",L" ",strWar3Path,256,m_strDir+_T("//war3set.ini"));
@@ -688,17 +687,13 @@ BOOL Cwar3HelperDlg::DestroyWindow()
 }
 void Cwar3HelperDlg::OnSize(UINT nType, int cx, int cy)
 {
-
 	CDialog::OnSize(nType, cx, cy);
 
 	// TODO: Add your message handler code here
 
 	if(nType == SIZE_MINIMIZED) 
-
-	{ 
-
+	{
 		ShowWindow(SW_HIDE); // 当最小化市，隐藏主窗口 
-
 	} 
 
 }
@@ -799,7 +794,6 @@ void Cwar3HelperDlg::OnBnClickedCheck1()
 	}
 
 	RegCloseKey(war3key);
-
 }
 
 void Cwar3HelperDlg::OnBnClickedCheck3()
