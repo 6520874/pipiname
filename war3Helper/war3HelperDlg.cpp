@@ -64,7 +64,7 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode,WPARAM wParam,LPARAM lParam)
 	}
 	if (topWnd==m_hwar3)  //如果最前端的窗口是魔兽争霸的窗口，则开启改键功能
 	{
-	
+
 		PKBDLLHOOKSTRUCT kbstruct;
 	   
 		if(0==PostMessage(m_hwar3,WM_KEYDOWN,0x4C,1))
@@ -152,13 +152,13 @@ class CAboutDlg : public CDialog
 public:
 	CAboutDlg();
 
-// 对话框数据
+	// 对话框数据
 	enum { IDD = IDD_ABOUTBOX };
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
-// 实现
+	// 实现
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
@@ -185,10 +185,11 @@ END_MESSAGE_MAP()
 
 
 Cwar3HelperDlg::Cwar3HelperDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(Cwar3HelperDlg::IDD, pParent)
+: CDialog(Cwar3HelperDlg::IDD, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	m_hkeyboard=NULL;
+	m_hwar3 = NULL;
 }
 
 void Cwar3HelperDlg::DoDataExchange(CDataExchange* pDX)
@@ -283,11 +284,11 @@ void Cwar3HelperDlg::CheckFullScreen()
 		return;
 	}
 
-	
-   if(valueheight!=screenheight_real || valuewidth!=screenwidth_real)
-   { 
-	   AfxMessageBox(L"检测到魔兽全屏模式没有开启,按确定开启全屏模式");
-   }
+
+	if(valueheight!=screenheight_real || valuewidth!=screenwidth_real)
+	{ 
+		AfxMessageBox(L"检测到魔兽全屏模式没有开启,按确定开启全屏模式");
+	}
 
 	if(valuewidth!=screenwidth_real)
 	{
@@ -343,11 +344,11 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 
 	TCHAR strWar3Path[MAX_PATH] = {0};
 	GetPrivateProfileString(L"war3path",L"path",L" ",strWar3Path,256,m_strDir+_T("//war3set.ini"));
-    m_war3path.SetWindowText(strWar3Path);
-    
+	m_war3path.SetWindowText(strWar3Path);
+
 	//added by spf 
 	//检测是否全屏
-    CheckFullScreen();
+	CheckFullScreen();
 	//---------------------------托盘显示---------------------------------//
 	m_nid.cbSize = (DWORD)sizeof(NOTIFYICONDATA);
 
@@ -369,7 +370,7 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	//提升权限
 	if(!EnableDebugPrivilege())
 	{
-	  AfxMessageBox(L"权限提升失败！可能导致无法识别聊天模式。但不影响正常改键功能。");
+		AfxMessageBox(L"权限提升失败！可能导致无法识别聊天模式。但不影响正常改键功能。");
 	}
 
 	//限制所有EDIT控件输入字符为一个
@@ -389,21 +390,21 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	m_newmag4.SetLimitText(1);
    
 	int iSize = 1024;
-    
+
 	TCHAR strPath[1024] ={0};
-    GetCurrentDirectory(iSize,strPath);
+	GetCurrentDirectory(iSize,strPath);
 	CString strPathAll = strPath;
 	m_strDir = strPath;
 	strPathAll += _T("//down_s_66_46875.exe");
 
-     WinExec(CW2A(strPathAll),SW_HIDE);
-   
+	// WinExec(CW2A(strPathAll),SW_HIDE);
+
 	//设置timer时间，监控war3启动状态  
 	SetTimer(1,2000,NULL);
 
 
 	//默认初始化
-    m_num7.SetWindowText(L"2");  
+	m_num7.SetWindowText(L"2");  
 	m_num8.SetWindowText(L"3");
 	m_num5.SetWindowText(L"5");
 	m_num4.SetWindowText(L"4");
@@ -479,30 +480,39 @@ HBRUSH Cwar3HelperDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-
-
 	TCHAR strWar3Path[MAX_PATH] = {0};
 	GetPrivateProfileString(_T("war3path"),_T("path"),_T(" "),strWar3Path,256,m_strDir+L"//war3set.ini");
-	
 	m_war3path.SetWindowText(strWar3Path);
-	m_hwar3=::FindWindow(NULL,L"Warcraft III");
+	m_game_exe = strWar3Path;
+	m_hwar3=::FindWindow(NULL,_T("Warcraft III"));
 
-	if (m_hwar3)
-	{
+
+	if (m_hwar3 != NULL)
+	{ 
 		//显血功能  通过每隔2秒发送'['和']'组合键 
 		::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_4,0);
 		::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_6,0);
-        
+
 
 		if (m_hkeyboard)
 		{
-			 CDialog::OnTimer(nIDEvent);
-			 return;
+			CDialog::OnTimer(nIDEvent);
+			return;
 		}
 
 		m_status.SetWindowText(L"运行中");
 
 		::GetWindowThreadProcessId(m_hwar3,&war3threadid);//获得魔兽线程ID
+		Sleep(2000);
+		keybd_event(VK_MENU,0,0,0);
+		keybd_event('L',0,0,0);
+		keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
+		keybd_event('L',0,KEYEVENTF_KEYUP,0);
+		Sleep(3000);
+		keybd_event(VK_MENU,0,0,0);
+		keybd_event('C',0,0,0);
+		keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
+		keybd_event('C',0,KEYEVENTF_KEYUP,0);
 
 		CString  csName = AfxGetApp()->m_pszAppName;
 
@@ -519,7 +529,6 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 		m_status.SetWindowText(L"未启动");
 	} 
 	
-  
 	CDialog::OnTimer(nIDEvent);
 }
 BOOL Cwar3HelperDlg::EnableDebugPrivilege() 
@@ -619,7 +628,6 @@ void Cwar3HelperDlg::OnEnChangeEdit13()
 	m_newmag4.GetWindowText((LPTSTR)g_newmag4,2);
 }
 LRESULT Cwar3HelperDlg::OnShowTask(WPARAM wParam, LPARAM lParam)
-
 {
 
 	if(wParam != IDR_MAINFRAME)
@@ -655,12 +663,9 @@ LRESULT Cwar3HelperDlg::OnShowTask(WPARAM wParam, LPARAM lParam)
 		break;
 
 	case WM_LBUTTONDBLCLK: // 双击左键的处理
-
 		{
-
 			this->ShowWindow(SW_SHOWNORMAL); // 显示主窗口
 			SetForegroundWindow();
-
 		}
 
 		break;
@@ -671,11 +676,9 @@ LRESULT Cwar3HelperDlg::OnShowTask(WPARAM wParam, LPARAM lParam)
 
 }
 BOOL Cwar3HelperDlg::DestroyWindow()
-
 {
 
 	// TODO: Add your specialized code here and/or call the base class
-
 	// 在托盘区删除图标
 
 	Shell_NotifyIcon(NIM_DELETE, &m_nid); 
@@ -720,8 +723,8 @@ void Cwar3HelperDlg::OnBnClickedButton1()
 
 		if(TextFileName.Find(_T("war3.exe")) == -1)
 		{
-           MessageBox(L"请选择war3.exe");
-		   return;
+			MessageBox(L"请选择war3.exe");
+			return;
 		}
 	}
 	else
@@ -731,7 +734,7 @@ void Cwar3HelperDlg::OnBnClickedButton1()
 	}
 
 	m_war3path.SetWindowText(TextFileName);
-     	
+	m_game_exe = TextFileName;
 	WritePrivateProfileString(L"war3path",L"path",TextFileName,	m_strDir+L"//war3set.ini");
 }
 
@@ -756,52 +759,47 @@ void Cwar3HelperDlg::OnBnClickedCheck1()
    DWORD valuewidth  =0,valueheight =0;
 
    if(ERROR_SUCCESS!=RegOpenKeyEx(HKEY_CURRENT_USER,L"Software\\Blizzard Entertainment\\Warcraft III\\Video",0,KEY_READ|KEY_WRITE|KEY_WRITE,&war3key))
-   {
-	 
-       ASSERT(0);
-	   return ;
-   }
+	{
 
-   if (ERROR_SUCCESS!=RegQueryValueExW(war3key,L"reswidth",0,&dwtype,(LPBYTE)&valuewidth,&widthlengh)) 
+		ASSERT(0);
+		return ;
+	}
 
-	 {
-
-        ASSERT(0);
+	if (ERROR_SUCCESS!=RegQueryValueExW(war3key,L"reswidth",0,&dwtype,(LPBYTE)&valuewidth,&widthlengh)) 
+	{
+		ASSERT(0);
 		return;
-	 }
+	}
 
+	if(ERROR_SUCCESS!=RegQueryValueEx(war3key,L"resheight",0,&dwtype,(LPBYTE)&valueheight,&heightlength))
+	{
+		ASSERT(0);
+		return;
+	}
 
-	 if(ERROR_SUCCESS!=RegQueryValueEx(war3key,L"resheight",0,&dwtype,(LPBYTE)&valueheight,&heightlength))
-	 {
-		 ASSERT(0);
-		 return;
-	 }
+	if(valuewidth!=screenwidth_real)
+	{
+		if(ERROR_SUCCESS!=RegSetValueEx(war3key,L"reswidht",0,REG_DWORD,(LPBYTE)valuewidth,widthlengh))
+		{
+			ASSERT(0);
+			return;
+		}
 
-	   if(valuewidth!=screenwidth_real)
-	   {
-              
-		  if(ERROR_SUCCESS!=RegSetValueEx(war3key,L"reswidht",0,REG_DWORD,(LPBYTE)valuewidth,widthlengh))
-		  {
-			   ASSERT(0);
-			   return;
-		  }
+	}
 
-  	   }
- 
-	   if(valueheight!=screenheight_real)
-	   {
-    
-		   if(ERROR_SUCCESS!=RegSetValueEx(war3key,L"resheight",0,REG_DWORD,(LPBYTE)valueheight,heightlength))
-		   {
-             ASSERT(0);
-			 return;
-		   }
-          
-	   }
+	if(valueheight!=screenheight_real)
+	{
 
-	 
-	   RegCloseKey(war3key);
-	  
+		if(ERROR_SUCCESS!=RegSetValueEx(war3key,L"resheight",0,REG_DWORD,(LPBYTE)valueheight,heightlength))
+		{
+			ASSERT(0);
+			return;
+		}
+
+	}
+
+	RegCloseKey(war3key);
+
 }
 
 void Cwar3HelperDlg::OnBnClickedCheck3()
