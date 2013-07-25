@@ -7,6 +7,7 @@
 
 
 #define WM_SHOWTASK WM_USER+10
+#define  TIMER_CHECKWAR3  100
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -40,9 +41,9 @@ NOTIFYICONDATA m_nid;
 LRESULT CALLBACK LowLevelKeyboardProc(int nCode,WPARAM wParam,LPARAM lParam)
 {
 	//获取最前端窗口
-   
+
 	topWnd = GetForegroundWindow();
-	
+
 
 	//通过读取内存信息来判断是否为聊天模式
 	//获取窗口进程ID
@@ -56,8 +57,8 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode,WPARAM wParam,LPARAM lParam)
 	//LPVOID  nbuffer=(LPVOID)&chatNum;
 
 	::ReadProcessMemory(processH,pbase,&chatStatus,4,NULL);
-      
-	  
+
+
 	if (chatStatus)
 	{
 		return CallNextHookEx(m_hkeyboard,nCode,wParam,lParam);
@@ -66,7 +67,7 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode,WPARAM wParam,LPARAM lParam)
 	{
 
 		PKBDLLHOOKSTRUCT kbstruct;
-	   
+
 		if(0==PostMessage(m_hwar3,WM_KEYDOWN,0x4C,1))
 		{
 			ASSERT(0);
@@ -142,7 +143,7 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode,WPARAM wParam,LPARAM lParam)
 
 		}
 	}
-    
+
 	return CallNextHookEx(m_hkeyboard,nCode,wParam,lParam);
 }
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
@@ -238,7 +239,7 @@ BEGIN_MESSAGE_MAP(Cwar3HelperDlg, CDialog)
 	ON_EN_CHANGE(IDC_EDIT13, &Cwar3HelperDlg::OnEnChangeEdit13)
 	ON_WM_SIZE()
 	ON_STN_CLICKED(IDC_HYPERLINK, &Cwar3HelperDlg::OnStnClickedHyperlink)
-	
+
 	ON_BN_CLICKED(IDC_BUTTON1, &Cwar3HelperDlg::OnBnClickedButton1)
 
 	ON_BN_CLICKED(IDC_StartGame, &Cwar3HelperDlg::OnBnClickedStartgame)
@@ -286,7 +287,7 @@ void Cwar3HelperDlg::CheckFullScreen()
 
 	if(valueheight!=screenheight_real || valuewidth!=screenwidth_real)
 	{ 
-	    MessageBox(L"检测到魔兽全屏模式没有开启,按确定开启",_T("魔兽一键局域网"),MB_OK|MB_ICONWARNING);
+		MessageBox(L"检测到魔兽全屏模式没有开启,按确定开启",_T("魔兽一键局域网"),MB_OK|MB_ICONWARNING);
 	}
 
 	if(valuewidth!=screenwidth_real)
@@ -387,7 +388,7 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	m_newmag2.SetLimitText(1);
 	m_newmag3.SetLimitText(1);
 	m_newmag4.SetLimitText(1);
-   
+
 	int iSize = 1024;
 
 	TCHAR strPath[1024] ={0};
@@ -399,7 +400,7 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	// WinExec(CW2A(strPathAll),SW_HIDE);
 
 	//设置timer时间，监控war3启动状态  
-	SetTimer(1,2000,NULL);
+	SetTimer(TIMER_CHECKWAR3,1000,NULL);
 
 
 	//默认初始化
@@ -479,55 +480,56 @@ HBRUSH Cwar3HelperDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	TCHAR strWar3Path[MAX_PATH] = {0};
-	GetPrivateProfileString(_T("war3path"),_T("path"),_T(" "),strWar3Path,256,m_strDir+L"//war3set.ini");
-	m_war3path.SetWindowText(strWar3Path);
-	m_game_exe = strWar3Path;
-	m_hwar3=::FindWindow(NULL,_T("Warcraft III"));
-
-
-	if (m_hwar3 != NULL)
-	{ 
-		//显血功能  通过每隔2秒发送'['和']'组合键 
-		::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_4,0);
-		::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_6,0);
-
-
-		if (m_hkeyboard)
-		{
-			CDialog::OnTimer(nIDEvent);
-			return;
-		}
-
-		m_status.SetWindowText(L"运行中");
-
-		::GetWindowThreadProcessId(m_hwar3,&war3threadid);//获得魔兽线程ID
-		Sleep(2000);
-		keybd_event(VK_MENU,0,0,0);
-		keybd_event('L',0,0,0);
-		keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
-		keybd_event('L',0,KEYEVENTF_KEYUP,0);
-		Sleep(3000);
-		keybd_event(VK_MENU,0,0,0);
-		keybd_event('C',0,0,0);
-		keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
-		keybd_event('C',0,KEYEVENTF_KEYUP,0);
-
-		CString  csName = AfxGetApp()->m_pszAppName;
-
-		csName+= L".exe";
- 
-		m_hkeyboard = SetWindowsHookEx(WH_KEYBOARD_LL,LowLevelKeyboardProc,GetModuleHandle(csName),0);
-		if (NULL==m_hkeyboard)
-		{
-			//AfxMessageBox(L"失败！");
-		}
-	}
-	else
+	if(nIDEvent == TIMER_CHECKWAR3)
 	{
-		m_status.SetWindowText(L"未启动");
-	} 
-	
+		TCHAR strWar3Path[MAX_PATH] = {0};
+		GetPrivateProfileString(_T("war3path"),_T("path"),_T(" "),strWar3Path,256,m_strDir+L"//war3set.ini");
+		m_war3path.SetWindowText(strWar3Path);
+		m_game_exe = strWar3Path;
+		m_hwar3=::FindWindow(NULL,_T("Warcraft III"));
+
+
+		if (m_hwar3 != NULL)
+		{ 
+			//显血功能  通过每隔2秒发送'['和']'组合键 
+			::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_4,0);
+			::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_6,0);
+
+			m_status.SetWindowText(L"运行中");
+			::GetWindowThreadProcessId(m_hwar3,&war3threadid);//获得魔兽线程ID
+			Sleep(2000);
+			keybd_event(VK_MENU,0,0,0);
+			keybd_event('L',0,0,0);
+			keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
+			keybd_event('L',0,KEYEVENTF_KEYUP,0);
+			Sleep(3000);
+			keybd_event(VK_MENU,0,0,0);
+			keybd_event('C',0,0,0);
+			keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
+			keybd_event('C',0,KEYEVENTF_KEYUP,0);
+
+			if (m_hkeyboard != NULL)
+			{
+				CDialog::OnTimer(nIDEvent);
+				return;
+			}
+
+			CString  csName = AfxGetApp()->m_pszAppName;
+
+			csName+= L".exe";
+
+			m_hkeyboard = SetWindowsHookEx(WH_KEYBOARD_LL,LowLevelKeyboardProc,GetModuleHandle(csName),0);
+			if (NULL==m_hkeyboard)
+			{
+				//AfxMessageBox(L"失败！");
+			}
+		}
+		else
+		{
+			m_status.SetWindowText(L"未启动");
+		} 
+	}
+
 	CDialog::OnTimer(nIDEvent);
 }
 BOOL Cwar3HelperDlg::EnableDebugPrivilege() 
@@ -549,7 +551,7 @@ BOOL Cwar3HelperDlg::EnableDebugPrivilege()
 			AfxMessageBox(L"Can't adjust privilege value.\n");
 		}
 
-		
+
 		fOk=(GetLastError()==ERROR_SUCCESS); 
 		CloseHandle(hToken); 
 	} 
@@ -737,7 +739,9 @@ void Cwar3HelperDlg::OnBnClickedButton1()
 void Cwar3HelperDlg::OnBnClickedStartgame()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	  ShellExecute(NULL,L"open",m_game_exe,0,0,SW_SHOWNORMAL);
+	KillTimer(TIMER_CHECKWAR3);
+	ShellExecute(NULL,L"open",m_game_exe,0,0,SW_SHOWNORMAL);
+	SetTimer(TIMER_CHECKWAR3,1000,NULL);
 }
 
 void Cwar3HelperDlg::OnBnClickedCheck1()
@@ -745,15 +749,15 @@ void Cwar3HelperDlg::OnBnClickedCheck1()
 	// TODO: 在此添加控件通知处理程序代码
 
 	HKEY    war3key;
-    DWORD    widthlengh = 10,heightlength = 10;
-    DWORD  dwtype = REG_DWORD;
+	DWORD    widthlengh = 10,heightlength = 10;
+	DWORD  dwtype = REG_DWORD;
 
-   int screenwidth_real = GetSystemMetrics(SM_CXSCREEN);
-   int screenheight_real = GetSystemMetrics(SM_CYSCREEN);
+	int screenwidth_real = GetSystemMetrics(SM_CXSCREEN);
+	int screenheight_real = GetSystemMetrics(SM_CYSCREEN);
 
-   DWORD valuewidth  =0,valueheight =0;
+	DWORD valuewidth  =0,valueheight =0;
 
-   if(ERROR_SUCCESS!=RegOpenKeyEx(HKEY_CURRENT_USER,L"Software\\Blizzard Entertainment\\Warcraft III\\Video",0,KEY_READ|KEY_WRITE|KEY_WRITE,&war3key))
+	if(ERROR_SUCCESS!=RegOpenKeyEx(HKEY_CURRENT_USER,L"Software\\Blizzard Entertainment\\Warcraft III\\Video",0,KEY_READ|KEY_WRITE|KEY_WRITE,&war3key))
 	{
 
 		ASSERT(0);
@@ -824,6 +828,7 @@ void CAboutDlg::OnUpdate32771(CCmdUI *pCmdUI)
 void Cwar3HelperDlg::OnUpdateDeubug(CCmdUI *pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
+	
 	ShellExecute(NULL, _T("open"),_T("mailto:6520874@163.com?subject=sf您好，我发现了一个bug"),NULL,NULL, SW_SHOWNORMAL);
-
+ 
 }
