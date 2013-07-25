@@ -252,9 +252,9 @@ void CqiaoyukaDlg::OnBnClickedButtonSend()
 			  mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
 			    mouse_event (MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0 );
 			  keybd_event(VK_CONTROL, 0, 0, 0 );//按下Ctrl键 
-			  keybd_event(56, 0, 0, 0);//按下v键 
+			  keybd_event('V', 0, 0, 0);//按下v键 
 			  keybd_event(VK_CONTROL,0,KEYEVENTF_KEYUP,0);//然后松开键盘
-			  keybd_event(56,0,KEYEVENTF_KEYUP,0);//然后松开键盘
+			  keybd_event('V',0,KEYEVENTF_KEYUP,0);//然后松开键盘
 		}
        //AfxMessageBox(_T("122121"));
 	}

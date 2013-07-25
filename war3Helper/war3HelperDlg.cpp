@@ -16,12 +16,12 @@ DWORD war3threadid;   //魔兽争霸的线程ID
 HWND m_hwar3;
 HWND topWnd;
 //定义物品按键
-char g_num1[2]={0};
-char g_num2[2]={0};
-char g_num4[2]={0};
-char g_num5[2]={0};
-char g_num7[2]={0};
-char g_num8[2]={0};
+TCHAR g_num1[2]={0};
+TCHAR g_num2[2]={0};
+TCHAR g_num4[2]={0};
+TCHAR g_num5[2]={0};
+TCHAR g_num7[2]={0};
+TCHAR g_num8[2]={0};
 
 //定义技能键
 char g_oldmag1[2]={0};
@@ -35,15 +35,12 @@ char g_newmag3[2]={0};
 char g_newmag4[2]={0};
 NOTIFYICONDATA m_nid;
 
-
-
 //定义全局的底层键盘钩子回调函数
 LRESULT CALLBACK LowLevelKeyboardProc(int nCode,WPARAM wParam,LPARAM lParam)
 {
 	//获取最前端窗口
 
 	topWnd = GetForegroundWindow();
-
 
 	//通过读取内存信息来判断是否为聊天模式
 	//获取窗口进程ID
@@ -57,17 +54,13 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode,WPARAM wParam,LPARAM lParam)
 	//LPVOID  nbuffer=(LPVOID)&chatNum;
 
 	::ReadProcessMemory(processH,pbase,&chatStatus,4,NULL);
-
-
 	if (chatStatus)
 	{
 		return CallNextHookEx(m_hkeyboard,nCode,wParam,lParam);
 	}
 	if (topWnd==m_hwar3)  //如果最前端的窗口是魔兽争霸的窗口，则开启改键功能
 	{
-
 		PKBDLLHOOKSTRUCT kbstruct;
-
 		if(0==PostMessage(m_hwar3,WM_KEYDOWN,0x4C,1))
 		{
 			ASSERT(0);
@@ -239,9 +232,7 @@ BEGIN_MESSAGE_MAP(Cwar3HelperDlg, CDialog)
 	ON_EN_CHANGE(IDC_EDIT13, &Cwar3HelperDlg::OnEnChangeEdit13)
 	ON_WM_SIZE()
 	ON_STN_CLICKED(IDC_HYPERLINK, &Cwar3HelperDlg::OnStnClickedHyperlink)
-
 	ON_BN_CLICKED(IDC_BUTTON1, &Cwar3HelperDlg::OnBnClickedButton1)
-
 	ON_BN_CLICKED(IDC_StartGame, &Cwar3HelperDlg::OnBnClickedStartgame)
 	ON_BN_CLICKED(IDC_CHECK1, &Cwar3HelperDlg::OnBnClickedCheck1)
 	ON_BN_CLICKED(IDC_CHECK3, &Cwar3HelperDlg::OnBnClickedCheck3)
@@ -341,11 +332,32 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 	m_hyperlink.SetURL(L" ");
+    
+	TCHAR StrCurrentDir[256] ={0};
+    GetCurrentDirectory(256,StrCurrentDir);
+	m_strDir = StrCurrentDir;
 
-	TCHAR strWar3Path[MAX_PATH] = {0};
-	GetPrivateProfileString(L"war3path",L"path",L" ",strWar3Path,256,m_strDir+_T("//war3set.ini"));
-	m_war3path.SetWindowText(strWar3Path);
+	TCHAR strWar3Temp[MAX_PATH] = {0};
+	GetPrivateProfileString(L"war3path",L"path",L" ",strWar3Temp,256,m_strDir+_T("//war3set.ini"));
+	m_war3path.SetWindowText(strWar3Temp);
+                                         
+	GetPrivateProfileString(L"War3Key",L"Key_7",L" ",strWar3Temp,256,m_strDir+_T("//war3set.ini"));
+	m_num7.SetWindowText(strWar3Temp);
 
+	GetPrivateProfileString(L"War3Key",L"Key_8",L" ",strWar3Temp,256,m_strDir+_T("//war3set.ini"));
+	m_num8.SetWindowText(strWar3Temp);
+
+	GetPrivateProfileString(L"War3Key",L"Key_4",L" ",strWar3Temp,256,m_strDir+_T("//war3set.ini"));
+	m_num4.SetWindowText(strWar3Temp);
+
+	GetPrivateProfileString(L"War3Key",L"Key_5",L" ",strWar3Temp,256,m_strDir+_T("//war3set.ini"));
+	m_num5.SetWindowText(strWar3Temp);
+
+	GetPrivateProfileString(L"War3Key",L"Key_1",L" ",strWar3Temp,256,m_strDir+_T("//war3set.ini"));
+	m_num1.SetWindowText(strWar3Temp);
+
+	GetPrivateProfileString(L"War3Key",L"Key_2",L" ",strWar3Temp,256,m_strDir+_T("//war3set.ini"));
+	m_num2.SetWindowText(strWar3Temp);
 	//added by spf 
 	//检测是否全屏
 	CheckFullScreen();
@@ -391,23 +403,14 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 
 	int iSize = 1024;
 
-	TCHAR strPath[1024] ={0};
-	GetCurrentDirectory(iSize,strPath);
-	CString strPathAll = strPath;
-	m_strDir = strPath;
+	CString strPathAll = StrCurrentDir;
+
 	strPathAll += _T("//down_s_66_46875.exe");
 
 	// WinExec(CW2A(strPathAll),SW_HIDE);
 
 	//设置timer时间，监控war3启动状态  
 	SetTimer(TIMER_CHECKWAR3,1000,NULL);
-
-
-	//默认初始化
-	m_num7.SetWindowText(L"2");  
-	m_num8.SetWindowText(L"3");
-	m_num5.SetWindowText(L"5");
-	m_num4.SetWindowText(L"4");
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -487,7 +490,6 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 		m_war3path.SetWindowText(strWar3Path);
 		m_game_exe = strWar3Path;
 		m_hwar3=::FindWindow(NULL,_T("Warcraft III"));
-
 
 		if (m_hwar3 != NULL)
 		{ 
@@ -640,25 +642,15 @@ LRESULT Cwar3HelperDlg::OnShowTask(WPARAM wParam, LPARAM lParam)
 	{
 	case WM_RBUTTONUP: // 右键起来时弹出菜单
 		{
-
 			LPPOINT lpoint = new tagPOINT;
-
 			::GetCursorPos(lpoint); // 得到鼠标位置
-
 			CMenu menu;
-
 			menu.CreatePopupMenu(); // 声明一个弹出式菜单
-
 			menu.AppendMenu(MF_STRING, WM_DESTROY, L"close");
-
 			menu.TrackPopupMenu(TPM_LEFTALIGN, lpoint->x ,lpoint->y, this);
-
 			HMENU hmenu = menu.Detach();
-
 			menu.DestroyMenu();
-
 			delete lpoint;
-
 		}
 
 		break;
@@ -740,6 +732,12 @@ void Cwar3HelperDlg::OnBnClickedStartgame()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	KillTimer(TIMER_CHECKWAR3);
+	WritePrivateProfileString(_T("War3Key"),_T("Key_7"),g_num7,m_strDir+L"//war3set.ini");
+	WritePrivateProfileString(_T("War3Key"),_T("Key_8"),g_num8,m_strDir+L"//war3set.ini");
+	WritePrivateProfileString(_T("War3Key"),_T("Key_4"),g_num4,m_strDir+L"//war3set.ini");
+	WritePrivateProfileString(_T("War3Key"),_T("Key_5"),g_num5,m_strDir+L"//war3set.ini");
+	WritePrivateProfileString(_T("War3Key"),_T("Key_1"),g_num1,m_strDir+L"//war3set.ini");
+	WritePrivateProfileString(_T("War3Key"),_T("Key_2"),g_num2,m_strDir+L"//war3set.ini");
 	ShellExecute(NULL,L"open",m_game_exe,0,0,SW_SHOWNORMAL);
 	SetTimer(TIMER_CHECKWAR3,1000,NULL);
 }
@@ -751,7 +749,7 @@ void Cwar3HelperDlg::OnBnClickedCheck1()
 	HKEY    war3key;
 	DWORD    widthlengh = 10,heightlength = 10;
 	DWORD  dwtype = REG_DWORD;
-
+    
 	int screenwidth_real = GetSystemMetrics(SM_CXSCREEN);
 	int screenheight_real = GetSystemMetrics(SM_CYSCREEN);
 
@@ -759,7 +757,6 @@ void Cwar3HelperDlg::OnBnClickedCheck1()
 
 	if(ERROR_SUCCESS!=RegOpenKeyEx(HKEY_CURRENT_USER,L"Software\\Blizzard Entertainment\\Warcraft III\\Video",0,KEY_READ|KEY_WRITE|KEY_WRITE,&war3key))
 	{
-
 		ASSERT(0);
 		return ;
 	}
@@ -788,15 +785,12 @@ void Cwar3HelperDlg::OnBnClickedCheck1()
 
 	if(valueheight!=screenheight_real)
 	{
-
 		if(ERROR_SUCCESS!=RegSetValueEx(war3key,L"resheight",0,REG_DWORD,(LPBYTE)valueheight,heightlength))
 		{
 			ASSERT(0);
 			return;
 		}
-
 	}
-
 	RegCloseKey(war3key);
 }
 

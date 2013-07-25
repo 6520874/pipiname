@@ -236,11 +236,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\xuemo.bmp"
+					RelativePath=".\res\xuemo.bmp"
 					>
 				</File>
 				<File
-					RelativePath=".\res\xuemo.bmp"
+					RelativePath="..\xuemo.bmp"
 					>
 				</File>
 			</Filter>
