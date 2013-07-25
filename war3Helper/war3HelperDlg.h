@@ -4,7 +4,8 @@
 #pragma once
 #include "afxwin.h"
 #include "hyperlink.h"
-
+#include "MyEdit.h"
+#include "resource.h"
 
 // Cwar3HelperDlg 对话框
 class Cwar3HelperDlg : public CDialog
@@ -22,7 +23,6 @@ public:
 // 实现
 protected:
 	HICON m_hIcon;
-
 	// 生成的消息映射函数
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
@@ -33,12 +33,12 @@ protected:
 	LRESULT OnShowTask(WPARAM wParam, LPARAM lParam);
 	BOOL DestroyWindow();
 public:
-	CEdit m_num7;
-	CEdit m_num8;
-	CEdit m_num4;
-	CEdit m_num5;
-	CEdit m_num1;
-	CEdit m_num2;
+	CMyEdit m_num7;
+	CMyEdit m_num8;
+	CMyEdit m_num4;
+	CMyEdit m_num5;
+	CMyEdit m_num1;
+	CMyEdit m_num2;
 	CEdit m_oldmag1;
 	CEdit m_newmag1;
 	CEdit m_oldmag2;
@@ -81,4 +81,8 @@ private:
 	CString m_strDir;
 public:
 	afx_msg void OnUpdateDeubug(CCmdUI *pCmdUI);
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+   
 };
+
+ Cwar3HelperDlg & GetWar3Dlg();

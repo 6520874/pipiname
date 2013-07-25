@@ -57,10 +57,12 @@ BOOL Cwar3HelperApp::InitInstance()
 	// TODO: 应适当修改该字符串，
 	// 例如修改为公司或组织名
 	SetRegistryKey(_T("应用程序向导生成的本地应用程序"));
-
-	Cwar3HelperDlg dlg;
-	m_pMainWnd = &dlg;
-	INT_PTR nResponse = dlg.DoModal();
+ 
+	
+	//Cwar3HelperDlg dlg;
+	//CPDlg.
+	m_pMainWnd =  &GetWar3Dlg();
+	INT_PTR nResponse = GetWar3Dlg().DoModal();
 	if (nResponse == IDOK)
 	{
 		// TODO: 在此放置处理何时用

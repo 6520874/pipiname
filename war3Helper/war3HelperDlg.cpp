@@ -24,15 +24,15 @@ TCHAR g_num7[2]={0};
 TCHAR g_num8[2]={0};
 
 //定义技能键
-char g_oldmag1[2]={0};
-char g_oldmag2[2]={0};
-char g_oldmag3[2]={0};
-char g_oldmag4[2]={0};
+TCHAR g_oldmag1[2]={0};
+TCHAR g_oldmag2[2]={0};
+TCHAR g_oldmag3[2]={0};
+TCHAR g_oldmag4[2]={0};
 
-char g_newmag1[2]={0};
-char g_newmag2[2]={0};
-char g_newmag3[2]={0};
-char g_newmag4[2]={0};
+TCHAR g_newmag1[2]={0};
+TCHAR g_newmag2[2]={0};
+TCHAR g_newmag3[2]={0};
+TCHAR g_newmag4[2]={0};
 NOTIFYICONDATA m_nid;
 
 //定义全局的底层键盘钩子回调函数
@@ -158,6 +158,7 @@ protected:
 public:
 	afx_msg void OnUpdate32771(CCmdUI *pCmdUI);
 };
+
 
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
 {
@@ -496,7 +497,6 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 			//显血功能  通过每隔2秒发送'['和']'组合键 
 			::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_4,0);
 			::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_6,0);
-
 			m_status.SetWindowText(L"运行中");
 			::GetWindowThreadProcessId(m_hwar3,&war3threadid);//获得魔兽线程ID
 			Sleep(2000);
@@ -562,63 +562,64 @@ BOOL Cwar3HelperDlg::EnableDebugPrivilege()
 
 void Cwar3HelperDlg::OnEnChangeEdit14()
 {
-	m_num7.GetWindowText((LPTSTR)g_num7,2);
+	m_num7.GetWindowText(g_num7,2);
+	
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit15()
 {
-	m_num8.GetWindowText((LPTSTR)g_num8,2);
+	m_num8.GetWindowText(g_num8,2);
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit3()
 {
-	m_num4.GetWindowText((LPTSTR)g_num4,2);
+	m_num4.GetWindowText(g_num4,2);
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit6()
 {
-	m_num5.GetWindowText((LPTSTR)g_num5,2);
+	m_num5.GetWindowText(g_num5,2);
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit4()
 {
-	m_num1.GetWindowText((LPTSTR)g_num1,2);
+	m_num1.GetWindowText(g_num1,2);
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit5()
 {
-	m_num2.GetWindowText((LPTSTR)g_num2,2);
+	m_num2.GetWindowText(g_num2,2);
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit2()
 {
-	m_oldmag1.GetWindowText((LPTSTR)g_oldmag1,2);
+	m_oldmag1.GetWindowText(g_oldmag1,2);
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit7()
 {
-	m_newmag1.GetWindowText((LPTSTR)g_newmag1,2);
+	m_newmag1.GetWindowText(g_newmag1,2);
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit8()
 {
-	m_oldmag2.GetWindowText((LPTSTR)g_oldmag2,2);
+	m_oldmag2.GetWindowText(g_oldmag2,2);
 
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit10()
 {
-	m_oldmag3.GetWindowText((LPTSTR)g_oldmag3,2);
+	m_oldmag3.GetWindowText(g_oldmag3,2);
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit12()
 {
-	m_oldmag4.GetWindowText((LPTSTR)g_oldmag4,2);
+	m_oldmag4.GetWindowText(g_oldmag4,2);
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit9()
 {
-	m_newmag2.GetWindowText((LPTSTR)g_newmag2,2);
+	m_newmag2.GetWindowText(g_newmag2,2);
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit11()
@@ -825,4 +826,17 @@ void Cwar3HelperDlg::OnUpdateDeubug(CCmdUI *pCmdUI)
 	
 	ShellExecute(NULL, _T("open"),_T("mailto:6520874@163.com?subject=sf您好，我发现了一个bug"),NULL,NULL, SW_SHOWNORMAL);
  
+}
+
+BOOL Cwar3HelperDlg::PreTranslateMessage(MSG* pMsg)
+{
+	// TODO: 在此添加专用代码和/或调用基类
+    
+	return CDialog::PreTranslateMessage(pMsg);
+}
+ 
+Cwar3HelperDlg  g_Dlg;
+Cwar3HelperDlg & GetWar3Dlg()
+{ 
+    return g_Dlg;
 }
