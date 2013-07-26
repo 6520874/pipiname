@@ -47,6 +47,7 @@ public:
 	CEdit m_newmag3;
 	CEdit m_oldmag4;
 	CEdit m_newmag4;
+private:
 	CBrush   brush; 
 	CStatic m_status;
 	CHyperLink m_hyperlink;
@@ -77,8 +78,8 @@ public:
 	afx_msg void OnBnClickedCheck3();
 	afx_msg void OnBnClickedCheck2();
 	afx_msg void OnEnChangeEdit1();
-private:
 	CString m_strDir;
+	BOOL  bFirstStartFlag;
 public:
 	afx_msg void OnUpdateDeubug(CCmdUI *pCmdUI);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);

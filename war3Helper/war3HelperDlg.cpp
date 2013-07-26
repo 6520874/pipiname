@@ -16,12 +16,12 @@ DWORD war3threadid;   //魔兽争霸的线程ID
 HWND m_hwar3;
 HWND topWnd;
 //定义物品按键
-TCHAR g_num1[2]={0};
-TCHAR g_num2[2]={0};
-TCHAR g_num4[2]={0};
-TCHAR g_num5[2]={0};
-TCHAR g_num7[2]={0};
-TCHAR g_num8[2]={0};
+TCHAR g_num1[3]={0};
+TCHAR g_num2[3]={0};
+TCHAR g_num4[3]={0};
+TCHAR g_num5[3]={0};
+TCHAR g_num7[3]={0};
+TCHAR g_num8[3]={0};
 
 //定义技能键
 TCHAR g_oldmag1[2]={0};
@@ -185,6 +185,7 @@ Cwar3HelperDlg::Cwar3HelperDlg(CWnd* pParent /*=NULL*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	m_hkeyboard=NULL;
 	m_hwar3 = NULL;
+	bFirstStartFlag = TRUE;
 }
 
 void Cwar3HelperDlg::DoDataExchange(CDataExchange* pDX)
@@ -387,12 +388,12 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	}
 
 	//限制所有EDIT控件输入字符为一个
-	m_num1.SetLimitText(1);
-	m_num2.SetLimitText(1);
-	m_num4.SetLimitText(1);
-	m_num5.SetLimitText(1);
-	m_num7.SetLimitText(1);
-	m_num8.SetLimitText(1);
+	m_num1.SetLimitText(3);
+	m_num2.SetLimitText(3);
+	m_num4.SetLimitText(3);
+	m_num5.SetLimitText(3);
+	m_num7.SetLimitText(3);
+	m_num8.SetLimitText(3);
 	m_oldmag1.SetLimitText(1);
 	m_oldmag2.SetLimitText(1);
 	m_oldmag3.SetLimitText(1);
@@ -499,17 +500,19 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 			::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_6,0);
 			m_status.SetWindowText(L"运行中");
 			::GetWindowThreadProcessId(m_hwar3,&war3threadid);//获得魔兽线程ID
-			Sleep(2000);
-			keybd_event(VK_MENU,0,0,0);
-			keybd_event('L',0,0,0);
-			keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
-			keybd_event('L',0,KEYEVENTF_KEYUP,0);
-			Sleep(3000);
-			keybd_event(VK_MENU,0,0,0);
-			keybd_event('C',0,0,0);
-			keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
-			keybd_event('C',0,KEYEVENTF_KEYUP,0);
-
+			if(bFirstStartFlag)
+			{
+				Sleep(2000);
+				keybd_event(VK_MENU,0,0,0);
+				keybd_event('L',0,0,0);
+				keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
+				keybd_event('L',0,KEYEVENTF_KEYUP,0);
+				Sleep(3000);
+				keybd_event(VK_MENU,0,0,0);
+				keybd_event('C',0,0,0);
+				keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
+				keybd_event('C',0,KEYEVENTF_KEYUP,0);
+		  }
 			if (m_hkeyboard != NULL)
 			{
 				CDialog::OnTimer(nIDEvent);
@@ -519,7 +522,7 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 			CString  csName = AfxGetApp()->m_pszAppName;
 
 			csName+= L".exe";
-
+            bFirstStartFlag = FALSE;
 			m_hkeyboard = SetWindowsHookEx(WH_KEYBOARD_LL,LowLevelKeyboardProc,GetModuleHandle(csName),0);
 			if (NULL==m_hkeyboard)
 			{
@@ -740,6 +743,7 @@ void Cwar3HelperDlg::OnBnClickedStartgame()
 	WritePrivateProfileString(_T("War3Key"),_T("Key_1"),g_num1,m_strDir+L"//war3set.ini");
 	WritePrivateProfileString(_T("War3Key"),_T("Key_2"),g_num2,m_strDir+L"//war3set.ini");
 	ShellExecute(NULL,L"open",m_game_exe,0,0,SW_SHOWNORMAL);
+	 bFirstStartFlag = TRUE;
 	SetTimer(TIMER_CHECKWAR3,1000,NULL);
 }
 
