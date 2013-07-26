@@ -191,6 +191,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\MyEdit.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -218,32 +222,6 @@
 				RelativePath=".\war3HelperDlg.cpp"
 				>
 			</File>
-			<Filter
-				Name="资源文件"
-				Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
-				UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
-				>
-				<File
-					RelativePath=".\res\war3Helper.ico"
-					>
-				</File>
-				<File
-					RelativePath=".\war3Helper.rc"
-					>
-				</File>
-				<File
-					RelativePath=".\res\war3Helper.rc2"
-					>
-				</File>
-				<File
-					RelativePath=".\res\xuemo.bmp"
-					>
-				</File>
-				<File
-					RelativePath="..\xuemo.bmp"
-					>
-				</File>
-			</Filter>
 		</Filter>
 		<Filter
 			Name="头文件"
@@ -252,6 +230,10 @@
 			>
 			<File
 				RelativePath=".\hyperlink.h"
+				>
+			</File>
+			<File
+				RelativePath=".\MyEdit.h"
 				>
 			</File>
 			<File
@@ -272,6 +254,32 @@
 			</File>
 			<File
 				RelativePath=".\war3HelperDlg.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="资源文件"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File
+				RelativePath=".\res\war3Helper.ico"
+				>
+			</File>
+			<File
+				RelativePath=".\war3Helper.rc"
+				>
+			</File>
+			<File
+				RelativePath=".\res\war3Helper.rc2"
+				>
+			</File>
+			<File
+				RelativePath="..\xuemo.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\xuemo.bmp"
 				>
 			</File>
 		</Filter>
