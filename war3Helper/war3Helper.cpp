@@ -57,7 +57,15 @@ BOOL Cwar3HelperApp::InitInstance()
 	// TODO: 应适当修改该字符串，
 	// 例如修改为公司或组织名
 	SetRegistryKey(_T("应用程序向导生成的本地应用程序"));
- 
+	HANDLE  g_hEvent= CreateEvent(NULL,FALSE,FALSE,_T("War3Tool"));
+	if (g_hEvent)
+	{
+		if (ERROR_ALREADY_EXISTS==GetLastError())
+		{
+			//cout<<"only one instance is running"<<endl;
+			return  -1;
+		}
+	}
 	
 	//Cwar3HelperDlg dlg;
 	//CPDlg.
