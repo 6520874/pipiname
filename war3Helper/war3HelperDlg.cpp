@@ -341,8 +341,6 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 
 	TCHAR strWar3Temp[MAX_PATH] = {0};
 	GetPrivateProfileString(L"war3path",L"path",L" ",strWar3Temp,256,m_strDir+_T("//war3set.ini"));
-	m_war3path.SetWindowText(strWar3Temp);
-                                         
 	GetPrivateProfileString(L"War3Key",L"Key_7",L" ",strWar3Temp,256,m_strDir+_T("//war3set.ini"));
 	m_num7.SetWindowText(strWar3Temp);
 
@@ -402,7 +400,6 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	m_newmag2.SetLimitText(1);
 	m_newmag3.SetLimitText(1);
 	m_newmag4.SetLimitText(1);
-
 	int iSize = 1024;
 
 	CString strPathAll = StrCurrentDir;
@@ -565,7 +562,7 @@ BOOL Cwar3HelperDlg::EnableDebugPrivilege()
 
 void Cwar3HelperDlg::OnEnChangeEdit14()
 {
-	m_num7.GetWindowText(g_num7,2);
+	m_num7.GetWindowText(g_num7);
 	
 }
 
