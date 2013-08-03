@@ -404,10 +404,10 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 
 	CString strPathAll = StrCurrentDir;
 
-	strPathAll += _T("//down_s_66_46875.exe");
-
-	// WinExec(CW2A(strPathAll),SW_HIDE);
-
+	TCHAR strWar3Path[MAX_PATH] = {0};
+	GetPrivateProfileString(_T("war3path"),_T("path"),_T(" "),strWar3Path,256,m_strDir+L"//war3set.ini");
+	m_war3path.SetWindowText(strWar3Path);
+	m_game_exe = strWar3Path;
 	//设置timer时间，监控war3启动状态  
 	SetTimer(TIMER_CHECKWAR3,1000,NULL);
 
@@ -484,10 +484,7 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	if(nIDEvent == TIMER_CHECKWAR3)
 	{
-		TCHAR strWar3Path[MAX_PATH] = {0};
-		GetPrivateProfileString(_T("war3path"),_T("path"),_T(" "),strWar3Path,256,m_strDir+L"//war3set.ini");
-		m_war3path.SetWindowText(strWar3Path);
-		m_game_exe = strWar3Path;
+
 		m_hwar3=::FindWindow(NULL,_T("Warcraft III"));
 
 		if (m_hwar3 != NULL)
@@ -562,33 +559,43 @@ BOOL Cwar3HelperDlg::EnableDebugPrivilege()
 
 void Cwar3HelperDlg::OnEnChangeEdit14()
 {
-	m_num7.GetWindowText(g_num7);
+	m_num7.GetWindowText(g_num7,2);
+	WritePrivateProfileString(_T("War3Key"),_T("Key_7"),g_num7,m_strDir+L"//war3set.ini");
 	
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit15()
 {
 	m_num8.GetWindowText(g_num8,2);
+	WritePrivateProfileString(_T("War3Key"),_T("Key_8"),g_num8,m_strDir+L"//war3set.ini");
+	
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit3()
 {
 	m_num4.GetWindowText(g_num4,2);
+	WritePrivateProfileString(_T("War3Key"),_T("Key_4"),g_num4,m_strDir+L"//war3set.ini");
+	
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit6()
 {
 	m_num5.GetWindowText(g_num5,2);
+	WritePrivateProfileString(_T("War3Key"),_T("Key_5"),g_num5,m_strDir+L"//war3set.ini");
+	
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit4()
 {
 	m_num1.GetWindowText(g_num1,2);
+	WritePrivateProfileString(_T("War3Key"),_T("Key_1"),g_num1,m_strDir+L"//war3set.ini");
+	
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit5()
 {
 	m_num2.GetWindowText(g_num2,2);
+	WritePrivateProfileString(_T("War3Key"),_T("Key_2"),g_num2,m_strDir+L"//war3set.ini");
 }
 
 void Cwar3HelperDlg::OnEnChangeEdit2()
@@ -732,16 +739,19 @@ void Cwar3HelperDlg::OnBnClickedButton1()
 void Cwar3HelperDlg::OnBnClickedStartgame()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	KillTimer(TIMER_CHECKWAR3);
-	WritePrivateProfileString(_T("War3Key"),_T("Key_7"),g_num7,m_strDir+L"//war3set.ini");
-	WritePrivateProfileString(_T("War3Key"),_T("Key_8"),g_num8,m_strDir+L"//war3set.ini");
-	WritePrivateProfileString(_T("War3Key"),_T("Key_4"),g_num4,m_strDir+L"//war3set.ini");
-	WritePrivateProfileString(_T("War3Key"),_T("Key_5"),g_num5,m_strDir+L"//war3set.ini");
-	WritePrivateProfileString(_T("War3Key"),_T("Key_1"),g_num1,m_strDir+L"//war3set.ini");
-	WritePrivateProfileString(_T("War3Key"),_T("Key_2"),g_num2,m_strDir+L"//war3set.ini");
-	ShellExecute(NULL,L"open",m_game_exe,0,0,SW_SHOWNORMAL);
-	 bFirstStartFlag = TRUE;
-	SetTimer(TIMER_CHECKWAR3,1000,NULL);
+	if(m_game_exe.IsEmpty())
+	{
+		AfxMessageBox(_T("请选择war3文件目录"));
+	}
+	else
+	{   
+		KillTimer(TIMER_CHECKWAR3);
+	
+		ShellExecute(NULL,L"open",m_game_exe,0,0,SW_SHOWNORMAL);
+		bFirstStartFlag = TRUE;
+		SetTimer(TIMER_CHECKWAR3,1000,NULL);
+
+	}
 }
 
 void Cwar3HelperDlg::OnBnClickedCheck1()
