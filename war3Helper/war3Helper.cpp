@@ -9,7 +9,6 @@
 #define new DEBUG_NEW
 #endif
 
-
 // Cwar3HelperApp
 
 BEGIN_MESSAGE_MAP(Cwar3HelperApp, CWinApp)
