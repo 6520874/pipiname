@@ -274,14 +274,6 @@
 				RelativePath=".\res\war3Helper.rc2"
 				>
 			</File>
-			<File
-				RelativePath="..\xuemo.bmp"
-				>
-			</File>
-			<File
-				RelativePath=".\res\xuemo.bmp"
-				>
-			</File>
 		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"
