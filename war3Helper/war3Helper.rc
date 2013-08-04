@@ -217,12 +217,19 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
+// IDB_BITMAPBACKGROUND
+//
+
+IDR_IDB_BITMAPBACKGROUND1 IDB_BITMAPBACKGROUND    "C:\\Documents and Settings\\Administrator\\桌面\\309295_164045_7445.jpg"
+
+/////////////////////////////////////////////////////////////////////////////
+//
 // String Table
 //
 
 STRINGTABLE 
 BEGIN
-    IDS_ABOUTBOX            "关于 war3Helper(&A)..."
+    IDS_ABOUTBOX            "关于 war3Tool(V3.0)(&A)..."
 END
 
 #endif    // 中文(中华人民共和国) resources

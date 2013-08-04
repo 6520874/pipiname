@@ -333,7 +333,7 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
-	m_hyperlink.SetURL(L" ");
+	m_hyperlink.SetURL(L"http://pipi.1kapp.com/");
 
 	m_num1.InitDlg(this);
 	m_num2.InitDlg(this);
@@ -710,6 +710,7 @@ void Cwar3HelperDlg::OnSize(UINT nType, int cx, int cy)
 void Cwar3HelperDlg::OnStnClickedHyperlink()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	AfxMessageBox(_T("你已经是最新版本了"));
 }
 
 
