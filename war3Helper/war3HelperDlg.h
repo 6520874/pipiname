@@ -85,5 +85,3 @@ public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
    
 };
-
- Cwar3HelperDlg & GetWar3Dlg();

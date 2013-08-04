@@ -13,22 +13,22 @@ void CMyEdit::OnEditCommandTab(MSG* pMsg,const TCHAR * sz)
 { 
   
 	//GetWar3Dlg().m_num7.GetWindowText(sz);
-	if(pMsg->hwnd == GetWar3Dlg().m_num7.GetSafeHwnd())
+	if(pMsg->hwnd == m_Pdlg->m_num7.GetSafeHwnd())
 	{
-		GetWar3Dlg().m_num7.SetWindowText(sz);
+		m_Pdlg->m_num7.SetWindowText(sz);
 	}
-	else if(pMsg->hwnd == GetWar3Dlg().m_num8.GetSafeHwnd())
+	else if(pMsg->hwnd == m_Pdlg->m_num8.GetSafeHwnd())
 	{
-		GetWar3Dlg().m_num8.SetWindowText(sz);
+		m_Pdlg->m_num8.SetWindowText(sz);
 	}
-	else if(pMsg->hwnd == GetWar3Dlg().m_num4.GetSafeHwnd())
-		GetWar3Dlg().m_num4.SetWindowText(sz);
-	else if(pMsg->hwnd == GetWar3Dlg().m_num5.GetSafeHwnd())
-		GetWar3Dlg().m_num5.SetWindowText(sz);
-	else if(pMsg->hwnd == GetWar3Dlg().m_num1.GetSafeHwnd())
-		GetWar3Dlg().m_num1.SetWindowText(sz);
-	else if(pMsg->hwnd == GetWar3Dlg().m_num2.GetSafeHwnd())
-		GetWar3Dlg().m_num2.SetWindowText(sz);
+	else if(pMsg->hwnd == m_Pdlg->m_num4.GetSafeHwnd())
+		m_Pdlg->m_num4.SetWindowText(sz);
+	else if(pMsg->hwnd == m_Pdlg->m_num5.GetSafeHwnd())
+		m_Pdlg->m_num5.SetWindowText(sz);
+	else if(pMsg->hwnd == m_Pdlg->m_num1.GetSafeHwnd())
+		m_Pdlg->m_num1.SetWindowText(sz);
+	else if(pMsg->hwnd == m_Pdlg->m_num2.GetSafeHwnd())
+		m_Pdlg->m_num2.SetWindowText(sz);
   
 }
 BOOL CMyEdit::PreTranslateMessage(MSG* pMsg)
@@ -46,4 +46,9 @@ BOOL CMyEdit::PreTranslateMessage(MSG* pMsg)
 		
 	}
 	return CEdit::PreTranslateMessage(pMsg);
+}
+
+void CMyEdit::InitDlg( Cwar3HelperDlg *dlg )
+{
+    m_Pdlg = dlg;
 }

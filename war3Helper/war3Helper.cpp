@@ -66,10 +66,10 @@ BOOL Cwar3HelperApp::InitInstance()
 		}
 	}
 	
-	//Cwar3HelperDlg dlg;
-	//CPDlg.
-	m_pMainWnd =  &GetWar3Dlg();
-	INT_PTR nResponse = GetWar3Dlg().DoModal();
+	Cwar3HelperDlg dlg;
+
+	m_pMainWnd =  &dlg;
+	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)
 	{
 		// TODO: 在此放置处理何时用

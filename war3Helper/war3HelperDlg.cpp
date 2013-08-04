@@ -334,7 +334,14 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 	m_hyperlink.SetURL(L" ");
-    
+
+	m_num1.InitDlg(this);
+	m_num2.InitDlg(this);
+	m_num1.InitDlg(this);
+	m_num4.InitDlg(this);
+	m_num5.InitDlg(this);
+	m_num7.InitDlg(this);
+	m_num8.InitDlg(this);
 	TCHAR StrCurrentDir[256] ={0};
     GetCurrentDirectory(256,StrCurrentDir);
 	m_strDir = StrCurrentDir;
@@ -386,12 +393,12 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	}
 
 	//限制所有EDIT控件输入字符为一个
-	m_num1.SetLimitText(3);
-	m_num2.SetLimitText(3);
-	m_num4.SetLimitText(3);
-	m_num5.SetLimitText(3);
-	m_num7.SetLimitText(3);
-	m_num8.SetLimitText(3);
+	m_num1.SetLimitText(1);
+	m_num2.SetLimitText(1);
+	m_num4.SetLimitText(1);
+	m_num5.SetLimitText(1);
+	m_num7.SetLimitText(1);
+	m_num8.SetLimitText(1);
 	m_oldmag1.SetLimitText(1);
 	m_oldmag2.SetLimitText(1);
 	m_oldmag3.SetLimitText(1);
@@ -846,8 +853,3 @@ BOOL Cwar3HelperDlg::PreTranslateMessage(MSG* pMsg)
 	return CDialog::PreTranslateMessage(pMsg);
 }
  
-Cwar3HelperDlg  g_Dlg;
-Cwar3HelperDlg & GetWar3Dlg()
-{ 
-    return g_Dlg;
-}
