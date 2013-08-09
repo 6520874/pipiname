@@ -726,15 +726,17 @@ void Cwar3HelperDlg::OnBnClickedButton1()
 	{
 		TextFileName = opendlg.GetPathName();	
 
-		if(TextFileName.Find(_T("war3.exe")) == -1)
+		if(TextFileName.Find(_T("war3.exe")) >= 0 || TextFileName.Find(_T("War3.exe"))>=0)
+		{
+		}
+		else
 		{
 			MessageBox(L"«Î—°‘Òwar3.exe");
-			return;
+			return ;
 		}
 	}
 	else
 	{ 
-		MessageBox(L"«Î—°‘Òwar3.exe");
 		return ;
 	}
 
