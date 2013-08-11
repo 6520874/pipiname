@@ -569,6 +569,20 @@ BOOL Cwar3HelperDlg::EnableDebugPrivilege()
 void Cwar3HelperDlg::OnEnChangeEdit14()
 {
 	m_num7.GetWindowText(g_num7,2);
+
+	if(g_num7[0] =='T')
+	{  
+		g_num7[0] = 9;
+	}
+	else if(g_num7[0] =='C')
+	{
+		g_num7[0] = 14;
+	}
+	else if(g_num7[0] =='S')
+	{
+		g_num7[0] = 20;
+	}
+	
 	WritePrivateProfileString(_T("War3Key"),_T("Key_7"),g_num7,m_strDir+L"//war3set.ini");
 	
 }
@@ -576,6 +590,19 @@ void Cwar3HelperDlg::OnEnChangeEdit14()
 void Cwar3HelperDlg::OnEnChangeEdit15()
 {
 	m_num8.GetWindowText(g_num8,2);
+
+	if(g_num8[0] =='T')
+	{  
+		g_num8[0] = 9;
+	}
+	else if(g_num8[0] =='C')
+	{
+		g_num8[0] = 14;
+	}
+	else if(g_num8[0] =='S')
+	{
+		g_num8[0] = 20;
+	}
 	WritePrivateProfileString(_T("War3Key"),_T("Key_8"),g_num8,m_strDir+L"//war3set.ini");
 	
 }
@@ -583,6 +610,18 @@ void Cwar3HelperDlg::OnEnChangeEdit15()
 void Cwar3HelperDlg::OnEnChangeEdit3()
 {
 	m_num4.GetWindowText(g_num4,2);
+	if(g_num4[0] =='T')
+	{  
+		g_num4[0] = 9;
+	}
+	else if(g_num8[0] =='C')
+	{
+		g_num4[0] = 14;
+	}
+	else if(g_num8[0] =='S')
+	{
+		g_num4[0] = 20;
+	}
 	WritePrivateProfileString(_T("War3Key"),_T("Key_4"),g_num4,m_strDir+L"//war3set.ini");
 	
 }
@@ -590,6 +629,18 @@ void Cwar3HelperDlg::OnEnChangeEdit3()
 void Cwar3HelperDlg::OnEnChangeEdit6()
 {
 	m_num5.GetWindowText(g_num5,2);
+	if(g_num5[0] =='T')
+	{  
+		g_num5[0] = 9;
+	}
+	else if(g_num5[0] =='C')
+	{
+		g_num5[0] = 14;
+	}
+	else if(g_num8[0] =='S')
+	{
+		g_num5[0] = 20;
+	}
 	WritePrivateProfileString(_T("War3Key"),_T("Key_5"),g_num5,m_strDir+L"//war3set.ini");
 	
 }
@@ -597,6 +648,18 @@ void Cwar3HelperDlg::OnEnChangeEdit6()
 void Cwar3HelperDlg::OnEnChangeEdit4()
 {
 	m_num1.GetWindowText(g_num1,2);
+	if(g_num1[0] =='T')
+	{  
+		g_num1[0] = 9;
+	}
+	else if(g_num1[0] =='C')
+	{
+		g_num1[0] = 14;
+	}
+	else if(g_num1[0] =='S')
+	{
+		g_num1[0] = 20;
+	}
 	WritePrivateProfileString(_T("War3Key"),_T("Key_1"),g_num1,m_strDir+L"//war3set.ini");
 	
 }
@@ -604,6 +667,18 @@ void Cwar3HelperDlg::OnEnChangeEdit4()
 void Cwar3HelperDlg::OnEnChangeEdit5()
 {
 	m_num2.GetWindowText(g_num2,2);
+	if(g_num2[0] =='T')
+	{  
+		g_num2[0] = 9;
+	}
+	else if(g_num8[0] =='C')
+	{
+		g_num2[0] = 14;
+	}
+	else if(g_num2[0] =='S')
+	{
+		g_num2[0] = 20;
+	}
 	WritePrivateProfileString(_T("War3Key"),_T("Key_2"),g_num2,m_strDir+L"//war3set.ini");
 }
 

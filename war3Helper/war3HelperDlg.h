@@ -83,5 +83,5 @@ private:
 public:
 	afx_msg void OnUpdateDeubug(CCmdUI *pCmdUI);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
-
+	void CheckTABSPACEKey();
 };
