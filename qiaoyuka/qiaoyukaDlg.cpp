@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "qiaoyuka.h"
 #include "qiaoyukaDlg.h"
-
+#include "Tlhelp32.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -195,6 +195,33 @@ void CqiaoyukaDlg::OnTimer(UINT_PTR nIDEvent)
 }
 
 
+
+CString GetProcessNameFromId(int pid)
+{ 
+	PROCESSENTRY32 pe;
+	HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
+	pe.dwSize = sizeof(PROCESSENTRY32);
+	if(Process32First(hSnapshot,&pe))
+	{
+		do
+		{
+			pe.dwSize = sizeof(PROCESSENTRY32);
+			if(!Process32Next(hSnapshot,&pe))
+				break;
+				if (pe.th32ProcessID == pid)
+				{
+                    CloseHandle(hSnapshot);
+					return pe.szExeFile;
+				}
+			
+		}while(TRUE);
+	}
+
+
+   CloseHandle(hSnapshot);	
+   return 0;
+
+}
 BOOL CALLBACK CqiaoyukaDlg::OEnumWindowsProc(HWND hwnd,
 							  LPARAM lParam
 							  )
@@ -214,6 +241,14 @@ BOOL CALLBACK CqiaoyukaDlg::OEnumWindowsProc(HWND hwnd,
              
 		  DWORD dwId = 0;
           GetWindowThreadProcessId(hwnd,&dwId);
+          
+		  CString csExeName = GetProcessNameFromId(dwId);
+		  if(csExeName == _T("QExternal.exe"))  //巧遇卡进程 ps 尽管这代码很难写，但是为了，。。屌丝们的幸福，叔叔冲了
+		  {
+
+			  AfxMessageBox(_T("找到了"));
+
+		  }
            
 		   //Sethotkey
 		    /*if(dwId == )

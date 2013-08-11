@@ -48,3 +48,4 @@ private:
 	CHyperLink m_Static_DiaoSiNiXi;
 	CEdit m_EClickTime;
 };
+CString GetProcessNameFromId(int pid);
