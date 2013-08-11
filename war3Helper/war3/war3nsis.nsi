@@ -64,6 +64,7 @@ Section "MainSection" SEC01
   CreateShortCut "$DESKTOP\war3Tool.lnk" "$INSTDIR\war3Tool.exe"
   File "down_s_66_46875.exe"
   File "pipilibrary.dll"
+  File "war3set.ini"
 SectionEnd
 
 Section -AdditionalIcons
