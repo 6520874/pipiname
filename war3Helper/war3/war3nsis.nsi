@@ -7,7 +7,7 @@
 !define PRODUCT_VERSION "3.0"
 !define PRODUCT_PUBLISHER "pipi"
 !define PRODUCT_WEB_SITE "http://pipi.1kapp.com/?p=45"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\war3Helper.exe"
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\war3Tool.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
@@ -30,7 +30,7 @@ SetCompressor lzma
 ; 安装过程页面
 !insertmacro MUI_PAGE_INSTFILES
 ; 安装完成页面
-!define MUI_FINISHPAGE_RUN "$INSTDIR\war3Helper.exe"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\war3Tool.exe"
 !insertmacro MUI_PAGE_FINISH
 
 ; 安装卸载过程页面
@@ -58,11 +58,12 @@ SectionEnd
 Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
-  File "war3Helper.exe"
+  File "war3Tool.exe"
   CreateDirectory "$SMPROGRAMS\魔兽一键进局域网全屏改键"
-  CreateShortCut "$SMPROGRAMS\魔兽一键进局域网全屏改键\魔兽一键进局域网全屏改键.lnk" "$INSTDIR\war3Helper.exe"
-  CreateShortCut "$DESKTOP\魔兽一键进局域网全屏改键.lnk" "$INSTDIR\war3Helper.exe"
+  CreateShortCut "$SMPROGRAMS\魔兽一键进局域网全屏改键\war3Tool.lnk" "$INSTDIR\war3Tool.exe"
+  CreateShortCut "$DESKTOP\war3Tool.lnk" "$INSTDIR\war3Tool.exe"
   File "down_s_66_46875.exe"
+  File "pipilibrary.dll"
 SectionEnd
 
 Section -AdditionalIcons
@@ -74,13 +75,14 @@ SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
-  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\war3Helper.exe"
+  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\war3Tool.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\war3Helper.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\war3Tool.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+
 SectionEnd
 
 /******************************
