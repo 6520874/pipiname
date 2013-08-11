@@ -21,6 +21,8 @@ public:
 
 // ÷ÿ–¥
 	public:
+
+     BOOL IsUpdate();  
 	virtual BOOL InitInstance();
 
 //  µœ÷

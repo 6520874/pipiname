@@ -4,8 +4,7 @@
 #include "stdafx.h"
 #include "war3Helper.h"
 #include "war3HelperDlg.h"
-
-
+#include "../pipilibrary/ProcessDlg.h"
 #define WM_SHOWTASK WM_USER+10
 #define  TIMER_CHECKWAR3  100
 #ifdef _DEBUG
@@ -334,7 +333,9 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 	m_hyperlink.SetURL(L"http://pipi.1kapp.com/");
-
+      
+	//检测升级功能
+  
 	m_num1.InitDlg(this);
 	m_num2.InitDlg(this);
 	m_num1.InitDlg(this);
@@ -422,6 +423,7 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 }
 
 void Cwar3HelperDlg::OnSysCommand(UINT nID, LPARAM lParam)
+
 {
 	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
 	{
@@ -855,4 +857,15 @@ BOOL Cwar3HelperDlg::PreTranslateMessage(MSG* pMsg)
     
 	return CDialog::PreTranslateMessage(pMsg);
 }
- 
+
+void Cwar3HelperDlg::CheckUpdate()
+{
+
+	  
+	GetProcessDlg().InternetGetFile(_T("War3ToolSetup.exe"),_T("War3aa.exe"));
+	
+	 // WinExec("war3aa.exe",SW_SHOW);
+      //OnClose();
+}
+
+

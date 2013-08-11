@@ -5,6 +5,10 @@
 #include "war3Helper.h"
 #include "war3HelperDlg.h"
 
+#include "../pipilibrary/ProcessDlg.h"
+
+#pragma comment(lib,"pipilibrary.lib")
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -56,6 +60,12 @@ BOOL Cwar3HelperApp::InitInstance()
 	// TODO: 应适当修改该字符串，
 	// 例如修改为公司或组织名
 	SetRegistryKey(_T("应用程序向导生成的本地应用程序"));
+	 if( IsUpdate()) 
+	 { 
+     
+		 return -1;
+	 }
+
 	HANDLE  g_hEvent= CreateEvent(NULL,FALSE,FALSE,_T("War3Tool"));
 	if (g_hEvent)
 	{
@@ -84,4 +94,13 @@ BOOL Cwar3HelperApp::InitInstance()
 	// 由于对话框已关闭，所以将返回 FALSE 以便退出应用程序，
 	//  而不是启动应用程序的消息泵。
 	return FALSE;
+}
+
+BOOL Cwar3HelperApp::IsUpdate()
+{
+	CProcessDlg  cs;
+
+	cs.InternetGetFile(_T("http://pipihaha.sinaapp.com/War3ToolSetup.exe"),_T("war3aa.exe"));
+
+	return TRUE;
 }

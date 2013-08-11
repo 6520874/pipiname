@@ -127,6 +127,7 @@
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_USRDLL"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
+				TreatWChar_tAsBuiltInType="true"
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
 				DebugInformationFormat="3"
@@ -185,7 +186,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\DownFile.cpp"
+				RelativePath=".\pipilibrary.cpp"
 				>
 			</File>
 			<File
@@ -219,15 +220,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\DownFile.h"
-				>
-			</File>
-			<File
-				RelativePath=".\pipilibrary.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\pipilibrary.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ProcessDlg.h"
 				>
 			</File>
 			<File
@@ -263,5 +260,9 @@
 		</File>
 	</Files>
 	<Globals>
+		<Global
+			Name="RESOURCE_FILE"
+			Value="pipilibrary.rc"
+		/>
 	</Globals>
 </VisualStudioProject>

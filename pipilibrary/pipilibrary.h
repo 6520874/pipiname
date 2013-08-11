@@ -22,6 +22,7 @@ public:
 // ÖØÐ´
 public:
 	virtual BOOL InitInstance();
+  
 
 	DECLARE_MESSAGE_MAP()
 };

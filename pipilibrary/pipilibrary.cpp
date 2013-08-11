@@ -51,9 +51,10 @@ CpipilibraryApp::CpipilibraryApp()
 // 唯一的一个 CpipilibraryApp 对象
 
 CpipilibraryApp theApp;
-
+#include "ProcessDlg.h"
 
 // CpipilibraryApp 初始化
+
 
 BOOL CpipilibraryApp::InitInstance()
 {
@@ -64,6 +65,7 @@ BOOL CpipilibraryApp::InitInstance()
 		AfxMessageBox(IDP_SOCKETS_INIT_FAILED);
 		return FALSE;
 	}
-
+   
+	GetProcessDlgDll().DoModal();
 	return TRUE;
 }

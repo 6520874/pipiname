@@ -127,8 +127,8 @@ BEGIN
     PUSHBUTTON      "设置魔兽启动路径",IDC_BUTTON1,150,103,61,21
     EDITTEXT        IDC_EDIT1,7,105,142,19,ES_AUTOHSCROLL
     PUSHBUTTON      "启动游戏",IDC_StartGame,30,155,48,32
-    LTEXT           "联机升级",IDC_HYPERLINK,171,209,40,8,SS_NOTIFY
     CONTROL         "一键中进入局域网联机模式",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,26,134,99,10
+    LTEXT           "联机升级",IDC_HYPERLINK,171,209,40,8,SS_NOTIFY
 END
 
 
@@ -192,12 +192,6 @@ BEGIN
     END
 END
 #endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Bitmap
-//
 
 
 /////////////////////////////////////////////////////////////////////////////
