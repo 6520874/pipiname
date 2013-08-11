@@ -6,7 +6,7 @@
 #include "war3HelperDlg.h"
 
 #include "../pipilibrary/ProcessDlg.h"
-
+#include "../pipilibrary/UpdateSoft.h"
 #pragma comment(lib,"pipilibrary.lib")
 
 #ifdef _DEBUG
@@ -60,10 +60,18 @@ BOOL Cwar3HelperApp::InitInstance()
 	// TODO: 应适当修改该字符串，
 	// 例如修改为公司或组织名
 	SetRegistryKey(_T("应用程序向导生成的本地应用程序"));
+       
+	TCHAR  szModule[MAX_PATH] = {0};
+	 GetModuleFileName(0,szModule,MAX_PATH);
+
+	 CString strModuleName(szModule);
+	 CString strExeName  =   strModuleName.Mid(strModuleName.ReverseFind(_T('\\'))+1,strModuleName.GetLength()-1);
+	
+	 CString strcmd(_T("taskkill /f /im "));
+	 strcmd += strExeName;
 	 if( IsUpdate()) 
-	 { 
-     
-		 return -1;
+	 {
+	   system(CW2A(strcmd));
 	 }
 
 	HANDLE  g_hEvent= CreateEvent(NULL,FALSE,FALSE,_T("War3Tool"));
@@ -98,9 +106,26 @@ BOOL Cwar3HelperApp::InitInstance()
 
 BOOL Cwar3HelperApp::IsUpdate()
 {
-	CProcessDlg  cs;
+ 
+	TCHAR StrCurrentDir[256] ={0};
+	GetCurrentDirectory(256,StrCurrentDir);
+	CString warPath(StrCurrentDir);
+	TCHAR  szValue[MAX_PATH] = {0};
+    GetPrivateProfileString(_T("War3version"),_T("version"),_T("130812"),szValue,MAX_PATH,warPath+_T("//war3set.ini"));
+	CString csVerOld(szValue);
+    CUpdateSoft cUpdateSDlg;
+    cUpdateSDlg.DownCommonFile(_T("http://pipihaha.sinaapp.com/war3set.ini"),_T("war3update.ini"));
+    GetPrivateProfileString(_T("War3version"),_T("version"),_T("130812"),szValue,MAX_PATH,warPath+_T("//war3update.ini"));
+    CString csVerNew(szValue);
 
-	cs.InternetGetFile(_T("http://pipihaha.sinaapp.com/War3ToolSetup.exe"),_T("war3aa.exe"));
-
-	return TRUE;
+    if(csVerOld == csVerNew)
+	{
+		return FALSE;
+	}
+	else
+	{
+		cUpdateSDlg.Apply(_T("http://pipihaha.sinaapp.com/War3ToolSetup.exe"),_T("war3ToolSetup.exe"));
+	
+		return TRUE;
+	}
 }

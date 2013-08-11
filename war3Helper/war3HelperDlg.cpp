@@ -858,14 +858,6 @@ BOOL Cwar3HelperDlg::PreTranslateMessage(MSG* pMsg)
 	return CDialog::PreTranslateMessage(pMsg);
 }
 
-void Cwar3HelperDlg::CheckUpdate()
-{
 
-	  
-	GetProcessDlg().InternetGetFile(_T("War3ToolSetup.exe"),_T("War3aa.exe"));
-	
-	 // WinExec("war3aa.exe",SW_SHOW);
-      //OnClose();
-}
 
 

@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="war3Helper"
+	Name="war3Tool"
 	ProjectGUID="{1042A8BA-5B37-4A1F-B959-8CC1F950DD0A}"
 	RootNamespace="war3Helper"
 	Keyword="MFCProj"
