@@ -65,7 +65,12 @@ BOOL CpipilibraryApp::InitInstance()
 		AfxMessageBox(IDP_SOCKETS_INIT_FAILED);
 		return FALSE;
 	}
-   
-	GetProcessDlgDll().DoModal();
+  
+	
+	GetProcessDlg().Create(CProcessDlg::IDD, &GetProcessDlg());
+
+   //GetProcessDlg().DoModal();
+	m_pMainWnd =  &GetProcessDlg();
+
 	return TRUE;
 }
