@@ -50,7 +50,7 @@ int CProcessDlg::InternetGetFile(CString szUrl,CString szFileName)
 {	
 	DWORD dwFlags;
      ShowWindow(SW_SHOW);
-    m_progress.SetRange(0,725*1024);
+    m_progress.SetRange(0,743138);
  	InternetGetConnectedState(&dwFlags, 0);
 	CHAR strAgent[64];
 	sprintf(strAgent, "Agent%ld", timeGetTime());
