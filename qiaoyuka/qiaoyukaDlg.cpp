@@ -114,6 +114,7 @@ BOOL CqiaoyukaDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	TCHAR StrCurrentDir[256] ={0};
+	GetDlgItem(IDC_EDITMOUSECLICK)->SetWindowText(_T("2000"));
 	GetCurrentDirectory(256,StrCurrentDir);
     RunGuangao(T2CW(StrCurrentDir));
     m_hyperlink.SetURL(L"http://blog.sina.com.cn/s/blog_ac930a9f01018ouq.html");
@@ -222,6 +223,35 @@ CString GetProcessNameFromId(int pid)
    return 0;
 
 }
+
+BOOL CALLBACK  CqiaoyukaDlg::OnSubWinow(HWND hwnd,
+										 LPARAM lParam)
+{ 
+
+    DWORD dwId = 0 ;
+	GetWindowThreadProcessId(hwnd,&dwId);
+	CString csExeName = GetProcessNameFromId(dwId);
+	if(csExeName == _T("QQExternal.exe"))
+	{
+
+
+		  CRect cli;
+		  ::GetWindowRect(hwnd,cli);
+		  if(cli.Width() <700)
+		  {
+ 
+
+		   return FALSE;
+		  }
+
+          
+	
+
+	}
+ 
+	return TRUE;
+}
+
 BOOL CALLBACK CqiaoyukaDlg::OEnumWindowsProc(HWND hwnd,
 							  LPARAM lParam
 							  )
@@ -238,17 +268,17 @@ BOOL CALLBACK CqiaoyukaDlg::OEnumWindowsProc(HWND hwnd,
 	 {
          ::GetWindowText(hwnd,strWindowName,256);
 		  CString  csWindowName(strWindowName);
-             
-		  DWORD dwId = 0;
+		  DWORD dwId;
+
           GetWindowThreadProcessId(hwnd,&dwId);
-          
 		  CString csExeName = GetProcessNameFromId(dwId);
-		  if(csExeName == _T("QExternal.exe"))  //巧遇卡进程 ps 尽管这代码很难写，但是为了，。。屌丝们的幸福，叔叔冲了
+		  if(csExeName == _T("QQ.exe"))  //巧遇卡进程 ps 尽管这代码很难写，但是为了，。。屌丝们的幸福，叔叔冲了
 		  {
-
-			  AfxMessageBox(_T("找到了"));
-
+			  EnumChildWindows(hwnd,OnSubWinow,0);
+		  
 		  }
+		
+          
            
 		   //Sethotkey
 		    /*if(dwId == )

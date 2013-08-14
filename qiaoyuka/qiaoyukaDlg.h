@@ -44,6 +44,7 @@ private:
 public:
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	static BOOL CALLBACK OEnumWindowsProc( HWND hwnd, LPARAM lParam );
+	static BOOL CALLBACK OnSubWinow(HWND hwnd, LPARAM lParam);
 private:
 	CHyperLink m_Static_DiaoSiNiXi;
 	CEdit m_EClickTime;
