@@ -46,12 +46,6 @@ BOOL CFileToolDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
-    
-	//HBITMAP   hBitmap;   
-	//hBitmap = LoadBitmap(AfxGetInstanceHandle(),   
-	//	MAKEINTRESOURCE(IDB_BITMAP2)); // IDB_BITMAP_TEST为资源图片ID  
-
-	//((CButton *)GetDlgItem(IDC_BUTTON1))->SetBitmap(hBitmap);
 
 	m_ImageList.Create(32, 32, ILC_COLOR24|ILC_MASK, 1, 0);
 	m_listctrl.SetImageList(&m_ImageList, LVSIL_NORMAL);

@@ -22,7 +22,7 @@ void CUpdateSoft::Apply(CString szUrl,CString szFileName)
 {
 
 
-   //GetProcessDlg().InternetGetFile(szUrl,szFileName);
+  GetProcessDlg().InternetGetFile(szUrl,szFileName);
 	
 }
 

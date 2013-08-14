@@ -11,3 +11,9 @@
 *.lai
 *.la
 *.a
+
+/war3Helper/Release
+
+*.ncb
+
+/war3Helper/Debug
