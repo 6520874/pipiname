@@ -75,15 +75,11 @@ private:
 	afx_msg void OnBnClickedStartgame();
 	afx_msg void OnBnClickedCheck1();
 	void CheckFullScreen();
-	afx_msg void OnBnClickedCheck3();
-	afx_msg void OnBnClickedCheck2();
-	afx_msg void OnEnChangeEdit1();
 	CString m_strDir;
 	BOOL  bFirstStartFlag;
 public:
 	afx_msg void OnUpdateDeubug(CCmdUI *pCmdUI);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedKaergaijian();
-private:
-	CButton m_KaerGaijian;
+	afx_msg void OnBnClickedKaerchangekey();
 };

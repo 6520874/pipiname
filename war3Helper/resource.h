@@ -11,7 +11,6 @@
 #define IDB_BITMAP3                     133
 #define IDR_MENU1                       134
 #define IDB_BITMAP2                     140
-#define IDB_BITMAP4                     142
 #define IDB_BITMAPKAER                  142
 #define IDC_EDIT2                       1001
 #define IDC_STATUS                      1002
@@ -38,6 +37,7 @@
 #define IDC_CHECK1                      1022
 #define IDC_CHECK2                      1023
 #define IDC_KAERGAIJIAN                 1023
+#define IDC_KAERCHANGEKEY               1023
 #define IDC_CHECK3                      1024
 #define IDC_BUTTON2                     1024
 #define ID_32771                        32771

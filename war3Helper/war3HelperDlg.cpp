@@ -154,8 +154,7 @@ protected:
 	// 实现
 protected:
 	DECLARE_MESSAGE_MAP()
-public:
-	afx_msg void OnUpdate32771(CCmdUI *pCmdUI);
+
 };
 
 
@@ -169,7 +168,6 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
-	ON_UPDATE_COMMAND_UI(ID_32771, &CAboutDlg::OnUpdate32771)
 END_MESSAGE_MAP()
 
 
@@ -207,7 +205,6 @@ void Cwar3HelperDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_STATUS, m_status);
 	DDX_Control(pDX, IDC_HYPERLINK, m_hyperlink);
 	DDX_Control(pDX, IDC_EDIT1, m_war3path);
-	DDX_Control(pDX, IDC_KAERGAIJIAN, m_KaerGaijian);
 }
 
 BEGIN_MESSAGE_MAP(Cwar3HelperDlg, CDialog)
@@ -237,11 +234,8 @@ BEGIN_MESSAGE_MAP(Cwar3HelperDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON1, &Cwar3HelperDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_StartGame, &Cwar3HelperDlg::OnBnClickedStartgame)
 	ON_BN_CLICKED(IDC_CHECK1, &Cwar3HelperDlg::OnBnClickedCheck1)
-	ON_BN_CLICKED(IDC_CHECK3, &Cwar3HelperDlg::OnBnClickedCheck3)
-	ON_BN_CLICKED(IDC_CHECK2, &Cwar3HelperDlg::OnBnClickedCheck2)
-	ON_EN_CHANGE(IDC_EDIT1, &Cwar3HelperDlg::OnEnChangeEdit1)
-	ON_UPDATE_COMMAND_UI(ID_32771, &Cwar3HelperDlg::OnUpdateDeubug)
-	ON_BN_CLICKED(IDC_KAERGAIJIAN, &Cwar3HelperDlg::OnBnClickedKaergaijian)
+	ON_BN_CLICKED(IDC_KAERCHANGEKEY, OnBnClickedKaerchangekey)
+		ON_UPDATE_COMMAND_UI(ID_32771, &Cwar3HelperDlg::OnUpdateDeubug)
 END_MESSAGE_MAP()
 
 
@@ -259,7 +253,6 @@ void Cwar3HelperDlg::CheckFullScreen()
 
 	if(ERROR_SUCCESS!=RegOpenKeyEx(HKEY_CURRENT_USER,L"Software\\Blizzard Entertainment\\Warcraft III\\Video",0,KEY_READ|KEY_WRITE|KEY_WRITE,&war3key))
 	{
-
 		ASSERT(0);
 		return ;
 	}
@@ -267,7 +260,6 @@ void Cwar3HelperDlg::CheckFullScreen()
 	if (ERROR_SUCCESS!=RegQueryValueExW(war3key,L"reswidth",0,&dwtype,(LPBYTE)&valuewidth,&widthlengh)) 
 
 	{
-
 		ASSERT(0);
 		return;
 	}
@@ -335,10 +327,10 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
   
-	HBITMAP   hBitmap;   
+    HBITMAP   hBitmap;   
 	hBitmap = LoadBitmap(AfxGetInstanceHandle(),   
 		MAKEINTRESOURCE(IDB_BITMAPKAER));
-    m_KaerGaijian.SetBitmap(hBitmap);
+    ((CButton*)GetDlgItem(IDC_KAERCHANGEKEY))->SetBitmap(hBitmap);
 	m_hyperlink.SetURL(L"http://pipi.1kapp.com/");
 	//检测升级功能
   
@@ -811,6 +803,7 @@ void Cwar3HelperDlg::OnBnClickedButton1()
 
 		if(TextFileName.Find(_T("war3.exe")) >= 0 || TextFileName.Find(_T("War3.exe"))>=0)
 		{
+
 		}
 		else
 		{
@@ -850,14 +843,12 @@ void Cwar3HelperDlg::OnBnClickedStartgame()
 void Cwar3HelperDlg::OnBnClickedCheck1()
 {
 	// TODO: 在此添加控件通知处理程序代码
-
 	HKEY    war3key;
 	DWORD    widthlengh = 10,heightlength = 10;
 	DWORD  dwtype = REG_DWORD;
-    
+
 	int screenwidth_real = GetSystemMetrics(SM_CXSCREEN);
 	int screenheight_real = GetSystemMetrics(SM_CYSCREEN);
-
 	DWORD valuewidth  =0,valueheight =0;
 
 	if(ERROR_SUCCESS!=RegOpenKeyEx(HKEY_CURRENT_USER,L"Software\\Blizzard Entertainment\\Warcraft III\\Video",0,KEY_READ|KEY_WRITE|KEY_WRITE,&war3key))
@@ -899,48 +890,17 @@ void Cwar3HelperDlg::OnBnClickedCheck1()
 	RegCloseKey(war3key);
 }
 
-void Cwar3HelperDlg::OnBnClickedCheck3()
-{
-	// TODO: 在此添加控件通知处理程序代码
-}
-
-void Cwar3HelperDlg::OnBnClickedCheck2()
-{
-	// TODO: 在此添加控件通知处理程序代码
-}
-
-void Cwar3HelperDlg::OnEnChangeEdit1()
-{
-	// TODO:  如果该控件是 RICHEDIT 控件，它将不
-	// 发送此通知，除非重写 CDialog::OnInitDialog()
-	// 函数并调用 CRichEditCtrl().SetEventMask()，
-	// 同时将 ENM_CHANGE 标志“或”运算到掩码中。
-
-	// TODO:  在此添加控件通知处理程序代码
-}
-
-void CAboutDlg::OnUpdate32771(CCmdUI *pCmdUI)
-{
-	// TODO: 在此添加命令更新用户界面处理程序代码
-}
-
 void Cwar3HelperDlg::OnUpdateDeubug(CCmdUI *pCmdUI)
 {
-	// TODO: 在此添加命令更新用户界面处理程序代码
-	
 	ShellExecute(NULL, _T("open"),_T("mailto:6520874@163.com?subject=sf您好，我发现了一个bug"),NULL,NULL, SW_SHOWNORMAL);
- 
 }
 
 BOOL Cwar3HelperDlg::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: 在此添加专用代码和/或调用基类
-    
 	return CDialog::PreTranslateMessage(pMsg);
 }
 
-void Cwar3HelperDlg::OnBnClickedKaergaijian()
+void Cwar3HelperDlg::OnBnClickedKaerchangekey()
 {
-	// TODO: 在此添加控件通知处理程序代码
-	WinExec("KaelKey.exe",SW_SHOW);
+	 WinExec("KaelKey.exe",SW_SHOW);
 }

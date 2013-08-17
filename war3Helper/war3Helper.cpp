@@ -71,7 +71,8 @@ BOOL Cwar3HelperApp::InitInstance()
 	 strcmd += strExeName;
 	 if( IsUpdate()) 
 	 {
-	   system(CW2A(strcmd));
+	   //system(CW2A(strcmd));
+		 return -1;
 	 }
 
 	HANDLE  hEvent= CreateEvent(NULL,FALSE,FALSE,_T("War3Tool"));
@@ -106,12 +107,11 @@ BOOL Cwar3HelperApp::InitInstance()
 
 BOOL Cwar3HelperApp::IsUpdate()
 {
- 
 	TCHAR StrCurrentDir[256] ={0};
 	GetCurrentDirectory(256,StrCurrentDir);
 	CString warPath(StrCurrentDir);
 	TCHAR  szValue[MAX_PATH] = {0};
-    GetPrivateProfileString(_T("War3version"),_T("version"),_T("130812"),szValue,MAX_PATH,warPath+_T("//war3set.ini"));
+    GetPrivateProfileString(_T("War3version"),_T("version"),_T("130101"),szValue,MAX_PATH,warPath+_T("//war3set.ini"));
 	CString csVerOld(szValue);
     CUpdateSoft cUpdateSDlg;
     cUpdateSDlg.DownCommonFile(_T("http://pipihaha.sinaapp.com/war3set.ini"),_T("war3update.ini"));
