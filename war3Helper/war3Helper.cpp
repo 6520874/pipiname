@@ -74,8 +74,8 @@ BOOL Cwar3HelperApp::InitInstance()
 	   system(CW2A(strcmd));
 	 }
 
-	HANDLE  g_hEvent= CreateEvent(NULL,FALSE,FALSE,_T("War3Tool"));
-	if (g_hEvent)
+	HANDLE  hEvent= CreateEvent(NULL,FALSE,FALSE,_T("War3Tool"));
+	if (hEvent)
 	{
 		if (ERROR_ALREADY_EXISTS==GetLastError())
 		{

@@ -207,6 +207,7 @@ void Cwar3HelperDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_STATUS, m_status);
 	DDX_Control(pDX, IDC_HYPERLINK, m_hyperlink);
 	DDX_Control(pDX, IDC_EDIT1, m_war3path);
+	DDX_Control(pDX, IDC_KAERGAIJIAN, m_KaerGaijian);
 }
 
 BEGIN_MESSAGE_MAP(Cwar3HelperDlg, CDialog)
@@ -240,6 +241,7 @@ BEGIN_MESSAGE_MAP(Cwar3HelperDlg, CDialog)
 	ON_BN_CLICKED(IDC_CHECK2, &Cwar3HelperDlg::OnBnClickedCheck2)
 	ON_EN_CHANGE(IDC_EDIT1, &Cwar3HelperDlg::OnEnChangeEdit1)
 	ON_UPDATE_COMMAND_UI(ID_32771, &Cwar3HelperDlg::OnUpdateDeubug)
+	ON_BN_CLICKED(IDC_KAERGAIJIAN, &Cwar3HelperDlg::OnBnClickedKaergaijian)
 END_MESSAGE_MAP()
 
 
@@ -332,8 +334,12 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
+  
+	HBITMAP   hBitmap;   
+	hBitmap = LoadBitmap(AfxGetInstanceHandle(),   
+		MAKEINTRESOURCE(IDB_BITMAPKAER));
+    m_KaerGaijian.SetBitmap(hBitmap);
 	m_hyperlink.SetURL(L"http://pipi.1kapp.com/");
-      
 	//检测升级功能
   
 	m_num1.InitDlg(this);
@@ -933,6 +939,8 @@ BOOL Cwar3HelperDlg::PreTranslateMessage(MSG* pMsg)
 	return CDialog::PreTranslateMessage(pMsg);
 }
 
-
-
-
+void Cwar3HelperDlg::OnBnClickedKaergaijian()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	WinExec("KaelKey.exe",SW_SHOW);
+}

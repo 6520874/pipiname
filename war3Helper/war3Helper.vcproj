@@ -268,6 +268,14 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
+				RelativePath=".\res\bitmap4.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\dota.BMP"
+				>
+			</File>
+			<File
 				RelativePath=".\res\war3Helper.ico"
 				>
 			</File>
@@ -277,6 +285,10 @@
 			</File>
 			<File
 				RelativePath=".\res\war3Helper.rc2"
+				>
+			</File>
+			<File
+				RelativePath=".\res\¿¨¶û¸Ä¼ü.bmp"
 				>
 			</File>
 		</Filter>
