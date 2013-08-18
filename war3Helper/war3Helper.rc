@@ -91,7 +91,7 @@ END
 IDD_WAR3HELPER_DIALOG DIALOGEX 0, 0, 202, 251
 STYLE DS_ABSALIGN | DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER | DS_CENTERMOUSE | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
-CAPTION "War3Tool"
+CAPTION "War3Tool(做出最强的dota辅助工具)"
 MENU IDR_MENU1
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -129,7 +129,6 @@ BEGIN
     PUSHBUTTON      "启动游戏",IDC_StartGame,30,212,34,30
     CONTROL         "一键中进入局域网联机模式",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,26,189,99,10
     LTEXT           "联机升级",IDC_HYPERLINK,155,223,40,8,SS_NOTIFY
-    CONTROL         140,IDC_STATIC,"Static",SS_BITMAP,25,7,153,47
     PUSHBUTTON      "Button2",IDC_KAERCHANGEKEY,97,212,34,30,BS_BITMAP
 END
 
@@ -215,8 +214,8 @@ END
 // Bitmap
 //
 
-IDB_BITMAP2             BITMAP                  "res\\dota.BMP"
 IDB_BITMAPKAER          BITMAP                  "res\\卡尔改键.bmp"
+IDB_BITMAP2             BITMAP                  "res\\dota.BMP"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -225,7 +224,7 @@ IDB_BITMAPKAER          BITMAP                  "res\\卡尔改键.bmp"
 
 STRINGTABLE 
 BEGIN
-    IDS_ABOUTBOX            "关于 war3Tool(V3.0)(&A)..."
+    IDS_ABOUTBOX            "关于 war3Tool(V3.1)(&A)..."
 END
 
 #endif    // 中文(中华人民共和国) resources

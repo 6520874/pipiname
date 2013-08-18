@@ -5,8 +5,10 @@
 #include "war3Helper.h"
 #include "war3HelperDlg.h"
 #include "../pipilibrary/ProcessDlg.h"
+#include "afxinet.h"
 #define WM_SHOWTASK WM_USER+10
 #define  TIMER_CHECKWAR3  100
+#define  TIMER_STARTFIRE  101
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -230,8 +232,8 @@ BEGIN_MESSAGE_MAP(Cwar3HelperDlg, CDialog)
 	ON_MESSAGE(WM_SHOWTASK,OnShowTask)
 	ON_EN_CHANGE(IDC_EDIT13, &Cwar3HelperDlg::OnEnChangeEdit13)
 	ON_WM_SIZE()
-	ON_STN_CLICKED(IDC_HYPERLINK, &Cwar3HelperDlg::OnStnClickedHyperlink)
-	ON_BN_CLICKED(IDC_BUTTON1, &Cwar3HelperDlg::OnBnClickedButton1)
+
+	ON_BN_CLICKED(IDC_BUTTON1, &Cwar3HelperDlg::OnBnClickedSetWar3Path)
 	ON_BN_CLICKED(IDC_StartGame, &Cwar3HelperDlg::OnBnClickedStartgame)
 	ON_BN_CLICKED(IDC_CHECK1, &Cwar3HelperDlg::OnBnClickedCheck1)
 	ON_BN_CLICKED(IDC_KAERCHANGEKEY, OnBnClickedKaerchangekey)
@@ -327,6 +329,12 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
   
+	CPictureHolder myTmpPicture;
+	myTmpPicture.CreateFromBitmap(IDB_BITMAP2);
+   
+	m_UpdateDlg.InitFire(&myTmpPicture,320,60);
+	SetTimer(TIMER_STARTFIRE,40,NULL);
+
     HBITMAP   hBitmap;   
 	hBitmap = LoadBitmap(AfxGetInstanceHandle(),   
 		MAKEINTRESOURCE(IDB_BITMAPKAER));
@@ -534,6 +542,11 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 		{
 			m_status.SetWindowText(L"未启动");
 		} 
+	}
+
+	else if(nIDEvent == TIMER_STARTFIRE)
+	{
+       m_UpdateDlg.StartFire(this);  
 	}
 
 	CDialog::OnTimer(nIDEvent);
@@ -782,17 +795,24 @@ void Cwar3HelperDlg::OnSize(UINT nType, int cx, int cy)
 
 }
 
-void Cwar3HelperDlg::OnStnClickedHyperlink()
+CString  Cwar3HelperDlg::GetWebStieHtml(CString  strUrl)
 {
-	// TODO: 在此添加控件通知处理程序代码
-	AfxMessageBox(_T("你已经是最新版本了"));
+  CInternetSession mySession(NULL,0);  
+  CHttpFile* myHttpFile = NULL;
+  myHttpFile = (CHttpFile*)mySession.OpenURL(strUrl);//str是要打开的地址
+  CString myData;
+  CString  m_csHtmlContent;
+  while(myHttpFile->ReadString(myData)) 
+  {
+	  m_csHtmlContent += myData; 
+  }
+
+  return m_csHtmlContent;
 }
 
-
-void Cwar3HelperDlg::OnBnClickedButton1()
+void Cwar3HelperDlg::OnBnClickedSetWar3Path()
 {
 	// TODO: 在此添加控件通知处理程序代码
-
 	CString   TextFileName;
 	CString allfile;
 	CFileDialog opendlg(TRUE,NULL,NULL,OFN_FILEMUSTEXIST,L"exe Files (*.exe)|*.exe",NULL);
@@ -902,5 +922,8 @@ BOOL Cwar3HelperDlg::PreTranslateMessage(MSG* pMsg)
 
 void Cwar3HelperDlg::OnBnClickedKaerchangekey()
 {
-	 WinExec("KaelKey.exe",SW_SHOW);
+	 //WinExec("KaelKey.exe",SW_SHOW);
+	CString s = GetWebStieHtml(_T("http://pipihaha.sinaapp.com/war3"));
+    AfxMessageBox(s);
+	//MessageBoxA(0,CW2A(s),"",0);
 }

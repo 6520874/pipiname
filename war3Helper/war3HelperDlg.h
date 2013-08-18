@@ -6,7 +6,7 @@
 #include "hyperlink.h"
 #include "MyEdit.h"
 #include "resource.h"
-
+#include "../pipilibrary/UpdateSoft.h"
 // Cwar3HelperDlg ¶Ô»°¿ò
 class Cwar3HelperDlg : public CDialog
 {
@@ -70,16 +70,18 @@ private:
 	afx_msg void OnEnChangeEdit11();
 	afx_msg void OnEnChangeEdit13();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg void OnStnClickedHyperlink();
-	afx_msg void OnBnClickedButton1();
+
+	afx_msg void OnBnClickedSetWar3Path();
 	afx_msg void OnBnClickedStartgame();
 	afx_msg void OnBnClickedCheck1();
 	void CheckFullScreen();
 	CString m_strDir;
 	BOOL  bFirstStartFlag;
+	CUpdateSoft  m_UpdateDlg;
 public:
 	afx_msg void OnUpdateDeubug(CCmdUI *pCmdUI);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedKaergaijian();
 	afx_msg void OnBnClickedKaerchangekey();
+	CString GetWebStieHtml(CString strUrl);
 };

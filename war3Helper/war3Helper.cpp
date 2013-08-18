@@ -69,11 +69,11 @@ BOOL Cwar3HelperApp::InitInstance()
 	
 	 CString strcmd(_T("taskkill /f /im "));
 	 strcmd += strExeName;
-	 if( IsUpdate()) 
+	/* if( IsUpdate()) 
 	 {
 	   //system(CW2A(strcmd));
 		 return -1;
-	 }
+	 }*/
 
 	HANDLE  hEvent= CreateEvent(NULL,FALSE,FALSE,_T("War3Tool"));
 	if (hEvent)
