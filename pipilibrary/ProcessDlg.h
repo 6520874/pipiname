@@ -29,6 +29,11 @@ private:
 public:
 	virtual BOOL OnInitDialog();
 	int InternetGetFile(CString szUrl,CString szFileName);
+	afx_msg void OnBnClickedButton1();
+	void SetUrlFileName(CString szUrl,CString szFileName);
+private:
+	CString m_csUrl;
+	CString m_csFileName;
 };
 
 

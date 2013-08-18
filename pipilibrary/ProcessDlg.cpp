@@ -30,6 +30,7 @@ void CProcessDlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(CProcessDlg, CDialog)
+	//ON_BN_CLICKED(IDC_BUTTON1, &CProcessDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -46,8 +47,21 @@ BOOL CProcessDlg::OnInitDialog()
 }
 
 	DWORD  dwn = 0;
+
+void CProcessDlg::SetUrlFileName(CString szUrl,CString szFileName)
+{
+	m_csFileName = szFileName;
+	m_csUrl = szUrl;
+}
+
 int CProcessDlg::InternetGetFile(CString szUrl,CString szFileName)
 {	
+
+	if(szUrl.IsEmpty() ||szFileName.IsEmpty())
+	{
+		return -1;
+	}
+
 	DWORD dwFlags;
      ShowWindow(SW_SHOW);
     m_progress.SetRange(0,743138);
@@ -125,4 +139,10 @@ int CProcessDlg::InternetGetFile(CString szUrl,CString szFileName)
 CProcessDlg &GetProcessDlg()
 {  
 	return m_Dlg;
+}
+
+void CProcessDlg::OnBnClickedButton1()
+{
+	// TODO: 在此添加控件通知处理程序代码
+   //  InternetGetFile(m_csUrl,m_csFileName);
 }
