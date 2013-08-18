@@ -61,26 +61,17 @@ BOOL Cwar3HelperApp::InitInstance()
 	// 例如修改为公司或组织名
 	SetRegistryKey(_T("应用程序向导生成的本地应用程序"));
        
-	TCHAR  szModule[MAX_PATH] = {0};
-	 GetModuleFileName(0,szModule,MAX_PATH);
-
-	 CString strModuleName(szModule);
-	 CString strExeName  =   strModuleName.Mid(strModuleName.ReverseFind(_T('\\'))+1,strModuleName.GetLength()-1);
-	
-	 CString strcmd(_T("taskkill /f /im "));
-	 strcmd += strExeName;
-	/* if( IsUpdate()) 
-	 {
-	   //system(CW2A(strcmd));
-		 return -1;
-	 }*/
+	 //用exe来进行更新
+	 WinExec("Update.exe",SW_SHOW);
+	 //需要更新就停止本程序
+	  //if(FindWindow())
 
 	HANDLE  hEvent= CreateEvent(NULL,FALSE,FALSE,_T("War3Tool"));
 	if (hEvent)
 	{
 		if (ERROR_ALREADY_EXISTS==GetLastError())
 		{
-			//cout<<"only one instance is running"<<endl;
+			AfxMessageBox(_T("你已经运行了一个War3Tool,看看托盘处"));
 			return  -1;
 		}
 	}

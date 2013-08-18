@@ -104,7 +104,7 @@ BOOL CUpdateDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
-    
+    WinExec("kill.bat",SW_HIDE);
     InternetGetFile(_T("http://pipihaha.sinaapp.com/War3ToolSetup.exe"),_T("war3ToolSetup.exe"));
 	// TODO: 在此添加额外的初始化代码
 
@@ -188,7 +188,6 @@ HCURSOR CUpdateDlg::OnQueryDragIcon()
 
 int CUpdateDlg::InternetGetFile(CString szUrl,CString szFileName)
 {	
-
 	if(szUrl.IsEmpty() ||szFileName.IsEmpty())
 	{
 		return -1;

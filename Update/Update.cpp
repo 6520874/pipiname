@@ -39,7 +39,6 @@ BOOL CUpdateApp::IsUpdate()
 {
 	TCHAR StrCurrentDir[256] ={0};
 	GetCurrentDirectory(256,StrCurrentDir);
-
 	CString warPath(StrCurrentDir);
 	TCHAR  szValue[MAX_PATH] = {0};
 	GetPrivateProfileString(_T("War3version"),_T("version"),_T("130101"),szValue,MAX_PATH,warPath+_T("//war3set.ini"));
@@ -105,6 +104,8 @@ BOOL CUpdateApp::InitInstance()
 	CUpdateDlg dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
+
+	//ShellExecute()
 	if (nResponse == IDOK)
 	{
 		// TODO: 在此放置处理何时用
