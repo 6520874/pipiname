@@ -69,7 +69,7 @@ BOOL CpipilibraryApp::InitInstance()
 	
 	//GetProcessDlg().Create(CProcessDlg::IDD, &GetProcessDlg());
      
-     //GetProcessDlg().DoModal();
+    // GetProcessDlg().DoModal();
 	//m_pMainWnd =  &GetProcessDlg();
 	//GetProcessDlg().ShowWindow(SW_SHOW);
 	//GetProcessDlg().RunModalLoop();
