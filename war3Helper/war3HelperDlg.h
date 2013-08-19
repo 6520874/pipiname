@@ -50,7 +50,7 @@ public:
 private:
 	CBrush   brush; 
 	CStatic m_status;
-	CHyperLink m_hyperlink;
+	CStatic m_hyperlink;
     CEdit m_war3path;
     CString m_game_exe;
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
@@ -84,4 +84,5 @@ public:
 	afx_msg void OnBnClickedKaergaijian();
 	afx_msg void OnBnClickedKaerchangekey();
 	CString GetWebStieHtml(CString strUrl);
+	afx_msg void OnStnClickedHyperlink();
 };

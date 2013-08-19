@@ -238,6 +238,7 @@ BEGIN_MESSAGE_MAP(Cwar3HelperDlg, CDialog)
 	ON_BN_CLICKED(IDC_CHECK1, &Cwar3HelperDlg::OnBnClickedCheck1)
 	ON_BN_CLICKED(IDC_KAERCHANGEKEY, OnBnClickedKaerchangekey)
 		ON_UPDATE_COMMAND_UI(ID_32771, &Cwar3HelperDlg::OnUpdateDeubug)
+		ON_STN_CLICKED(IDC_HYPERLINK, &Cwar3HelperDlg::OnStnClickedHyperlink)
 END_MESSAGE_MAP()
 
 
@@ -339,9 +340,9 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	hBitmap = LoadBitmap(AfxGetInstanceHandle(),   
 		MAKEINTRESOURCE(IDB_BITMAPKAER));
     ((CButton*)GetDlgItem(IDC_KAERCHANGEKEY))->SetBitmap(hBitmap);
-	m_hyperlink.SetURL(L"http://pipi.1kapp.com/");
+
 	//检测升级功能
-  
+
 	m_num1.InitDlg(this);
 	m_num2.InitDlg(this);
 	m_num1.InitDlg(this);
@@ -926,4 +927,10 @@ void Cwar3HelperDlg::OnBnClickedKaerchangekey()
 	CString s = GetWebStieHtml(_T("http://pipihaha.sinaapp.com/war3"));
     AfxMessageBox(s);
 	//MessageBoxA(0,CW2A(s),"",0);
+}
+
+void Cwar3HelperDlg::OnStnClickedHyperlink()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	WinExec("Update.exe",SW_SHOW);
 }
