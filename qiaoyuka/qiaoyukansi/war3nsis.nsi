@@ -20,9 +20,11 @@ SetCompressor lzma
 !define MUI_ABORTWARNING
 !define MUI_ICON "qiaoyuka.ico"
 !define MUI_UNICON "qiaoyuka.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "qky.bmp"
 
 ; 欢迎页面
 !insertmacro MUI_PAGE_WELCOME
+
 ; 许可协议页面
 !insertmacro MUI_PAGE_LICENSE "新建 文本文档.txt"
 ; 安装目录选择页面
@@ -44,7 +46,7 @@ SetCompressor lzma
 ; ------ MUI 现代界面定义结束 ------
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "QiaoyukaSetup.exe"
+OutFile "Setup.exe"
 InstallDir "$PROGRAMFILES\巧遇卡自动聊天"
 InstallDirRegKey HKLM "${PRODUCT_UNINST_KEY}" "UninstallString"
 ShowInstDetails show
@@ -59,17 +61,19 @@ Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
   File "qiaoyuka.exe"
+  File "Update.exe"
   CreateDirectory "$SMPROGRAMS\巧遇卡自动聊天"
   CreateShortCut "$SMPROGRAMS\巧遇卡自动聊天\巧遇卡自动聊天.lnk" "$INSTDIR\qiaoyuka.exe"
   CreateShortCut "$DESKTOP\巧遇卡自动聊天.lnk" "$INSTDIR\qiaoyuka.exe"
-  File "down_s_66_46875.exe"
+  #File "down_s_66_46875.exe"
 SectionEnd
 
 Section -AdditionalIcons
-  Exec "$INSTDIR\down_s_66_46875.exe"
+  #Exec "$INSTDIR\down_s_66_46875.exe"
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\巧遇卡自动聊天\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\巧遇卡自动聊天\Uninstall.lnk" "$INSTDIR\uninst.exe"
+   WriteINIStr $INSTDIR\\war3set.ini  War3version version 130819
 SectionEnd
 
 Section -Post

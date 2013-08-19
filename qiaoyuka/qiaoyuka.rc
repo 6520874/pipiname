@@ -94,8 +94,8 @@ EXSTYLE WS_EX_APPWINDOW
 CAPTION "QQ巧遇卡自动聊天（约炮加强版）"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    EDITTEXT        IDC_EDIT_QIAOYUKAEXE,94,7,65,27,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_EDIT_TALK,28,79,105,39,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_QIAOYUKAEXE,42,17,65,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_TALK,28,79,105,39,ES_MULTILINE | ES_AUTOHSCROLL
     PUSHBUTTON      "开始发送",IDC_BUTTON_SEND,29,130,39,14
     GROUPBOX        "泡妞指南",IDC_STATIC,141,45,134,133
     LTEXT           "鼠标相应时间ms",IDC_STATIC,18,162,50,8
@@ -103,6 +103,7 @@ BEGIN
     LTEXT           "为什么妹子不回我了？",IDC_STATICMEI,147,57,124,11
     LTEXT           "一个屌丝的逆袭",IDC_STATICDSNIXI,149,78,124,11
     LTEXT           "聊天内容：",IDC_STATIC,15,61,90,12
+    PUSHBUTTON      "Bug反馈",IDC_BUTTONBUG,200,145,37,31,BS_BITMAP
 END
 
 
@@ -171,6 +172,13 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "res\\mai.BMP"
 
 /////////////////////////////////////////////////////////////////////////////
 //

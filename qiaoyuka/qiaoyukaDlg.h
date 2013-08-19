@@ -41,6 +41,7 @@ public:
 private:
 	CBrush   m_brush; 
 	HWND     m_hTalk;
+	BOOL     m_bfirst;
 public:
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	static BOOL CALLBACK OEnumWindowsProc( HWND hwnd, LPARAM lParam );
@@ -48,5 +49,7 @@ public:
 private:
 	CHyperLink m_Static_DiaoSiNiXi;
 	CEdit m_EClickTime;
+public:
+	afx_msg void OnBnClickedButtonbug();
 };
 CString GetProcessNameFromId(int pid);

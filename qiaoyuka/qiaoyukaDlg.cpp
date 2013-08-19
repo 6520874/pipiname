@@ -72,6 +72,7 @@ BEGIN_MESSAGE_MAP(CqiaoyukaDlg, CDialog)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_BUTTON_SEND, &CqiaoyukaDlg::OnBnClickedButtonSend)
 	ON_WM_CTLCOLOR()
+	ON_BN_CLICKED(IDC_BUTTONBUG, &CqiaoyukaDlg::OnBnClickedButtonbug)
 END_MESSAGE_MAP()
 
 
@@ -112,7 +113,12 @@ BOOL CqiaoyukaDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
-
+    
+	HBITMAP   hBitmap;   
+	hBitmap = LoadBitmap(AfxGetInstanceHandle(),   
+		MAKEINTRESOURCE(IDB_BITMAP1));
+	((CButton*)GetDlgItem(IDC_BUTTONBUG))->SetBitmap(hBitmap);
+	 m_bfirst = TRUE;
 	TCHAR StrCurrentDir[256] ={0};
 	GetDlgItem(IDC_EDITMOUSECLICK)->SetWindowText(_T("2000"));
 	GetCurrentDirectory(256,StrCurrentDir);
@@ -121,6 +127,7 @@ BOOL CqiaoyukaDlg::OnInitDialog()
 	// TODO: 在此添加额外的初始化代码
     m_Static_DiaoSiNiXi.SetURL(_T("http://blog.sina.com.cn/s/blog_8335c2af01013j8a.html"));
     SetTimer(TIMER_CHECKQYK,1000,0);
+     ::MessageBox(0,_T("首次使用,请打开2013QQ查找好友按钮，选择巧遇卡 点击开始按钮\n本软件可能根据不同网速的机子有延时，pipi"),_T("使用说明"),MB_OK);
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -178,8 +185,13 @@ void CqiaoyukaDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
    if(nIDEvent == TIMER_CHECKQYK)
-   {
-        CWnd *hQiaoYuKa = FindWindow(NULL,_T("查找联系人"));
+   {  
+	   if(m_bfirst)
+	   {
+		  
+	      m_bfirst = FALSE;
+	   }
+	   CWnd *hQiaoYuKa = FindWindow(NULL,_T("查找联系人"));
      
 	  if(hQiaoYuKa != NULL)
 	  {
@@ -349,8 +361,12 @@ HBRUSH CqiaoyukaDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 		pDC->SetTextColor(RGB(255,0,0));
 		return   (HBRUSH)m_brush;   
 	} 
-	// TODO:  在此更改 DC 的任何属性
 
-	// TODO:  如果默认的不是所需画笔，则返回另一个画笔
 	return hbr;
+}
+
+void CqiaoyukaDlg::OnBnClickedButtonbug()
+{
+	// TODO: 在此添加控件通知处理程序代码
+   ShellExecute(NULL, _T("open"),_T("mailto:6520874@163.com?subject=您好，我的软件用不了"),NULL,NULL, SW_SHOWNORMAL);
 }
