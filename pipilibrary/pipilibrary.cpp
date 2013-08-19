@@ -51,7 +51,7 @@ CpipilibraryApp::CpipilibraryApp()
 // 唯一的一个 CpipilibraryApp 对象
 
 CpipilibraryApp theApp;
-#include "ProcessDlg.h"
+
 
 // CpipilibraryApp 初始化
 

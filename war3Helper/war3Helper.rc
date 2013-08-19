@@ -155,10 +155,10 @@ BEGIN
     BEGIN
         BLOCK "080403a8"
         BEGIN
-            VALUE "FileDescription", "Ä§ÊÞbug v0.1"
-            VALUE "FileVersion", "1.2"
+            VALUE "FileDescription", "Dota¸¨Öú¹¤¾ß"
+            VALUE "FileVersion", "v3.1"
             VALUE "ProductName", "Ä§ÊÞ¸Ä¼üÖúÊÖ1.2"
-            VALUE "ProductVersion", "1.2"
+            VALUE "ProductVersion", "v3.1"
         END
     END
     BLOCK "VarFileInfo"

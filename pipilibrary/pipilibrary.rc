@@ -86,12 +86,12 @@ BEGIN
         BLOCK "080403a8"
         BEGIN
             VALUE "CompanyName", "TODO: <公司名>"
-            VALUE "FileDescription", "TODO: <文件说明>"
+            VALUE "FileDescription", "War3Tool"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "pipilibrary.dll"
-            VALUE "LegalCopyright", "TODO: (C) <公司名>。保留所有权利。"
+            VALUE "LegalCopyright", "pipi (C) <War3Tool>。保留所有权利。"
             VALUE "OriginalFilename", "pipilibrary.dll"
-            VALUE "ProductName", "TODO: <产品名>"
+            VALUE "ProductName", "War3Tool"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END

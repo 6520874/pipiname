@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "war3Helper.h"
 #include "war3HelperDlg.h"
-#include "../pipilibrary/ProcessDlg.h"
+
 #include "afxinet.h"
 #define WM_SHOWTASK WM_USER+10
 #define  TIMER_CHECKWAR3  100

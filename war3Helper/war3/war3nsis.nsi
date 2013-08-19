@@ -3,8 +3,8 @@
 !include "LogicLib.nsh"
 
 ; 安装程序初始定义常量
-!define PRODUCT_NAME "魔兽一键进局域网全屏改键"
-!define PRODUCT_VERSION "3.1"
+!define PRODUCT_NAME "War3Tool"
+!define PRODUCT_VERSION "V3.1"
 !define PRODUCT_PUBLISHER "pipi"
 !define PRODUCT_WEB_SITE "http://pipi.1kapp.com/?p=45"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\war3Tool.exe"
@@ -46,7 +46,7 @@ SetCompressor lzma
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "War3ToolSetup.exe"
-InstallDir "$PROGRAMFILES\魔兽一键进局域网全屏改键"
+InstallDir "$PROGRAMFILES\WarTool"
 InstallDirRegKey HKLM "${PRODUCT_UNINST_KEY}" "UninstallString"
 ShowInstDetails show
 ShowUnInstDetails show
@@ -63,10 +63,11 @@ Section "MainSection" SEC01
   CreateDirectory "$SMPROGRAMS\魔兽一键进局域网全屏改键"
   CreateShortCut "$SMPROGRAMS\魔兽一键进局域网全屏改键\war3Tool.lnk" "$INSTDIR\war3Tool.exe"
   CreateShortCut "$DESKTOP\war3Tool.lnk" "$INSTDIR\war3Tool.exe"
-  #File "vcredist_x86.exe"
   File "pipilibrary.dll"
   File "Readme.txt"
   File "war3set.ini"
+  File "Update.exe"
+  File  "kill.bat"
 SectionEnd
 
 Section -AdditionalIcons
@@ -74,7 +75,7 @@ Section -AdditionalIcons
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\魔兽一键进局域网全屏改键\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\魔兽一键进局域网全屏改键\Uninstall.lnk" "$INSTDIR\uninst.exe"
-   WriteINIStr $INSTDIR\\war3set.ini  War3version version 130817
+   WriteINIStr $INSTDIR\\war3set.ini  War3version version 130819
 
 SectionEnd
 

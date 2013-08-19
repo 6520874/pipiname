@@ -15,11 +15,9 @@ class  DISPLAYSET_DLL CUpdateSoft
 public:
 	CUpdateSoft(void);
 	virtual ~CUpdateSoft(void);
-	void Apply(CString szUrl,CString szFileName);
+
 	void InitFire(CPictureHolder *myTmpPicture,int iWidth,int iHeight);
 	void StartFire(CWnd * lp);
-	int  DownCommonFile(CString szUrl,CString szFileName);
-	static  UINT __cdecl ThreadDownFile( LPVOID pParam ); 
 private:  
 	CDIBSectionLite	m_bmpRenderSource;
 	CDIBSectionLite m_bmpRenderTarget;
