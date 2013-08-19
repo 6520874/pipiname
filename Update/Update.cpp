@@ -44,7 +44,9 @@ BOOL CUpdateApp::IsUpdate()
 	GetPrivateProfileString(_T("War3version"),_T("version"),_T("130101"),szValue,MAX_PATH,warPath+_T("//war3set.ini"));
 	CString csVerOld(szValue);
 
-	CString csVerNew = GetWebStieHtml("http://pipihaha.sinaapp.com/war3/");
+	GetPrivateProfileString(_T("War3version"),_T("UpdateWeb"),_T("http://pipihaha.sinaapp.com/qyk"),szValue,MAX_PATH,warPath+_T("//war3set.ini"));
+	CString csWeb(szValue);
+	CString csVerNew = GetWebStieHtml(csWeb);
 
 	if(csVerOld != csVerNew)
 	{

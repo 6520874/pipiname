@@ -105,37 +105,19 @@ BOOL CUpdateDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
     WinExec("kill.bat",SW_HIDE);
-    InternetGetFile(_T("http://pipihaha.sinaapp.com/War3ToolSetup.exe"),_T("war3ToolSetup.exe"));
+	TCHAR  strExePath[MAX_PATH] = {0};
+	GetCurrentDirectory(MAX_PATH,strExePath);
+	m_CsExePath = strExePath;
+
+	TCHAR szValue[MAX_PATH] = {0};
+	GetPrivateProfileString(_T("War3version"),_T("UpdateExeUrl"),_T("http://pipihaha.sinaapp.com/qyk/Setup.exe"),szValue,MAX_PATH,m_CsExePath+_T("//war3set.ini"));
+
+    InternetGetFile(szValue,_T("Setup.exe"));
 	// TODO: 在此添加额外的初始化代码
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
-
-BOOL CUpdateDlg::IsUpdate()
-{
-	TCHAR StrCurrentDir[256] ={0};
-	GetCurrentDirectory(256,StrCurrentDir);
-	CString warPath(StrCurrentDir);
-	TCHAR  szValue[MAX_PATH] = {0};
-	GetPrivateProfileString(_T("War3version"),_T("version"),_T("130101"),szValue,MAX_PATH,warPath+_T("//war3set.ini"));
-	CString csVerOld(szValue);
-
-//	cUpdateSDlg.DownCommonFile(_T("http://pipihaha.sinaapp.com/war3set.ini"),_T("war3update.ini"));
-	GetPrivateProfileString(_T("War3version"),_T("version"),_T("130812"),szValue,MAX_PATH,warPath+_T("//war3update.ini"));
-	CString csVerNew(szValue);
-
-	if(csVerOld == csVerNew)
-	{
-		return FALSE;
-	}
-	else
-	{
-		//cUpdateSDlg.Apply(_T("http://pipihaha.sinaapp.com/War3ToolSetup.exe"),_T("war3ToolSetup.exe"));
-
-		return TRUE;
-	}
-}
 
 void CUpdateDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
@@ -262,7 +244,9 @@ int CUpdateDlg::InternetGetFile(CString szUrl,CString szFileName)
 
 	file.Close();
 	InternetCloseHandle(hOpen);
-	WinExec("war3ToolSetup.exe",SW_SHOW);
+
+	
+	WinExec(szFileName,SW_SHOW);
 	SendMessage(WM_CLOSE,0,0);
 	return 0;
 }
