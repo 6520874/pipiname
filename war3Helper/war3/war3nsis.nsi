@@ -6,7 +6,7 @@
 !define PRODUCT_NAME "War3Tool"
 !define PRODUCT_VERSION "V3.1"
 !define PRODUCT_PUBLISHER "pipi"
-!define PRODUCT_WEB_SITE "http://pipi.1kapp.com/?p=45"
+!define PRODUCT_WEB_SITE "http://pipihaha.sinaapp.com/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\war3Tool.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"

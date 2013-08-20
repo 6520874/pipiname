@@ -155,7 +155,7 @@ BEGIN
     BEGIN
         BLOCK "080403a8"
         BEGIN
-            VALUE "FileDescription", "Dota辅助工具"
+            VALUE "FileDescription", "Dota辅助工具V3.1"
             VALUE "FileVersion", "v3.1"
             VALUE "ProductName", "魔兽改键助手1.2"
             VALUE "ProductVersion", "v3.1"

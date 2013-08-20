@@ -332,10 +332,10 @@ BOOL Cwar3HelperDlg::OnInitDialog()
   
 	CPictureHolder myTmpPicture;
 	myTmpPicture.CreateFromBitmap(IDB_BITMAP2);
-   
+    
 	m_UpdateDlg.InitFire(&myTmpPicture,320,60);
 	SetTimer(TIMER_STARTFIRE,40,NULL);
-
+    m_hyperlink.SetURL(_T("http://pipihaha.sinaapp.com"));
     HBITMAP   hBitmap;   
 	hBitmap = LoadBitmap(AfxGetInstanceHandle(),   
 		MAKEINTRESOURCE(IDB_BITMAPKAER));
@@ -932,5 +932,6 @@ void Cwar3HelperDlg::OnBnClickedKaerchangekey()
 void Cwar3HelperDlg::OnStnClickedHyperlink()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	
 	WinExec("Update.exe",SW_SHOW);
 }

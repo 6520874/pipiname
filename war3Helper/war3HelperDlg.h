@@ -50,7 +50,7 @@ public:
 private:
 	CBrush   brush; 
 	CStatic m_status;
-	CStatic m_hyperlink;
+	CHyperLink m_hyperlink;
     CEdit m_war3path;
     CString m_game_exe;
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
