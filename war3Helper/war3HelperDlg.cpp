@@ -509,20 +509,25 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 			::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_4,0);
 			::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_6,0);
 			m_status.SetWindowText(L"运行中");
+		     Sleep(2000);
+			 HWND  hForeground =  GetForegroundWindow();
 			::GetWindowThreadProcessId(m_hwar3,&war3threadid);//获得魔兽线程ID
-			if(bFirstStartFlag)
+			if( hForeground  == m_hwar3)                     //当前景窗口为魔兽的时候才启用自动进局域网
 			{
-				Sleep(2000);
-				keybd_event(VK_MENU,0,0,0);
-				keybd_event('L',0,0,0);
-				keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
-				keybd_event('L',0,KEYEVENTF_KEYUP,0);
-				Sleep(3000);
-				keybd_event(VK_MENU,0,0,0);
-				keybd_event('C',0,0,0);
-				keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
-				keybd_event('C',0,KEYEVENTF_KEYUP,0);
-		  }
+				if(bFirstStartFlag)
+				{
+					keybd_event(VK_MENU,0,0,0);
+					keybd_event('L',0,0,0);
+					keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
+				    keybd_event('L',0,KEYEVENTF_KEYUP,0);
+				    Sleep(3000);
+				    keybd_event(VK_MENU,0,0,0);
+				    keybd_event('C',0,0,0);
+				    keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
+				    keybd_event('C',0,KEYEVENTF_KEYUP,0);
+		         }
+			}
+
 			if (m_hkeyboard != NULL)
 			{
 				CDialog::OnTimer(nIDEvent);
