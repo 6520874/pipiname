@@ -84,5 +84,5 @@ public:
 	afx_msg void OnBnClickedKaergaijian();
 	afx_msg void OnBnClickedKaerchangekey();
 	CString GetWebStieHtml(CString strUrl);
-	afx_msg void OnStnClickedHyperlink();
+
 };
