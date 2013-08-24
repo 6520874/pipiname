@@ -135,7 +135,7 @@ BEGIN
     END
     POPUP "操作"
     BEGIN
-        MENUITEM "开始自动注册，请等待",                  ID_Fill
+        MENUITEM "填表",                          ID_Fill
     END
 END
 
@@ -206,16 +206,16 @@ BEGIN
             VALUE "CompanyName", "TODO: <公司名>"
             VALUE "FileDescription", "TODO: <文件说明>"
             VALUE "FileVersion", "1.0.0.1"
-            VALUE "InternalName", "QQ注册"
-            VALUE "LegalCopyright", "pipi"
-            VALUE "OriginalFilename", "QQ注册"
+            VALUE "InternalName", "MyIE.exe"
+            VALUE "LegalCopyright", "TODO: (C) <公司名>。保留所有权利。"
+            VALUE "OriginalFilename", "MyIE.exe"
             VALUE "ProductName", "TODO: <产品名>"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x804, 936
+        VALUE "翻译", 0x804, 936
     END
 END
 
@@ -251,7 +251,7 @@ END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_APP_TITLE       "QQ注册工具"
+    AFX_IDS_APP_TITLE       "MyIE"
     AFX_IDS_IDLEMESSAGE     "就绪"
 END
 
