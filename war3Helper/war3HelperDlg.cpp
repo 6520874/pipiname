@@ -238,7 +238,7 @@ BEGIN_MESSAGE_MAP(Cwar3HelperDlg, CDialog)
 	ON_BN_CLICKED(IDC_CHECK1, &Cwar3HelperDlg::OnBnClickedCheck1)
 	ON_BN_CLICKED(IDC_KAERCHANGEKEY, OnBnClickedKaerchangekey)
 		ON_UPDATE_COMMAND_UI(ID_32771, &Cwar3HelperDlg::OnUpdateDeubug)
-		ON_STN_CLICKED(IDC_HYPERLINK, &Cwar3HelperDlg::OnStnClickedHyperlink)
+	
 END_MESSAGE_MAP()
 
 
@@ -335,7 +335,7 @@ BOOL Cwar3HelperDlg::OnInitDialog()
     
 	m_UpdateDlg.InitFire(&myTmpPicture,320,60);
 	SetTimer(TIMER_STARTFIRE,40,NULL);
-    m_hyperlink.SetURL(_T("http://pipihaha.sinaapp.com"));
+    m_hyperlink.SetURL(_T("http://121.199.10.53/"));
     HBITMAP   hBitmap;   
 	hBitmap = LoadBitmap(AfxGetInstanceHandle(),   
 		MAKEINTRESOURCE(IDB_BITMAPKAER));
@@ -510,7 +510,7 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 			::SendMessage(m_hwar3,WM_KEYDOWN,VK_OEM_6,0);
 			m_status.SetWindowText(L"运行中");
 		     Sleep(2000);
-			 HWND  hForeground =  GetForegroundWindow();
+			 HWND  hForeground =  GetForegroundWindow()->GetSafeHwnd();
 			::GetWindowThreadProcessId(m_hwar3,&war3threadid);//获得魔兽线程ID
 			if( hForeground  == m_hwar3)                     //当前景窗口为魔兽的时候才启用自动进局域网
 			{
@@ -934,9 +934,3 @@ void Cwar3HelperDlg::OnBnClickedKaerchangekey()
 	//MessageBoxA(0,CW2A(s),"",0);
 }
 
-void Cwar3HelperDlg::OnStnClickedHyperlink()
-{
-	// TODO: 在此添加控件通知处理程序代码
-	
-	WinExec("Update.exe",SW_SHOW);
-}
