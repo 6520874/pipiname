@@ -104,38 +104,38 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "文件(&F)"
     BEGIN
-        MENUITEM "新建\tCtrl+N(&N)",            ID_FILE_NEW
-        MENUITEM "打开...\tCtrl+O(&O)",         ID_FILE_OPEN
-        MENUITEM "保存\tCtrl+S(&S)",            ID_FILE_SAVE
-        MENUITEM "另存为(&A)...",               ID_FILE_SAVE_AS
+        MENUITEM "新建\tCtrl+N(&N)",              ID_FILE_NEW
+        MENUITEM "打开...\tCtrl+O(&O)",           ID_FILE_OPEN
+        MENUITEM "保存\tCtrl+S(&S)",              ID_FILE_SAVE
+        MENUITEM "另存为(&A)...",                  ID_FILE_SAVE_AS
         MENUITEM SEPARATOR
-        MENUITEM "打印...\tCtrl+P(&P)",         ID_FILE_PRINT
-        MENUITEM "打印设置(&R)...",             ID_FILE_PRINT_SETUP
+        MENUITEM "打印...\tCtrl+P(&P)",           ID_FILE_PRINT
+        MENUITEM "打印设置(&R)...",                 ID_FILE_PRINT_SETUP
         MENUITEM SEPARATOR
-        MENUITEM "最近的文件",                  ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM "最近的文件",                       ID_FILE_MRU_FILE1, GRAYED
         MENUITEM SEPARATOR
-        MENUITEM "退出(&X)",                    ID_APP_EXIT
+        MENUITEM "退出(&X)",                      ID_APP_EXIT
     END
     POPUP "编辑(&E)"
     BEGIN
-        MENUITEM "撤消\tCtrl+Z(&U)",            ID_EDIT_UNDO
+        MENUITEM "撤消\tCtrl+Z(&U)",              ID_EDIT_UNDO
         MENUITEM SEPARATOR
-        MENUITEM "剪切\tCtrl+X(&T)",            ID_EDIT_CUT
-        MENUITEM "复制\tCtrl+C(&C)",            ID_EDIT_COPY
-        MENUITEM "粘贴\tCtrl+V(&P)",            ID_EDIT_PASTE
+        MENUITEM "剪切\tCtrl+X(&T)",              ID_EDIT_CUT
+        MENUITEM "复制\tCtrl+C(&C)",              ID_EDIT_COPY
+        MENUITEM "粘贴\tCtrl+V(&P)",              ID_EDIT_PASTE
     END
     POPUP "视图(&V)"
     BEGIN
-        MENUITEM "工具栏(&T)",                  ID_VIEW_TOOLBAR
-        MENUITEM "状态栏(&S)",                  ID_VIEW_STATUS_BAR
+        MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
     END
     POPUP "帮助(&H)"
     BEGIN
-        MENUITEM "关于 MyIE(&A)...",            ID_APP_ABOUT
+        MENUITEM "关于 MyIE(&A)...",              ID_APP_ABOUT
     END
     POPUP "操作"
     BEGIN
-        MENUITEM "填表",                        ID_Fill
+        MENUITEM "开始自动注册，请等待",                  ID_Fill
     END
 END
 
@@ -170,8 +170,7 @@ END
 //
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "关于 MyIE"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -207,16 +206,16 @@ BEGIN
             VALUE "CompanyName", "TODO: <公司名>"
             VALUE "FileDescription", "TODO: <文件说明>"
             VALUE "FileVersion", "1.0.0.1"
-            VALUE "InternalName", "MyIE.exe"
-            VALUE "LegalCopyright", "TODO: (C) <公司名>。保留所有权利。"
-            VALUE "OriginalFilename", "MyIE.exe"
+            VALUE "InternalName", "QQ注册"
+            VALUE "LegalCopyright", "pipi"
+            VALUE "OriginalFilename", "QQ注册"
             VALUE "ProductName", "TODO: <产品名>"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "翻译", 0x804, 936
+        VALUE "Translation", 0x804, 936
     END
 END
 
@@ -252,7 +251,7 @@ END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_APP_TITLE       "MyIE"
+    AFX_IDS_APP_TITLE       "QQ注册工具"
     AFX_IDS_IDLEMESSAGE     "就绪"
 END
 

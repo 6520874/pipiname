@@ -2,8 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="MyIE"
+	Name="QQ×¢²á"
 	ProjectGUID="{051E6C9A-5667-49DC-8C83-A1D4D4B83D11}"
+	RootNamespace="QQ×¢²á"
 	Keyword="MFCProj"
 	TargetFrameworkVersion="131072"
 	>

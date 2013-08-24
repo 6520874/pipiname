@@ -1,4 +1,3 @@
-//Download by http://www.NewXing.com
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
 // Used by MyIE.rc
