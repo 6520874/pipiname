@@ -14,7 +14,7 @@ protected: // 仅从序列化创建
 
 // 属性
 public:
-	CMyIEDoc* GetDocument() const;
+	CQQRegDoc* GetDocument() const;
 
 // 操作
 public:
@@ -46,7 +46,7 @@ public:
 };
 
 #ifndef _DEBUG  // MyIEView.cpp 的调试版本
-inline CMyIEDoc* CMyIEView::GetDocument() const
-   { return reinterpret_cast<CMyIEDoc*>(m_pDocument); }
+inline CQQRegDoc* CMyIEView::GetDocument() const
+   { return reinterpret_cast<CQQRegDoc*>(m_pDocument); }
 #endif
 

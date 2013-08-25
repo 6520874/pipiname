@@ -1,6 +1,4 @@
-//Download by http://www.NewXing.com
-// MyIEDoc.cpp :  CMyIEDoc 类的实现
-//
+
 
 #include "stdafx.h"
 #include "MyIE.h"
@@ -14,25 +12,25 @@
 
 // CMyIEDoc
 
-IMPLEMENT_DYNCREATE(CMyIEDoc, CDocument)
+IMPLEMENT_DYNCREATE(CQQRegDoc, CDocument)
 
-BEGIN_MESSAGE_MAP(CMyIEDoc, CDocument)
+BEGIN_MESSAGE_MAP(CQQRegDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CMyIEDoc 构造/析构
+// CQQRegDoc构造/析构
 
-CMyIEDoc::CMyIEDoc()
+CQQRegDoc::CQQRegDoc()
 {
 	// TODO: 在此添加一次性构造代码
 
 }
 
-CMyIEDoc::~CMyIEDoc()
+CQQRegDoc::~CQQRegDoc()
 {
 }
 
-BOOL CMyIEDoc::OnNewDocument()
+BOOL CQQRegDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
@@ -46,9 +44,9 @@ BOOL CMyIEDoc::OnNewDocument()
 
 
 
-// CMyIEDoc 序列化
+// CQQRegDoc序列化
 
-void CMyIEDoc::Serialize(CArchive& ar)
+void CQQRegDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
@@ -61,19 +59,19 @@ void CMyIEDoc::Serialize(CArchive& ar)
 }
 
 
-// CMyIEDoc 诊断
+// CQQRegDoc诊断
 
 #ifdef _DEBUG
-void CMyIEDoc::AssertValid() const
+void CQQRegDoc::AssertValid() const
 {
 	CDocument::AssertValid();
 }
 
-void CMyIEDoc::Dump(CDumpContext& dc) const
+void CQQRegDoc::Dump(CDumpContext& dc) const
 {
 	CDocument::Dump(dc);
 }
 #endif //_DEBUG
 
 
-// CMyIEDoc 命令
+// CQQRegDoc命令

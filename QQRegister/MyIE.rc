@@ -135,7 +135,7 @@ BEGIN
     END
     POPUP "操作"
     BEGIN
-        MENUITEM "填表",                          ID_Fill
+        MENUITEM "开始自动注册,请等待",                  ID_Fill
     END
 END
 
@@ -171,13 +171,12 @@ END
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "关于 MyIE"
+CAPTION "关于 QQ2013注册大师"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "MyIE Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
-    LTEXT           "Copyright (C) 2005",IDC_STATIC,40,25,119,8
     DEFPUSHBUTTON   "确定",IDOK,178,7,50,16,WS_GROUP
+    LTEXT           "如何雷同纯属抄袭",IDC_STATIC,40,25,119,8
 END
 
 
@@ -215,7 +214,7 @@ BEGIN
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "翻译", 0x804, 936
+        VALUE "Translation", 0x804, 936
     END
 END
 
@@ -246,12 +245,12 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDR_MAINFRAME           "MyIE\n\nMyIE\nWeb Pages (*.htm)\n.htm\nMyIE.Document\nMyIE.Document"
+    IDR_MAINFRAME           "V2.1"
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_APP_TITLE       "MyIE"
+    AFX_IDS_APP_TITLE       "QQ"
     AFX_IDS_IDLEMESSAGE     "就绪"
 END
 

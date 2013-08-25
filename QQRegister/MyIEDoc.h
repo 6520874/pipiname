@@ -1,15 +1,15 @@
 //Download by http://www.NewXing.com
-// MyIEDoc.h :  CMyIEDoc 类的接口
+// MyIEDoc.h :  CQQRegDoc类的接口
 //
 
 
 #pragma once
 
-class CMyIEDoc : public CDocument
+class CQQRegDoc : public CDocument
 {
 protected: // 仅从序列化创建
-	CMyIEDoc();
-	DECLARE_DYNCREATE(CMyIEDoc)
+	CQQRegDoc();
+	DECLARE_DYNCREATE(CQQRegDoc)
 
 // 属性
 public:
@@ -21,10 +21,13 @@ public:
 	public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
-
+	void  CQQRegDoc::SetTitle(LPCTSTR lpszTitle)
+	{
+		CDocument::SetTitle(_T("QQ2013注册大师"));
+	}
 // 实现
 public:
-	virtual ~CMyIEDoc();
+	virtual ~CQQRegDoc();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

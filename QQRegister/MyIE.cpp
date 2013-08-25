@@ -71,7 +71,7 @@ BOOL CMyIEApp::InitInstance()
 	CSingleDocTemplate* pDocTemplate;
 	pDocTemplate = new CSingleDocTemplate(
 		IDR_MAINFRAME,
-		RUNTIME_CLASS(CMyIEDoc),
+		RUNTIME_CLASS(CQQRegDoc),
 		RUNTIME_CLASS(CMainFrame),       // Ö÷ SDI ¿ò¼Ü´°¿Ú
 		RUNTIME_CLASS(CMyIEView));
 	if (!pDocTemplate)

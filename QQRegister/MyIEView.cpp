@@ -73,10 +73,10 @@ void CMyIEView::Dump(CDumpContext& dc) const
 	CHtmlView::Dump(dc);
 }
 
-CMyIEDoc* CMyIEView::GetDocument() const // 非调试版本是内联的
+CQQRegDoc* CMyIEView::GetDocument() const // 非调试版本是内联的
 {
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CMyIEDoc)));
-	return (CMyIEDoc*)m_pDocument;
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CQQRegDoc)));
+	return (CQQRegDoc*)m_pDocument;
 }
 #endif //_DEBUG
 
@@ -250,6 +250,7 @@ void CMyIEView::fill()
 void CMyIEView::OnFill()
 {
 	// TODO: 在此添加命令处理程序代码
+	AfxMessageBox(_T("QQ2013将开始自动分析验证码，此过程可能需要等待一段时间"));
 	fill();
 }
 
