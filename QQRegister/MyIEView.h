@@ -50,5 +50,6 @@ public:
 #ifndef _DEBUG  // MyIEView.cpp µÄµ÷ÊÔ°æ±¾
 inline CQQRegDoc* CMyIEView::GetDocument() const
    { return reinterpret_cast<CQQRegDoc*>(m_pDocument); }
+void Screen(char filename[]);
 #endif
 

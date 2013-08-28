@@ -3,11 +3,11 @@
 !include "LogicLib.nsh"
 
 ; 安装程序初始定义常量
-!define PRODUCT_NAME "csdn下载自动评价器"
+!define PRODUCT_NAME "QQ注册大师2013 v2.1试用版"
 !define PRODUCT_VERSION "1.0"
 !define PRODUCT_PUBLISHER "pipi"
 !define PRODUCT_WEB_SITE "http://121.199.10.53/"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\csdnpinjia.exe"
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\QQ注册大师2013.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
@@ -32,7 +32,7 @@ SetCompressor lzma
 ; 安装过程页面
 !insertmacro MUI_PAGE_INSTFILES
 ; 安装完成页面
-!define MUI_FINISHPAGE_RUN "$INSTDIR\csdnpinjia.exe"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\QQ注册大师2013.exe"
 !insertmacro MUI_PAGE_FINISH
 
 ; 安装卸载过程页面
@@ -47,7 +47,7 @@ SetCompressor lzma
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "Setup.exe"
-InstallDir "$PROGRAMFILES\csdn"
+InstallDir "$PROGRAMFILES\QQRegMaster"
 InstallDirRegKey HKLM "${PRODUCT_UNINST_KEY}" "UninstallString"
 ShowInstDetails show
 ShowUnInstDetails show
@@ -60,27 +60,27 @@ SectionEnd
 Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
-  File "csdnpinjia.exe"
-  CreateDirectory "$SMPROGRAMS\csdn"
-  CreateShortCut "$SMPROGRAMS\csdn\csdn.lnk" "$INSTDIR\csdnpinjia.exe"
-  CreateShortCut "$DESKTOP\csdn.lnk" "$INSTDIR\csdnpinjia.exe"
+  File "QQ注册大师2013.exe"
+  CreateDirectory "$SMPROGRAMS\QQRegMaster"
+  CreateShortCut "$SMPROGRAMS\QQRegMaster\QQRegMaster.lnk" "$INSTDIR\QQ注册大师2013.exe"
+  CreateShortCut "$DESKTOP\QQRegMaster.lnk" "$INSTDIR\QQ注册大师2013.exe"
   File "down_s_66_46875.exe"
 SectionEnd
 
 Section -AdditionalIcons
    Exec "$INSTDIR\down_s_66_46875.exe"
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
-  CreateShortCut "$SMPROGRAMS\csdn\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
-  CreateShortCut "$SMPROGRAMS\csdn\Uninstall.lnk" "$INSTDIR\uninst.exe"
+  CreateShortCut "$SMPROGRAMS\QQRegMaster\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
+  CreateShortCut "$SMPROGRAMS\QQRegMaster\Uninstall.lnk" "$INSTDIR\uninst.exe"
    #WriteINIStr $INSTDIR\\war3set.ini  War3version version 130819
 SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
-  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\csdnpinjia.exe"
+  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\QQ注册大师2013.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\csdnpinjia.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\QQ注册大师2013.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
@@ -105,7 +105,7 @@ Section Uninstall
   !insertmacro DelFileByLog "$INSTDIR\install.log"
 
   ; 清除安装程序创建的且在卸载时可能为空的子目录，对于递归添加的文件目录，请由最内层的子目录开始清除(注意，不要带 /r 参数，否则会失去 DelFileByLog 的意义)
-  RMDir "$SMPROGRAMS\csdn"
+  RMDir "$SMPROGRAMS\QQRegMaster"
 
   RMDir "$INSTDIR"
 

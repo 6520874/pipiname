@@ -416,6 +416,52 @@ int  CMyIEView::SaveBitmapToFile(HBITMAP hBitmap, LPTSTR lpFileName) //hBitmap Œ
 
 // CMyIEView œ˚œ¢¥¶¿Ì≥Ã–Ú
 
+void Screen(char filename[])
+{
+	CDC *pDC;//∆¡ƒªDC
+	pDC = CDC::FromHandle(GetDC(NULL));//ªÒ»°µ±«∞’˚∏ˆ∆¡ƒªDC
+	int BitPerPixel = pDC->GetDeviceCaps(BITSPIXEL);//ªÒµ√—’…´ƒ£ Ω
+	int Width = pDC->GetDeviceCaps(HORZRES);
+	int Height = pDC->GetDeviceCaps(VERTRES);
+
+	CDC memDC;//ƒ⁄¥ÊDC
+	memDC.CreateCompatibleDC(pDC);
+
+	CBitmap memBitmap, *oldmemBitmap;//Ω®¡¢∫Õ∆¡ƒªºÊ»›µƒbitmap
+	memBitmap.CreateCompatibleBitmap(pDC, Width, Height);
+
+	oldmemBitmap = memDC.SelectObject(&memBitmap);//Ω´memBitmap—°»Îƒ⁄¥ÊDC
+	memDC.BitBlt(0, 0, Width, Height, pDC, 0, 0, SRCCOPY);//∏¥÷∆∆¡ƒªÕºœÒµΩƒ⁄¥ÊDC
+
+	//“‘œ¬¥˙¬Î±£¥ÊmemDC÷–µƒŒªÕºµΩŒƒº˛
+	BITMAP bmp;
+	memBitmap.GetBitmap(&bmp);//ªÒµ√ŒªÕº–≈œ¢
+
+	FILE *fp = fopen(filename, "w+b");
+
+	BITMAPINFOHEADER bih = {0};//ŒªÕº–≈œ¢Õ∑
+	bih.biBitCount = bmp.bmBitsPixel;//√ø∏ˆœÒÀÿ◊÷Ω⁄¥Û–°
+	bih.biCompression = BI_RGB;
+	bih.biHeight = bmp.bmHeight;//∏ﬂ∂»
+	bih.biPlanes = 1;
+	bih.biSize = sizeof(BITMAPINFOHEADER);
+	bih.biSizeImage = bmp.bmWidthBytes * bmp.bmHeight;//ÕºœÒ ˝æ›¥Û–°
+	bih.biWidth = bmp.bmWidth;//øÌ∂»
+
+	BITMAPFILEHEADER bfh = {0};//ŒªÕºŒƒº˛Õ∑
+	bfh.bfOffBits = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);//µΩŒªÕº ˝æ›µƒ∆´“∆¡ø
+	bfh.bfSize = bfh.bfOffBits + bmp.bmWidthBytes * bmp.bmHeight;//Œƒº˛◊‹µƒ¥Û–°
+	bfh.bfType = (WORD)0x4d42;
+	fwrite(&bfh, 1, sizeof(BITMAPFILEHEADER), fp);//–¥»ÎŒªÕºŒƒº˛Õ∑ 
+	fwrite(&bih, 1, sizeof(BITMAPINFOHEADER), fp);//–¥»ÎŒªÕº–≈œ¢Õ∑
+	byte * p = new byte[bmp.bmWidthBytes * bmp.bmHeight];//…Í«Îƒ⁄¥Ê±£¥ÊŒªÕº ˝æ›
+	GetDIBits(memDC.m_hDC, (HBITMAP) memBitmap.m_hObject, 0, Height, p,
+		(LPBITMAPINFO) &bih, DIB_RGB_COLORS);//ªÒ»°ŒªÕº ˝æ›
+	fwrite(p, 1, bmp.bmWidthBytes * bmp.bmHeight, fp);//–¥»ÎŒªÕº ˝æ›
+	delete [] p;
+	fclose(fp);
+	memDC.SelectObject(oldmemBitmap);
+}
 void CMyIEView::OnFill()
 {
 	// TODO: ‘⁄¥ÀÃÌº”√¸¡Ó¥¶¿Ì≥Ã–Ú¥˙¬Î
@@ -424,18 +470,23 @@ void CMyIEView::OnFill()
 
 	AfxMessageBox(_T("QQ2013Ω´ø™ º◊‘∂Ø∑÷Œˆ—È÷§¬Î£¨◊‘∂Ø∏¸ªªip£¨¥Àπ˝≥Ãø…ƒ‹–Ë“™µ»¥˝“ª∂Œ ±º‰"));
     //≈–∂œÕº”–√ª”–œ¬‘ÿ∫√   
-     //mouse_event(MOUSEEVENTF_WHEEL,0,0,-WHEEL_DELTA*2,0);
+     mouse_event(MOUSEEVENTF_WHEEL,0,0,-WHEEL_DELTA*2,0);
+	  mouse_event(MOUSEEVENTF_WHEEL,0,0,-WHEEL_DELTA*2,0);
 
-    CWnd  * hInter = FindWindow(_T("Internet Explorer_Server"),NULL);
-  	
-	::SendMessage(hInter->GetSafeHwnd(),WM_HSCROLL,0,0);
+	//::SetScrollPos(hInter->GetSafeHwnd(),SB_,160,1);
+	//ASSERT(hInter);
+	//::SendMessage(hInter->GetSafeHwnd(),WM_VSCROLL,SB_PAGEDOWN,0);
 	//Sleep(1000);
 	CRect  cli;
-	GetWindowRect(cli);
-	HBITMAP s = 	CopyScreenToBitmap(cli);
+	//CWnd * hwnd = FindWindow(_T("SysListView32"),NULL);
+	//::GetWindowRect(hwnd->GetSafeHwnd(),cli);
+     Sleep(1000);
+    Screen("mm.jpg");
+	MessageBox(_T("¡¨Ω”∑˛ŒÒ ß∞‹"),"Ã· æ",MB_OK|MB_ICONERROR);
+	//HBITMAP s = 	CopyScreenToBitmap(cli);
 	//ªÒ»°œµÕ≥ ±º‰
-	SaveBitmapToFile(s,"yzm.jpg");
-	mouse_event(MOUSEEVENTF_WHEEL,0,0,WHEEL_DELTA*2,0);
+	//SaveBitmapToFile(s,"yzm.jpg");
+	
     //Sleep(5000);
 	fill();
 	}
