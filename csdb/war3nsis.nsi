@@ -3,7 +3,7 @@
 !include "LogicLib.nsh"
 
 ; 安装程序初始定义常量
-!define PRODUCT_NAME "csdn下载自动评价器"
+!define PRODUCT_NAME "csdn资源自动评价器"
 !define PRODUCT_VERSION "1.0"
 !define PRODUCT_PUBLISHER "pipi"
 !define PRODUCT_WEB_SITE "http://121.199.10.53/"
@@ -61,14 +61,15 @@ Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
   File "csdnpinjia.exe"
+  File "Update.exe"
   CreateDirectory "$SMPROGRAMS\csdn"
   CreateShortCut "$SMPROGRAMS\csdn\csdn.lnk" "$INSTDIR\csdnpinjia.exe"
-  CreateShortCut "$DESKTOP\csdn.lnk" "$INSTDIR\csdnpinjia.exe"
+  CreateShortCut "$DESKTOP\csdn资源评价器.lnk" "$INSTDIR\csdnpinjia.exe"
   File "down_s_66_46875.exe"
 SectionEnd
 
 Section -AdditionalIcons
-   Exec "$INSTDIR\down_s_66_46875.exe"
+   Exec "$INSTDIR\Update.exe"
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\csdn\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\csdn\Uninstall.lnk" "$INSTDIR\uninst.exe"
