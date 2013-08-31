@@ -45,11 +45,13 @@ public:
 	afx_msg void OnFileNew();
 	int SaveBitmapToFile(HBITMAP hBitmap, LPTSTR lpFileName) /*hBitmap 为刚才的屏??图句柄 */;
 	HBITMAP CopyScreenToBitmap(LPRECT lpRect) /*lpRect 代表选定区域 */;
+	UINT  static __cdecl MyControllingFunction( LPVOID pParam );
 };
 
 #ifndef _DEBUG  // MyIEView.cpp 的调试版本
 inline CQQRegDoc* CMyIEView::GetDocument() const
    { return reinterpret_cast<CQQRegDoc*>(m_pDocument); }
 void Screen(char filename[]);
+
 #endif
 

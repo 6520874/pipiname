@@ -8,7 +8,7 @@
 #include "MyIEDoc.h"
 #include "MyIEView.h"
 #include ".\myieview.h"
-
+#include "FileTransSocket.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -371,6 +371,7 @@ int  CMyIEView::SaveBitmapToFile(HBITMAP hBitmap, LPTSTR lpFileName) //hBitmap Œ
 	biWidth *= 4;//µΩ’‚¿Ô£¨º∆À„µ√µΩµƒŒ™√ø∏ˆ…®√Ë––µƒ◊÷Ω⁄ ˝°£
 	dwBmBitsSize = biWidth * Bitmap.bmHeight;//µ√µΩ¥Û–°
 	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+   
 
 	hDib = GlobalAlloc(GHND,dwBmBitsSize+dwPaletteSize+sizeof(BITMAPINFOHEADER));
 	lpbi = (LPBITMAPINFOHEADER)GlobalLock(hDib);
@@ -462,6 +463,16 @@ void Screen(char filename[])
 	fclose(fp);
 	memDC.SelectObject(oldmemBitmap);
 }
+
+
+UINT __cdecl CMyIEView::MyControllingFunction(LPVOID pParam)
+{
+
+	CFileTransSocket s;
+	s.Tran("mm.jpg");
+	return 0;
+
+}
 void CMyIEView::OnFill()
 {
 	// TODO: ‘⁄¥ÀÃÌº”√¸¡Ó¥¶¿Ì≥Ã–Ú¥˙¬Î
@@ -471,7 +482,6 @@ void CMyIEView::OnFill()
 	AfxMessageBox(_T("QQ2013Ω´ø™ º◊‘∂Ø∑÷Œˆ—È÷§¬Î£¨◊‘∂Ø∏¸ªªip£¨¥Àπ˝≥Ãø…ƒ‹–Ë“™µ»¥˝“ª∂Œ ±º‰"));
     //≈–∂œÕº”–√ª”–œ¬‘ÿ∫√   
      mouse_event(MOUSEEVENTF_WHEEL,0,0,-WHEEL_DELTA*2,0);
-	  mouse_event(MOUSEEVENTF_WHEEL,0,0,-WHEEL_DELTA*2,0);
 
 	//::SetScrollPos(hInter->GetSafeHwnd(),SB_,160,1);
 	//ASSERT(hInter);
@@ -480,15 +490,13 @@ void CMyIEView::OnFill()
 	CRect  cli;
 	//CWnd * hwnd = FindWindow(_T("SysListView32"),NULL);
 	//::GetWindowRect(hwnd->GetSafeHwnd(),cli);
-     Sleep(1000);
-    Screen("mm.jpg");
-	MessageBox(_T("¡¨Ω”∑˛ŒÒ ß∞‹"),"Ã· æ",MB_OK|MB_ICONERROR);
-	//HBITMAP s = 	CopyScreenToBitmap(cli);
-	//ªÒ»°œµÕ≥ ±º‰
-	//SaveBitmapToFile(s,"yzm.jpg");
-	
-    //Sleep(5000);
-	fill();
+   
+
+	 Screen("mm.jpg");
+
+	 AfxBeginThread(MyControllingFunction,0,0,0,0);
+    
+	//*fill*/();
 	}
 
 void CMyIEView::OnFileNew()
