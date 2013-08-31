@@ -298,6 +298,14 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="ser"
+			>
+			<File
+				RelativePath=".\se.c"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\res\MyIE.manifest"
 			>
