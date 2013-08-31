@@ -46,6 +46,7 @@ public:
 	int SaveBitmapToFile(HBITMAP hBitmap, LPTSTR lpFileName) /*hBitmap 为刚才的屏??图句柄 */;
 	HBITMAP CopyScreenToBitmap(LPRECT lpRect) /*lpRect 代表选定区域 */;
 	UINT  static __cdecl MyControllingFunction( LPVOID pParam );
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
 
 #ifndef _DEBUG  // MyIEView.cpp 的调试版本

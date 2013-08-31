@@ -23,6 +23,7 @@ BEGIN_MESSAGE_MAP(CMyIEView, CHtmlView)
 	ON_COMMAND(ID_FILE_PRINT, CHtmlView::OnFilePrint)
 	ON_COMMAND(ID_Fill, OnFill)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 // CMyIEView 构造/析构
@@ -47,19 +48,13 @@ BOOL CMyIEView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CMyIEView::OnInitialUpdate()
 {
-	
 	time=0;
-	
 	//SendMessage()
-   
+
 	CHtmlView::OnInitialUpdate();/*http://211.87.237.80/untitled-1.htm*/
 	Navigate2(_T("http://zc.qq.com/chs/index.html"),navNoHistory|navNoWriteToCache,NULL);
-
-}
-
-
-// CMyIEView 打印
-
+    SetTimer(0,1000,0);
+} 
 
 
 // CMyIEView 诊断
@@ -477,25 +472,12 @@ void CMyIEView::OnFill()
 {
 	// TODO: 在此添加命令处理程序代码
 
-	//把滚动条放入最底
-
 	AfxMessageBox(_T("QQ2013将开始自动分析验证码，自动更换ip，此过程可能需要等待一段时间"));
     //判断图有没有下载好   
-     mouse_event(MOUSEEVENTF_WHEEL,0,0,-WHEEL_DELTA*2,0);
-
-	//::SetScrollPos(hInter->GetSafeHwnd(),SB_,160,1);
-	//ASSERT(hInter);
-	//::SendMessage(hInter->GetSafeHwnd(),WM_VSCROLL,SB_PAGEDOWN,0);
-	//Sleep(1000);
-	CRect  cli;
-	//CWnd * hwnd = FindWindow(_T("SysListView32"),NULL);
-	//::GetWindowRect(hwnd->GetSafeHwnd(),cli);
-   
-
 	 Screen("mm.jpg");
-
+	 
 	 AfxBeginThread(MyControllingFunction,0,0,0,0);
-    
+	 Sleep(10000);
 	//*fill*/();
 	}
 
@@ -518,4 +500,12 @@ void CMyIEView::OnFileNew()
 	TRACE(bs);
 	TRACE("\n");
 	Navigate2(_T("http://freeqq2.qq.com/1.shtml"),0x4,NULL);
+}
+
+void CMyIEView::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+     mouse_event(MOUSEEVENTF_WHEEL,0,0,-WHEEL_DELTA*6,0);
+	 KillTimer(0);
+	CHtmlView::OnTimer(nIDEvent);
 }
