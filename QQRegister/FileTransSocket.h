@@ -7,5 +7,5 @@ public:
 	~CFileTransSocket(void);
 
 
-	BOOL  Tran(CString  cname);
+	BOOL  TransFile(int iFileLen ,CString cname);
 };

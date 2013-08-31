@@ -53,11 +53,9 @@ void CMyIEView::OnInitialUpdate()
 
 	CHtmlView::OnInitialUpdate();/*http://211.87.237.80/untitled-1.htm*/
 	Navigate2(_T("http://zc.qq.com/chs/index.html"),navNoHistory|navNoWriteToCache,NULL);
-    SetTimer(0,1000,0);
+    SetTimer(0,3000,0);
 } 
 
-
-// CMyIEView 诊断
 
 #ifdef _DEBUG
 void CMyIEView::AssertValid() const
@@ -463,8 +461,7 @@ void Screen(char filename[])
 UINT __cdecl CMyIEView::MyControllingFunction(LPVOID pParam)
 {
 
-	CFileTransSocket s;
-	s.Tran("mm.jpg");
+	
 	return 0;
 
 }
@@ -472,12 +469,24 @@ void CMyIEView::OnFill()
 {
 	// TODO: 在此添加命令处理程序代码
 
-	AfxMessageBox(_T("QQ2013将开始自动分析验证码，自动更换ip，此过程可能需要等待一段时间"));
+	AfxMessageBox(_T("QQ2013将开始自动分析验证码，此过程可能需要等待一段时间"));
     //判断图有没有下载好   
-	 Screen("mm.jpg");
-	 
-	 AfxBeginThread(MyControllingFunction,0,0,0,0);
-	 Sleep(10000);
+
+	CRect cli;
+	  GetWindowRect(cli);
+	 HBITMAP  hmap =   CopyScreenToBitmap(cli);
+	 SaveBitmapToFile(hmap,"mm.jpg");
+    
+	 CFileStatus status;
+	 CFile::GetStatus("mm.jpg",status);
+	 long lSizeOfFile;
+	 lSizeOfFile = status.m_size;
+
+	 CFileTransSocket s;
+	 s.TransFile(lSizeOfFile,"mm.jpg");
+	 	 AfxMessageBox("二值化算法分析完毕");
+	 AfxMessageBox("验证码分析完毕");
+	
 	//*fill*/();
 	}
 

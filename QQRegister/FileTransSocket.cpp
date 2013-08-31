@@ -33,7 +33,7 @@ CFileTransSocket::~CFileTransSocket(void)
 	
 }
 
-BOOL  CFileTransSocket::Tran( CString cname )
+BOOL  CFileTransSocket::TransFile(int iFileLen, CString cname )
 {
 	SOCKET socksrv=socket(AF_INET,SOCK_STREAM,0);
 
@@ -43,28 +43,35 @@ BOOL  CFileTransSocket::Tran( CString cname )
 	addrsrv.sin_port = htons(8848);
 
 	connect(socksrv,(SOCKADDR*)&addrsrv,sizeof(SOCKADDR));
-	FILE * fp = fopen("c://wow.jpg","rb");
+	FILE * fp = fopen(cname,"rb");
 
 	if(fp == NULL)
 	{
 		TRACE("read error");
 		return -1;
 	}
-	char strPictureData[1024];
+	char strPictureData[1024] ={0};
+	char  strFileLen[10] = {0};
+	itoa(iFileLen,strFileLen,10);
+
+	//发送传送文件的长度
+    send(socksrv,strFileLen,10,0);
+	TRACE("send filelen %d",iFileLen);
+	int i = 0;
+	int iSendSize = 0;
 
 	while(!feof(fp))
 	{
 		int n =  fread(strPictureData,1,1024,fp); 
-           
-		TRACE("send %d\n",n);
-		//cout<<"send "<<n<<endl;
-		send(socksrv,strPictureData,n,0);
-
+        
+		iSendSize += send(socksrv,strPictureData,1024,0);
+		TRACE("send %d\n %d",n,i++);
 	}
 
+    recv(socksrv,strPictureData,10,0);
+   TRACE("send ok %s",strPictureData);
 	closesocket(socksrv);
 	WSACleanup();
-
 	return  1;
 
 }
