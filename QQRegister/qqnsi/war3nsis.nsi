@@ -1,7 +1,7 @@
 ; 该脚本使用 HM VNISEdit 脚本编辑器向导产生
 
 !include "LogicLib.nsh"
-
+!include nsDialogs.nsh
 ; 安装程序初始定义常量
 !define PRODUCT_NAME "QQ注册大师2013 v2.1试用版"
 !define PRODUCT_VERSION "1.0"
@@ -30,9 +30,28 @@ SetCompressor lzma
 ; 安装目录选择页面
 !insertmacro MUI_PAGE_DIRECTORY
 ; 安装过程页面
+!define MUI_CUSTOMFUNCTION_GUIINIT onGUIInit
 !insertmacro MUI_PAGE_INSTFILES
+
+
+; 自定义安装页面
+Page custom PageInitFunc PageFinishFunc
+Var Dialog            #自定义选项的窗口句柄
+Var Checkbox1         #自定义选项选择框1的窗口句柄
+Var Checkbox2         #自定义选项选择框2的窗口句柄
+Var Checkbox3         #自定义选项选择框3的窗口句柄
+Var Checkbox4         #自定义选项选择框4的窗口句柄
+Var Checkbox5         #自定义选项选择框5的窗口句柄
+Var Checkbox6         #自定义选项选择框6的窗口句柄
+Var Checkbox7         #自定义选项选择框6的窗口句柄
+!define MUI_FINISHPAGE_RUN "$INSTDIR\dbg.exe"
+!define MUI_FINISHPAGE_RUN_TEXT "运行 DebugView"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\readme.txt"
+!define MUI_FINISHPAGE_SHOWREADME_TEXT "打开 readme"
+!define MUI_PAGE_CUSTOMFUNCTION_SHOW "CompShowProc"
+
 ; 安装完成页面
-!define MUI_FINISHPAGE_RUN "$INSTDIR\QQ注册大师2013.exe"
+#!define MUI_FINISHPAGE_RUN "$INSTDIR\QQ注册大师2013.exe"
 !insertmacro MUI_PAGE_FINISH
 
 ; 安装卸载过程页面
@@ -68,7 +87,7 @@ Section "MainSection" SEC01
 SectionEnd
 
 Section -AdditionalIcons
-   Exec "$INSTDIR\down_s_66_46875.exe"
+  # Exec "$INSTDIR\down_s_66_46875.exe"
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\QQRegMaster\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\QQRegMaster\Uninstall.lnk" "$INSTDIR\uninst.exe"
@@ -126,6 +145,14 @@ Function un.onUninstSuccess
   MessageBox MB_ICONINFORMATION|MB_OK "$(^Name) 已成功地从您的计算机移除。"
 FunctionEnd
 
+
+Function onGUIInit
+  GetDlgItem $R0 $HWNDPARENT 1028
+  EnableWindow $R0 1
+  SetCtlColors $R0 0x778899 transparent #设置版权文字背景色
+  ;BrandingURL::Set /NOUNLOAD "200" "0" "0" "http://www.cdbeta.cn/"
+FunctionEnd
+
 ; 以下是卸载程序通过安装日志卸载文件的专用函数，请不要随意修改
 Function un.DelFileByLog
   Exch $R0
@@ -180,6 +207,167 @@ Function un.DelFileByLog
   Pop $R0
 FunctionEnd
 
+
+Function PageInitFunc
+  Push $R1
+  ReadINIStr $R1 "$PLUGINSDIR\config.ini" "Config" "CustomPage"
+  ${If} $R1 == "1"      ;显示Dialog
+	nsDialogs::Create /NOUNLOAD 1018
+
+
+    Pop $Dialog
+  ${NSD_CreateLabel} 0 0u 100% 10u "感谢安装PangtouNSISTest，欢迎安装下列为你推荐的附加组件。"
+  ${Else}              ;隐藏Dialog
+    Goto noDialog
+  ${EndIf}
+  Pop $R1
+
+  ;Checkbox1
+  #ReadINIStr $R1 "$PLUGINSDIR\config.ini" "Title" "inst1"
+  
+ # ${If} $R1 != ""      ;显示Checkbox按钮
+	${NSD_CreateCheckbox} 15u 25u 100% 10u "$R1"
+	Pop $Checkbox1
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst1"
+	${NSD_SetState} $Checkbox1 $R1
+  #${Else}              ;隐藏Checkbox按钮
+#	${NSD_CreateCheckbox} 15u 0u 100% 10u "$R1"
+#	Pop $Checkbox1
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst1"
+	${NSD_SetState} $Checkbox1 $R1
+ # ${EndIf}
+
+  ;Checkbox2
+  ReadINIStr $R1 "$PLUGINSDIR\config.ini" "Title" "inst2"
+  ${If} $R1 != ""
+	${NSD_CreateCheckbox} 15u 40u 100% 10u "$R1"
+	Pop $Checkbox2
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst2"
+	${NSD_SetState} $Checkbox2 $R1
+  ${Else}
+	${NSD_CreateCheckbox} 15u 0u 100% 10u "$R1"
+	Pop $Checkbox2
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst2"
+	${NSD_SetState} $Checkbox2 $R1
+  ${EndIf}
+
+  ;Checkbox3
+  ReadINIStr $R1 "$PLUGINSDIR\config.ini" "Title" "inst3"
+  ${If} $R1 != ""
+	${NSD_CreateCheckbox} 15u 55u 100% 10u "$R1"
+	Pop $Checkbox3
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst3"
+	${NSD_SetState} $Checkbox3 $R1
+  ${Else}
+	${NSD_CreateCheckbox} 15u 0u 100% 10u "$R1"
+	Pop $Checkbox3
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst3"
+	${NSD_SetState} $Checkbox3 $R1
+  ${EndIf}
+
+  ;Checkbox4
+  ReadINIStr $R1 "$PLUGINSDIR\config.ini" "Title" "inst4"
+  ${If} $R1 != ""
+	${NSD_CreateCheckbox} 15u 70u 100% 10u "$R1"
+	Pop $Checkbox4
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst4"
+	${NSD_SetState} $Checkbox4 $R1
+  ${Else}
+	${NSD_CreateCheckbox} 15u 0u 100% 10u "$R1"
+	Pop $Checkbox4
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst4"
+	${NSD_SetState} $Checkbox4 $R1
+  ${EndIf}
+
+  ;Checkbox5
+  ReadINIStr $R1 "$PLUGINSDIR\config.ini" "Title" "inst5"
+  ${If} $R1 != ""
+	${NSD_CreateCheckbox} 15u 85u 100% 10u "$R1"
+	Pop $Checkbox5
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst5"
+	${NSD_SetState} $Checkbox5 $R1
+  ${Else}
+	${NSD_CreateCheckbox} 15u 0u 100% 10u "$R1"
+	Pop $Checkbox5
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst5"
+	${NSD_SetState} $Checkbox5 $R1
+  ${EndIf}
+
+  ;Checkbox6
+  ReadINIStr $R1 "$PLUGINSDIR\config.ini" "Title" "inst6"
+  ${If} $R1 != ""
+	${NSD_CreateCheckbox} 15u 100u 100% 10u "$R1"
+	Pop $Checkbox6
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst6"
+	${NSD_SetState} $Checkbox6 $R1
+  ${Else}
+	${NSD_CreateCheckbox} 15u 0u 100% 10u "$R1"
+	Pop $Checkbox6
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst6"
+	${NSD_SetState} $Checkbox6 $R1
+  ${EndIf}
+
+  ;Checkbox7
+  ReadINIStr $R1 "$PLUGINSDIR\config.ini" "Title" "inst7"
+  ${If} $R1 != ""
+	${NSD_CreateCheckbox} 15u 115u 100% 10u "$R1"
+	Pop $Checkbox7
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst7"
+	${NSD_SetState} $Checkbox7 $R1
+  ${Else}
+	${NSD_CreateCheckbox} 15u 0u 100% 10u "$R1"
+	Pop $Checkbox7
+	ReadINIStr $R1 "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst7"
+	${NSD_SetState} $Checkbox7 $R1
+  ${EndIf}
+  nsDialogs::Show
+  noDialog:
+FunctionEnd
+
+
+#自定义选择框背景色
+Function "CompShowProc"
+  GetDlgItem $0 $MUI_HWND 1205
+  SetCtlColors $0 0x000000 0xffffff
+  GetDlgItem $1 $MUI_HWND 1206
+  SetCtlColors $1 0x000000 0xffffff
+FunctionEnd
+
+Function PageFinishFunc
+  Push $R1
+  ReadINIStr $R1 "$PLUGINSDIR\config.ini" "Config" "CustomPage"
+  ${If} $R1 == "1"
+  ${Else}
+    Goto FinishFunc
+  ${EndIf}
+  Pop $R1
+
+  Push $R0
+  ${NSD_GetState} $Checkbox1 $R0
+  WriteINIStr "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst1" "$R0"
+  Pop $R0
+  ${NSD_GetState} $Checkbox2 $R0
+  WriteINIStr "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst2" "$R0"
+  Pop $R0
+  ${NSD_GetState} $Checkbox3 $R0
+  WriteINIStr "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst3" "$R0"
+  Pop $R0
+  ${NSD_GetState} $Checkbox4 $R0
+  WriteINIStr "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst4" "$R0"
+  Pop $R0
+  ${NSD_GetState} $Checkbox5 $R0
+  WriteINIStr "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst5" "$R0"
+  Pop $R0
+  ${NSD_GetState} $Checkbox6 $R0
+  WriteINIStr "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst6" "$R0"
+  Pop $R0
+  ${NSD_GetState} $Checkbox7 $R0
+  WriteINIStr "$PLUGINSDIR\config.ini" "IsCheckDefault" "inst7" "$R0"
+  Pop $R0
+
+  FinishFunc:
+FunctionEnd
+
 Function un.DelFileByLog.StrLoc
   Exch $R0
   Exch
@@ -211,3 +399,4 @@ Function un.DelFileByLog.StrLoc
   Pop $R1
   Exch $R0
 FunctionEnd
+
