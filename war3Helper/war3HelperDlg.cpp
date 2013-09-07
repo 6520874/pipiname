@@ -40,7 +40,6 @@ NOTIFYICONDATA m_nid;
 LRESULT CALLBACK LowLevelKeyboardProc(int nCode,WPARAM wParam,LPARAM lParam)
 {
 	//获取最前端窗口
-
 	topWnd = GetForegroundWindow();
 
 	//通过读取内存信息来判断是否为聊天模式
@@ -500,7 +499,6 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	if(nIDEvent == TIMER_CHECKWAR3)
 	{
-
 		m_hwar3=::FindWindow(NULL,_T("Warcraft III"));
 
 		if (m_hwar3 != NULL)
@@ -526,6 +524,7 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 				    keybd_event('C',0,0,0);
 				    keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
 				    keybd_event('C',0,KEYEVENTF_KEYUP,0);
+				    bFirstStartFlag = FALSE;
 		         }
 			}
 
@@ -538,7 +537,7 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 			CString  csName = AfxGetApp()->m_pszAppName;
 
 			csName+= L".exe";
-            bFirstStartFlag = FALSE;
+
 			m_hkeyboard = SetWindowsHookEx(WH_KEYBOARD_LL,LowLevelKeyboardProc,GetModuleHandle(csName),0);
 			if (NULL==m_hkeyboard)
 			{
@@ -932,6 +931,5 @@ void Cwar3HelperDlg::OnBnClickedKaerchangekey()
 	 //WinExec("KaelKey.exe",SW_SHOW);
 	CString s = GetWebStieHtml(_T("http://pipihaha.sinaapp.com/war3"));
     AfxMessageBox(s);
-	//MessageBoxA(0,CW2A(s),"",0);
 }
 
