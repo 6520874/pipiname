@@ -61,9 +61,9 @@ BOOL Cwar3HelperApp::InitInstance()
 	SetRegistryKey(_T("应用程序向导生成的本地应用程序"));
        
 	 //用exe来进行更新
-	 WinExec("Update.exe",SW_SHOW);
-	 //需要更新就停止本程序
-	  //if(FindWindow())
+#ifndef _DEBUG
+	WinExec("Update.exe",SW_SHOW);
+#endif
 
 	HANDLE  hEvent= CreateEvent(NULL,FALSE,FALSE,_T("War3Tool"));
 	if (hEvent)

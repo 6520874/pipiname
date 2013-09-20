@@ -11,8 +11,6 @@ CMyEdit::~CMyEdit(void)
 
 void CMyEdit::OnEditCommandTab(MSG* pMsg,const TCHAR * sz)
 { 
-  
-	//GetWar3Dlg().m_num7.GetWindowText(sz);
 	if(pMsg->hwnd == m_Pdlg->m_num7.GetSafeHwnd())
 	{
 		m_Pdlg->m_num7.SetWindowText(sz);
