@@ -11,6 +11,7 @@
 #endif
 
 #define  TIMER_CHECKQYK     1000
+#define  TIMER_CHECKSHUOMING 1001
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
 class CAboutDlg : public CDialog
@@ -73,6 +74,7 @@ BEGIN_MESSAGE_MAP(CqiaoyukaDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_SEND, &CqiaoyukaDlg::OnBnClickedButtonSend)
 	ON_WM_CTLCOLOR()
 	ON_BN_CLICKED(IDC_BUTTONBUG, &CqiaoyukaDlg::OnBnClickedButtonbug)
+    ON_COMMAND(ID_32771, &CqiaoyukaDlg::OnHelp)
 END_MESSAGE_MAP()
 
 
@@ -127,7 +129,7 @@ BOOL CqiaoyukaDlg::OnInitDialog()
 	// TODO: 在此添加额外的初始化代码
     m_Static_DiaoSiNiXi.SetURL(_T("http://blog.sina.com.cn/s/blog_8335c2af01013j8a.html"));
     SetTimer(TIMER_CHECKQYK,1000,0);
-     ::MessageBox(0,_T("首次使用,请打开2013QQ查找好友按钮，选择巧遇卡 点击开始按钮\n本软件可能根据不同网速的机子有延时，pipi"),_T("使用说明"),MB_OK);
+   
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -204,6 +206,11 @@ void CqiaoyukaDlg::OnTimer(UINT_PTR nIDEvent)
 	  }
 
    }
+   
+
+   
+     
+
 	CDialog::OnTimer(nIDEvent);
 }
 
@@ -369,4 +376,10 @@ void CqiaoyukaDlg::OnBnClickedButtonbug()
 {
 	// TODO: 在此添加控件通知处理程序代码
    ShellExecute(NULL, _T("open"),_T("mailto:6520874@163.com?subject=您好，我的软件用不了"),NULL,NULL, SW_SHOWNORMAL);
+}
+
+void CqiaoyukaDlg::OnHelp()
+{
+    // TODO: 在此添加命令处理程序代码、
+ ::MessageBox(0,_T("首次使用,请打开2013QQ查找好友按钮，选择巧遇卡 点击开始按钮\n本软件可能根据不同网速的机子有延时，输入1000即等待1秒\n机子网速越牛逼，设置延时越短，pipi"),_T("使用说明"),MB_OK);
 }

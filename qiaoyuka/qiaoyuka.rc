@@ -92,6 +92,7 @@ IDD_QIAOYUKA_DIALOG DIALOGEX 0, 0, 291, 200
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "QQ巧遇卡自动聊天（约炮加强版）"
+MENU IDR_MENU1
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     EDITTEXT        IDC_EDIT_QIAOYUKAEXE,42,17,65,12,ES_AUTOHSCROLL | ES_READONLY
@@ -179,6 +180,20 @@ END
 //
 
 IDB_BITMAP1             BITMAP                  "res\\mai.BMP"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU 
+BEGIN
+    POPUP "帮助"
+    BEGIN
+        MENUITEM "使用说明",                        ID_32771
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

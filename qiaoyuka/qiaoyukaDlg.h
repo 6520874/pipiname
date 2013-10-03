@@ -51,5 +51,6 @@ private:
 	CEdit m_EClickTime;
 public:
 	afx_msg void OnBnClickedButtonbug();
-};
+    afx_msg void OnHelp();
+    };
 CString GetProcessNameFromId(int pid);
