@@ -6,6 +6,7 @@
 #include "Update.h"
 #include "UpdateDlg.h"
 #include <afxinet.h>
+#include <string>
 #pragma  comment(lib,"Winmm.lib")
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -47,7 +48,11 @@ BOOL CUpdateApp::IsUpdate()
 	GetPrivateProfileString(_T("War3version"),_T("UpdateWeb"),_T("http://pipihaha.sinaapp.com/qyk"),szValue,MAX_PATH,warPath+_T("//war3set.ini"));
 	CString csWeb(szValue);
 	CString csVerNew = GetWebStieHtml(csWeb);
-
+   
+    if(csVerNew.IsEmpty())
+    {
+     return TRUE;
+    }
 	if(csVerOld != csVerNew)
 	{
 		return FALSE;
@@ -59,8 +64,29 @@ BOOL CUpdateApp::IsUpdate()
 }
 
 
-CString   CUpdateApp::GetWebStieHtml(CString  strUrl)
+ BOOL IsNetworkOFFline()
+    {
+    system("ping 8.8.8.8 >c://ping.txt");
+    FILE  * fp = fopen("c://ping.txt","r");
+    char sz[1024];
+    fread(sz,1,sizeof(sz),fp);
+    std::string str(sz);
+    int n = str.find(_T("100% loss"));
+    if(n!=std::string::npos)
+        {
+        return TRUE;
+        }
+    return FALSE;
+    }
+
+CString  CUpdateApp::GetWebStieHtml(CString  strUrl)
 {
+   //判断网络是否联通  ping google dns 8.8.8.8
+  
+    if(IsNetworkOFFline())
+        {
+        return "";
+        }
 	CInternetSession mySession(NULL,0);  
 	CHttpFile* myHttpFile = NULL;
 	myHttpFile = (CHttpFile*)mySession.OpenURL(strUrl);//str是要打开的地址
