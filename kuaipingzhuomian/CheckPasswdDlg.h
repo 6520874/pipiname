@@ -18,12 +18,11 @@ public:
    bool  m_bPasswdSame;
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
-
 	DECLARE_MESSAGE_MAP()
-public:
- afx_msg void OnBnClickedOk();
- afx_msg void OnBnClickedCancel();
- void Init(CPasswdDlg *dlg);
-private:
+  public:
+   afx_msg void OnBnClickedOk();
+   afx_msg void OnBnClickedCancel();
+   void Init(CPasswdDlg *dlg);
+  private:
  CString m_CsCheckPasswd;
  };

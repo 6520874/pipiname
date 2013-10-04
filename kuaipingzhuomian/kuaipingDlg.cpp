@@ -48,6 +48,7 @@ CkuaipingDlg::CkuaipingDlg(CWnd* pParent /*=NULL*/)
 : CDialog(CkuaipingDlg::IDD, pParent)
  {
  m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+ i = 0;
  }
 
 void CkuaipingDlg::DoDataExchange(CDataExchange* pDX)
@@ -304,7 +305,9 @@ LRESULT CkuaipingDlg::OnShowTask(WPARAM wParam, LPARAM lParam)
    {
    if(m_CreatePasswddlg.IsSetPasswd())
 	{   
+   
 	m_CheckPasswdDlg.Init(&m_CreatePasswddlg);
+	    if(i==0)
 	m_CheckPasswdDlg.DoModal();
 
 	if(m_CheckPasswdDlg.m_bPasswdSame)

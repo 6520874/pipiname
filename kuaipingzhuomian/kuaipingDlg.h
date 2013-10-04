@@ -46,5 +46,6 @@ public:
 private:
 	CPasswdDlg m_CreatePasswddlg;
 	CCheckPasswdDlg m_CheckPasswdDlg;
+	int i ;
 
  };

@@ -12,6 +12,7 @@ IMPLEMENT_DYNAMIC(CCheckPasswdDlg, CDialog)
 CCheckPasswdDlg::CCheckPasswdDlg(CWnd* pParent /*=NULL*/)
 : CDialog(CCheckPasswdDlg::IDD, pParent)
  {
+   m_bPasswdSame  = false;
  }
 
 CCheckPasswdDlg::~CCheckPasswdDlg()
