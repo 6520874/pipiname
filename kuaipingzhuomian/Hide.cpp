@@ -49,8 +49,9 @@ void CHideToolDlg::OnBnClickedButtonOpenhide()
 	// TODO: 在此添加控件通知处理程序代码
       WinExec(CW2A(_T("systemopen.bat")),SW_HIDE); 
 	  Sleep(1000);
-	  ShellExecute(NULL,_T("open"),_T("k://"),NULL,NULL,SW_SHOW);
 	  MessageBox(_T("你可以放入你的私密文件了",_T("恭喜"),MB_OK));
+	  ShellExecute(NULL,_T("open"),_T("k://"),NULL,NULL,SW_SHOW);
+	
 }
 
 void CHideToolDlg::OnBnClickedButtonClosehide()

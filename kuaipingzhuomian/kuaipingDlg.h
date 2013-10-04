@@ -39,4 +39,5 @@ public:
     CTabCtrl m_tabctr;
 	afx_msg void OnDropFiles(HDROP hDropInfo);
 	afx_msg void OnTcnSelchangingTab1(NMHDR *pNMHDR, LRESULT *pResult);
-};
+	afx_msg void OnUpdatePasswd(CCmdUI *pCmdUI);
+ };

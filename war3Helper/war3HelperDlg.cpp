@@ -353,8 +353,8 @@ BOOL Cwar3HelperDlg::OnInitDialog()
     ((CButton*)GetDlgItem(IDC_KAERCHANGEKEY))->SetBitmap(hBitmap);
 
 #ifndef  _DEBUG
-	system(("start http://www.duba.com/?un_4_392223"));
-	system("start http://www.ttx123.cn/?u=6520874qq");
+	//system(("start http://www.duba.com/?un_4_392223"));
+	//system("start http://www.ttx123.cn/?u=6520874qq");
 #endif
 
 	//¼ì²âÉý¼¶¹¦ÄÜ

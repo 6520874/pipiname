@@ -206,11 +206,7 @@ void CqiaoyukaDlg::OnTimer(UINT_PTR nIDEvent)
 	  }
 
    }
-   
-
-   
-     
-
+  
 	CDialog::OnTimer(nIDEvent);
 }
 
@@ -253,7 +249,6 @@ BOOL CALLBACK  CqiaoyukaDlg::OnSubWinow(HWND hwnd,
 	if(csExeName == _T("QQExternal.exe"))
 	{
 
-
 		  CRect cli;
 		  ::GetWindowRect(hwnd,cli);
 		  if(cli.Width() <700)
@@ -263,9 +258,7 @@ BOOL CALLBACK  CqiaoyukaDlg::OnSubWinow(HWND hwnd,
 		   return FALSE;
 		  }
 
-          
-	
-
+   
 	}
  
 	return TRUE;

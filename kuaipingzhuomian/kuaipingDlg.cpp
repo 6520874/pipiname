@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "kuaiping.h"
 #include "kuaipingDlg.h"
-
+#include "PasswdDlg.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -64,6 +64,7 @@ BEGIN_MESSAGE_MAP(CkuaipingDlg, CDialog)
 	ON_EN_CHANGE(IDC_EDIT2, &CkuaipingDlg::OnEnChangeEdit2)
 	ON_WM_DROPFILES()
 	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB1, &CkuaipingDlg::OnTcnSelchangingTab1)
+	ON_UPDATE_COMMAND_UI(ID_PASSWD, &CkuaipingDlg::OnUpdatePasswd)
 END_MESSAGE_MAP()
 
 
@@ -111,7 +112,7 @@ BOOL CkuaipingDlg::OnInitDialog()
 	m_para2.Create (IDD_SYSTEM_DIALOG,&m_tabctr);
 	m_tabctr.InsertItem (1,item.pszText);
 
-	item.pszText = L"隐藏文件";
+	item.pszText = L"私人空间";
 	m_para3.Create (IDD_HIDE_DIALOG,&m_tabctr);
 	m_tabctr.InsertItem (2,item.pszText);
 	GetClientRect(&rc);
@@ -246,3 +247,10 @@ void CkuaipingDlg::OnTcnSelchangingTab1(NMHDR *pNMHDR, LRESULT *pResult)
 	
 	*pResult = 0;
 }
+
+void CkuaipingDlg::OnUpdatePasswd(CCmdUI *pCmdUI)
+ {
+ // TODO: 在此添加命令更新用户界面处理程序代码
+      CPasswdDlg  dlg;
+	  dlg.DoModal();
+ }
