@@ -186,6 +186,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\CheckPasswdDlg.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\FileTool.cpp"
 				>
 			</File>
@@ -203,6 +207,10 @@
 			</File>
 			<File
 				RelativePath=".\MyListCtrl.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PasswdDlg.cpp"
 				>
 			</File>
 			<File
@@ -236,6 +244,10 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\CheckPasswdDlg.h"
+				>
+			</File>
+			<File
 				RelativePath=".\FileTool.h"
 				>
 			</File>
@@ -253,6 +265,10 @@
 			</File>
 			<File
 				RelativePath=".\MyListCtrl.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PasswdDlg.h"
 				>
 			</File>
 			<File

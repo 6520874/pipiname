@@ -7,6 +7,8 @@
 #include "FileTool.h"
 #include "SystemTool.h"
 #include "Hide.h"
+#include "PasswdDlg.h"
+#include "CheckPasswdDlg.h"
 // CkuaipingDlg ¶Ô»°¿ò
 class CkuaipingDlg : public CDialog
 {
@@ -40,4 +42,9 @@ public:
 	afx_msg void OnDropFiles(HDROP hDropInfo);
 	afx_msg void OnTcnSelchangingTab1(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnUpdatePasswd(CCmdUI *pCmdUI);
+	LRESULT OnShowTask(WPARAM wParam, LPARAM lParam);
+private:
+	CPasswdDlg m_CreatePasswddlg;
+	CCheckPasswdDlg m_CheckPasswdDlg;
+
  };

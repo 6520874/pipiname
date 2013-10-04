@@ -133,6 +133,16 @@ BEGIN
     GROUPBOX        "请在此处输入您要创建的密码",IDC_STATIC,7,7,162,91
 END
 
+IDD_DIALOGCHECKPASSWD DIALOGEX 0, 0, 184, 102
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "请输入密码"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,71,68,50,14
+    PUSHBUTTON      "取消",IDCANCEL,127,68,50,14
+    EDITTEXT        IDC_EDIT1,40,23,93,23,ES_AUTOHSCROLL
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -228,6 +238,14 @@ BEGIN
         RIGHTMARGIN, 169
         TOPMARGIN, 7
         BOTTOMMARGIN, 98
+    END
+
+    IDD_DIALOGCHECKPASSWD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 177
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 95
     END
 END
 #endif    // APSTUDIO_INVOKED
