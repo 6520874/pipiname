@@ -48,7 +48,7 @@ CkuaipingDlg::CkuaipingDlg(CWnd* pParent /*=NULL*/)
 : CDialog(CkuaipingDlg::IDD, pParent)
  {
  m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
- i = 0;
+
  }
 
 void CkuaipingDlg::DoDataExchange(CDataExchange* pDX)
@@ -68,6 +68,7 @@ BEGIN_MESSAGE_MAP(CkuaipingDlg, CDialog)
  ON_NOTIFY(TCN_SELCHANGE, IDC_TAB1, &CkuaipingDlg::OnTcnSelchangingTab1)
  ON_UPDATE_COMMAND_UI(ID_PASSWD, &CkuaipingDlg::OnUpdatePasswd)
  ON_BN_CLICKED(IDC_BUTTONBAIDU, &CkuaipingDlg::OnBnClickedButtonbaidu)
+ ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
@@ -308,11 +309,13 @@ LRESULT CkuaipingDlg::OnShowTask(WPARAM wParam, LPARAM lParam)
    {
    if(m_CreatePasswddlg.IsSetPasswd())
 	{   
-   
-	m_CheckPasswdDlg.Init(&m_CreatePasswddlg);
-	    if(i==0)
-	m_CheckPasswdDlg.DoModal();
-
+   	 CWnd * fd = FindWindow(NULL,_T("请输入密码"));
+	 if(fd == NULL)
+	 {
+	 m_CheckPasswdDlg.Init(&m_CreatePasswddlg);
+	  m_CheckPasswdDlg.DoModal();
+      m_CheckPasswdDlg.SetForegroundWindow();
+	  }
 	if(m_CheckPasswdDlg.m_bPasswdSame)
 	 {
 	 this->ShowWindow(SW_SHOWNORMAL); // 显示主窗口
@@ -335,14 +338,7 @@ LRESULT CkuaipingDlg::OnShowTask(WPARAM wParam, LPARAM lParam)
 
 
  }
-void CkuaipingDlg::OnBnClickedButton1()
- {
- // TODO: 在此添加控件通知处理程序代码
 
-  
-
-	
- }
 
 void CkuaipingDlg::OnBnClickedButtonbaidu()
  {
@@ -352,5 +348,17 @@ void CkuaipingDlg::OnBnClickedButtonbaidu()
  GetDlgItemText(IDC_EDITBAIDU,cstr);
  wsprintf(sz,L"http://www.baidu.com/s?wd=%s&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg&rsv_sug3=3&rsv_sug=0&rsv_sug1=3&rsv_sug4=266&inputT=5488",cstr);
  ShellExecute(m_hWnd,L"open",sz,NULL,NULL,SW_NORMAL);	
+
+ }
+
+void CkuaipingDlg::OnSize(UINT nType, int cx, int cy)
+ {
+ CDialog::OnSize(nType, cx, cy);
+
+ // TODO: 在此处添加消息处理程序代码
+ if(nType == SIZE_MINIMIZED) 
+  {
+  ShowWindow(SW_HIDE); // 当最小化市，隐藏主窗口 
+  } 
 
  }
