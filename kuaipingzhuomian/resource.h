@@ -16,10 +16,11 @@
 #define IDD_HIDE_DIALOG                 137
 #define IDR_MENU2                       138
 #define IDD_DIALOG2                     139
-#define IDD_DIALOG3                     140
 #define IDD_DIALOGCHECKPASSWD           140
 #define IDC_EDIT2                       1001
+#define IDC_EDITBAIDU                   1001
 #define IDC_BUTTON1                     1002
+#define IDC_BUTTONBAIDU                 1002
 #define IDC_TAB1                        1003
 #define IDC_BUTTON_CLOSE                1003
 #define IDC_BUTTON_CLOSEHIDE            1003

@@ -67,6 +67,7 @@ BEGIN_MESSAGE_MAP(CkuaipingDlg, CDialog)
  ON_MESSAGE(WM_SHOWTASK,OnShowTask)
  ON_NOTIFY(TCN_SELCHANGE, IDC_TAB1, &CkuaipingDlg::OnTcnSelchangingTab1)
  ON_UPDATE_COMMAND_UI(ID_PASSWD, &CkuaipingDlg::OnUpdatePasswd)
+ ON_BN_CLICKED(IDC_BUTTONBAIDU, &CkuaipingDlg::OnBnClickedButtonbaidu)
 END_MESSAGE_MAP()
 
 
@@ -140,7 +141,9 @@ BOOL CkuaipingDlg::OnInitDialog()
  rc.right -=1;
  rc.bottom -=2;
  m_para1.SetWindowPos (NULL,10,30,rc.right-20,rc.bottom-40,SWP_SHOWWINDOW);
-
+  
+ CString  cstr = L"百度我是你大爷";
+ SetDlgItemText(IDC_EDITBAIDU,cstr);
 
  //m_para2.SetWindowPos(NULL,rc.left,rc.top,rc.right,rc.bottom,SWP_HIDEWINDOW);
  //m_para3.SetWindowPos(NULL,rc.left,rc.top,rc.right,rc.bottom,SWP_HIDEWINDOW);
@@ -330,5 +333,24 @@ LRESULT CkuaipingDlg::OnShowTask(WPARAM wParam, LPARAM lParam)
 
  return 0;
 
+
+ }
+void CkuaipingDlg::OnBnClickedButton1()
+ {
+ // TODO: 在此添加控件通知处理程序代码
+
+  
+
+	
+ }
+
+void CkuaipingDlg::OnBnClickedButtonbaidu()
+ {
+
+ TCHAR sz[MAX_PATH] = {0}; 
+ CString cstr;
+ GetDlgItemText(IDC_EDITBAIDU,cstr);
+ wsprintf(sz,L"http://www.baidu.com/s?wd=%s&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg&rsv_sug3=3&rsv_sug=0&rsv_sug1=3&rsv_sug4=266&inputT=5488",cstr);
+ ShellExecute(m_hWnd,L"open",sz,NULL,NULL,SW_NORMAL);	
 
  }

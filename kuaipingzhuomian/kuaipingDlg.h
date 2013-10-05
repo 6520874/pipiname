@@ -48,4 +48,7 @@ private:
 	CCheckPasswdDlg m_CheckPasswdDlg;
 	int i ;
 
+public:
+ afx_msg void OnBnClickedButton1();
+ afx_msg void OnBnClickedButtonbaidu();
  };
