@@ -186,6 +186,14 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\BCMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\BtnST.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\CheckPasswdDlg.cpp"
 				>
 			</File>
@@ -244,6 +252,14 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\BCMenu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\BtnST.h"
+				>
+			</File>
+			<File
 				RelativePath=".\CheckPasswdDlg.h"
 				>
 			</File>
@@ -294,7 +310,15 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
+				RelativePath=".\res\appwiz.ico"
+				>
+			</File>
+			<File
 				RelativePath=".\kpimage\back.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Hangup.ico"
 				>
 			</File>
 			<File
@@ -311,6 +335,10 @@
 			</File>
 			<File
 				RelativePath=".\res\kuaiping.rc2"
+				>
+			</File>
+			<File
+				RelativePath=".\res\Suspend.ico"
 				>
 			</File>
 			<File

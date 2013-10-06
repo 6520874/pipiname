@@ -55,6 +55,7 @@ void CkuaipingDlg::DoDataExchange(CDataExchange* pDX)
  {
  CDialog::DoDataExchange(pDX);
  DDX_Control(pDX, IDC_TAB1, m_tabctr);
+ DDX_Control(pDX,IDC_BUTTONSTART,m_BtnStart);
  }
 
 BEGIN_MESSAGE_MAP(CkuaipingDlg, CDialog)
@@ -69,6 +70,7 @@ BEGIN_MESSAGE_MAP(CkuaipingDlg, CDialog)
  ON_UPDATE_COMMAND_UI(ID_PASSWD, &CkuaipingDlg::OnUpdatePasswd)
  ON_BN_CLICKED(IDC_BUTTONBAIDU, &CkuaipingDlg::OnBnClickedButtonbaidu)
  ON_WM_SIZE()
+ ON_BN_CLICKED(IDC_BUTTONSTART, &CkuaipingDlg::OnBnClickedButtonstart)
 END_MESSAGE_MAP()
 
 
@@ -158,9 +160,7 @@ BOOL CkuaipingDlg::OnInitDialog()
  CString  cstr = L"百度我是你大爷";
  SetDlgItemText(IDC_EDITBAIDU,cstr);
 
- //m_para2.SetWindowPos(NULL,rc.left,rc.top,rc.right,rc.bottom,SWP_HIDEWINDOW);
- //m_para3.SetWindowPos(NULL,rc.left,rc.top,rc.right,rc.bottom,SWP_HIDEWINDOW);
- // TODO: 在此添加额外的初始化代码
+ m_BtnStart.SetIcon(IDI_ICONSTARt);
  return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
  }
 
@@ -373,4 +373,9 @@ void CkuaipingDlg::OnSize(UINT nType, int cx, int cy)
   ShowWindow(SW_HIDE); // 当最小化市，隐藏主窗口 
   } 
 
+ }
+
+void CkuaipingDlg::OnBnClickedButtonstart()
+ {
+ // TODO: 在此添加控件通知处理程序代码
  }

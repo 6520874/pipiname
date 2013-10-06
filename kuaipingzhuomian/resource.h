@@ -21,6 +21,10 @@
 #define IDI_ICON2                       142
 #define IDI_ICON3                       143
 #define IDI_ICON4                       144
+#define IDI_ICON5                       145
+#define IDI_ICON6                       146
+#define IDI_ICON7                       147
+#define IDI_ICONSTARt                   147
 #define IDC_EDIT2                       1001
 #define IDC_EDITBAIDU                   1001
 #define IDC_BUTTON1                     1002
@@ -34,6 +38,7 @@
 #define IDC_BUTTON_OPENHIDE             1008
 #define IDC_BUTTON7                     1009
 #define IDC_EDIT1                       1009
+#define IDC_BUTTONSTART                 1010
 #define ID_DA_32771                     32771
 #define ID_DA_32772                     32772
 #define ID_DA_32773                     32773
@@ -52,9 +57,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        145
+#define _APS_NEXT_RESOURCE_VALUE        148
 #define _APS_NEXT_COMMAND_VALUE         32784
-#define _APS_NEXT_CONTROL_VALUE         1010
+#define _APS_NEXT_CONTROL_VALUE         1011
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

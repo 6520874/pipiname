@@ -75,6 +75,9 @@ IDI_ICON1               ICON                    "res\\tuoru.ico"
 IDI_ICON2               ICON                    "C:\\Documents and Settings\\Administrator\\桌面\\YT\\kpimage\\常用软件.ico"
 IDI_ICON3               ICON                    "C:\\Documents and Settings\\Administrator\\桌面\\YT\\kpimage\\文件管理.ico"
 IDI_ICON4               ICON                    "C:\\Documents and Settings\\Administrator\\桌面\\YT\\kpimage\\系统工具.ico"
+IDI_ICON5               ICON                    "res\\appwiz.ico"
+IDI_ICON6               ICON                    "res\\Hangup.ico"
+IDI_ICONSTARt           ICON                    "res\\Suspend.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -92,7 +95,7 @@ BEGIN
     DEFPUSHBUTTON   "确定",IDOK,113,41,50,14,WS_GROUP
 END
 
-IDD_KUAIPING_DIALOG DIALOGEX 0, 0, 246, 279
+IDD_KUAIPING_DIALOG DIALOGEX 0, 0, 243, 304
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "kuaiping"
@@ -102,6 +105,7 @@ BEGIN
     EDITTEXT        IDC_EDITBAIDU,19,24,116,19,ES_AUTOHSCROLL,WS_EX_ACCEPTFILES
     PUSHBUTTON      "百度一下",IDC_BUTTONBAIDU,141,27,41,14
     CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,18,49,210,228
+    PUSHBUTTON      "开始",IDC_BUTTONSTART,7,279,44,18
 END
 
 IDD_FILE_DIALOG DIALOGEX 0, 0, 250, 305
@@ -122,8 +126,8 @@ IDD_HIDE_DIALOG DIALOGEX 0, 0, 244, 264
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    PUSHBUTTON      "打开隐藏目录",IDC_BUTTON_OPENHIDE,53,45,56,35
-    PUSHBUTTON      "关闭隐藏目录",IDC_BUTTON_CLOSEHIDE,54,117,56,35
+    PUSHBUTTON      "打开隐藏目录",IDC_BUTTON_OPENHIDE,53,45,62,35
+    PUSHBUTTON      "关闭隐藏目录",IDC_BUTTON_CLOSEHIDE,54,117,64,35
 END
 
 IDD_DIALOG2 DIALOGEX 0, 0, 176, 105
@@ -206,9 +210,9 @@ BEGIN
     IDD_KUAIPING_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 239
+        RIGHTMARGIN, 236
         TOPMARGIN, 7
-        BOTTOMMARGIN, 272
+        BOTTOMMARGIN, 297
     END
 
     IDD_FILE_DIALOG, DIALOG

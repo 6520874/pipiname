@@ -21,6 +21,8 @@ CHideToolDlg::~CHideToolDlg()
 
 void CHideToolDlg::DoDataExchange(CDataExchange* pDX)
 {
+	DDX_Control(pDX, IDC_BUTTON_OPENHIDE, m_btnOpenHideWindow);
+	DDX_Control(pDX, IDC_BUTTON_CLOSEHIDE, 	m_btnCloseHideWindow);
 	CDialog::DoDataExchange(pDX);
 }
 
@@ -38,7 +40,10 @@ BOOL CHideToolDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
-   
+	m_btnOpenHideWindow.SetIcon(IDI_ICON5);
+	m_btnOpenHideWindow.SetFlat(FALSE);
+	m_btnCloseHideWindow.SetIcon(IDI_ICON6);
+	m_btnCloseHideWindow.SetFlat(FALSE);
      
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE

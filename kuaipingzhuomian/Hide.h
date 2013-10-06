@@ -1,6 +1,6 @@
 #pragma once
 #include "resource.h"
-
+#include "BtnST.h"
 // CHide ¶Ô»°¿ò
 
 class CHideToolDlg : public CDialog
@@ -22,4 +22,6 @@ public:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnBnClickedButtonOpenhide();
 	afx_msg void OnBnClickedButtonClosehide();
+	CButtonST	m_btnOpenHideWindow;
+	CButtonST	m_btnCloseHideWindow;
 };
