@@ -12,12 +12,12 @@
 #define IDR_MENU1                       134
 #define IDB_BITMAPKAER                  142
 #define IDB_BITMAP2                     144
+#define IDI_ICON1                       147
 #define IDC_EDIT2                       1001
 #define IDC_STATUS                      1002
 #define IDC_HYPERLINK                   1003
 #define IDC_RADIO1                      1004
 #define IDC_RADIO2                      1005
-#define IDC_BUTTON1                     10011
 #define IDC_RADIO3                      1006
 #define IDC_EDIT3                       1007
 #define IDC_EDIT4                       1008
@@ -39,13 +39,14 @@
 #define IDC_KAERCHANGEKEY               1023
 #define IDC_CHECK3                      1024
 #define IDC_BUTTON2                     1024
+#define IDC_BUTTON1                     10011
 #define ID_32771                        32771
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        145
+#define _APS_NEXT_RESOURCE_VALUE        148
 #define _APS_NEXT_COMMAND_VALUE         32772
 #define _APS_NEXT_CONTROL_VALUE         1025
 #define _APS_NEXT_SYMED_VALUE           101

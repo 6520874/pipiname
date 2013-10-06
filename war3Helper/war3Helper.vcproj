@@ -188,6 +188,14 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\BCMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\BtnST.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\hyperlink.cpp"
 				>
 			</File>
@@ -230,6 +238,14 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\BCMenu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\BtnST.h"
+				>
+			</File>
+			<File
 				RelativePath=".\hyperlink.h"
 				>
 			</File>
@@ -268,7 +284,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\res\damotouicon.ico"
+				>
+			</File>
+			<File
 				RelativePath=".\res\dota.BMP"
+				>
+			</File>
+			<File
+				RelativePath=".\res\icon1.ico"
 				>
 			</File>
 			<File

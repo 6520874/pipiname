@@ -6,6 +6,7 @@
 #include "hyperlink.h"
 #include "MyEdit.h"
 #include "resource.h"
+#include "BtnST.h"
 #include "../pipilibrary/UpdateSoft.h"
 // Cwar3HelperDlg ¶Ô»°¿ò
 class Cwar3HelperDlg : public CDialog
@@ -78,6 +79,7 @@ private:
 	CString m_strDir;
 	BOOL  bFirstStartFlag;
 	CUpdateSoft  m_UpdateDlg;
+	CButtonST    m_btStartGame;
 public:
 	afx_msg void OnUpdateDeubug(CCmdUI *pCmdUI);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);

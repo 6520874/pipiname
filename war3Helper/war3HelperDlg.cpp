@@ -206,6 +206,7 @@ void Cwar3HelperDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_STATUS, m_status);
 	DDX_Control(pDX, IDC_HYPERLINK, m_hyperlink);
 	DDX_Control(pDX, IDC_EDIT1, m_war3path);
+	DDX_Control(pDX,IDC_StartGame,m_btStartGame);
 }
 
 BEGIN_MESSAGE_MAP(Cwar3HelperDlg, CDialog)
@@ -344,6 +345,8 @@ BOOL Cwar3HelperDlg::OnInitDialog()
 	CPictureHolder myTmpPicture;
 	myTmpPicture.CreateFromBitmap(IDB_BITMAP2);
     
+	m_btStartGame.SetIcon(IDI_ICON1);
+	m_btStartGame.SetFlat(FALSE);
 	m_UpdateDlg.InitFire(&myTmpPicture,320,60);
 	SetTimer(TIMER_STARTFIRE,40,NULL);
     m_hyperlink.SetURL(_T("http://121.199.10.53/"));

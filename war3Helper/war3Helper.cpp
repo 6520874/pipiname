@@ -62,7 +62,7 @@ BOOL Cwar3HelperApp::InitInstance()
        
 	 //用exe来进行更新
 #ifndef _DEBUG
-	WinExec("Update.exe",SW_SHOW);
+	//WinExec("Update.exe",SW_SHOW);
 #endif
 
 	HANDLE  hEvent= CreateEvent(NULL,FALSE,FALSE,_T("War3Tool"));
