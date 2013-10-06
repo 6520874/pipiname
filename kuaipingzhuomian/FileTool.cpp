@@ -111,13 +111,14 @@ void  CFileToolDlg::EnumDesktopLnkPath()
 		SHGetDataFromIDListW(pFolder, pItem, SHGDFIL_FINDDATA, &fd, sizeof(fd));
 		swprintf(szLnkPath, L"%s\\%s", szPath, fd.cFileName);
 		CString strFileName = fd.cFileName;
-		if(-1 != strFileName.Find(_T(".exe")))
+		CString csExePath = ReadShortcut(szLnkPath);
+		if(-1 != csExePath.Find(_T(".exe")))
 		{
 			SHGetFileInfo(szLnkPath,0,&info,sizeof(info),SHGFI_ICON | SHGFI_USEFILEATTRIBUTES );
 			i = m_ImageList.Add(info.hIcon);
 			int index = m_listctrl.InsertItem(i,fd.cFileName,i);
             m_listctrl.SetItemText(index,1,szLnkPath);
-			m_listctrl.SetItemText(index,2,ReadShortcut(szLnkPath));
+			m_listctrl.SetItemText(index,2,csExePath);
 		    i++;
 		}
 	}
@@ -289,4 +290,5 @@ void CFileToolDlg::CreateDesktopShort(CString cspath,CString csSavePath)
  CoUninitialize();
  
  }
+
 

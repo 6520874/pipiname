@@ -1,4 +1,5 @@
 #pragma once
+#include "afxcmn.h"
 
 
 // CSystemTool ¶Ô»°¿ò
@@ -20,4 +21,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedButton1();
-};
+	virtual BOOL OnInitDialog();
+private:
+ CListCtrl m_listctrl;
+ CImageList   m_ImageList;
+ };

@@ -16,6 +16,7 @@
 #define IDD_HIDE_DIALOG                 137
 #define IDR_MENU2                       138
 #define IDD_DIALOG2                     139
+#define IDD_DIALOG_CREATEPASSWD         139
 #define IDD_DIALOGCHECKPASSWD           140
 #define IDI_ICON1                       141
 #define IDI_ICON2                       142
