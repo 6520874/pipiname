@@ -120,6 +120,10 @@ void  CFileToolDlg::EnumDesktopLnkPath()
 	}
 	pEnum->Release();
 	pFolder->Release();
+	HICON   hIcon   =   AfxGetApp()-> LoadIcon(IDI_ICON1); 
+	m_ImageList.Add(hIcon); 
+	 m_listctrl.InsertItem(i,L"©имов╖отй╬",i);
+
 }
 
 void CFileToolDlg::OnUpdateDaOpen(CCmdUI *pCmdUI)
