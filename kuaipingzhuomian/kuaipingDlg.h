@@ -39,6 +39,7 @@ public:
 	CSystemToolDlg     m_para2;
 	CHideToolDlg       m_para3;
     CTabCtrl m_tabctr;
+	CImageList    m_ImageTab;
 	afx_msg void OnDropFiles(HDROP hDropInfo);
 	afx_msg void OnTcnSelchangingTab1(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnUpdatePasswd(CCmdUI *pCmdUI);

@@ -72,6 +72,9 @@ END
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\kuaiping.ico"
 IDI_ICON1               ICON                    "res\\tuoru.ico"
+IDI_ICON2               ICON                    "C:\\Documents and Settings\\Administrator\\桌面\\YT\\kpimage\\常用软件.ico"
+IDI_ICON3               ICON                    "C:\\Documents and Settings\\Administrator\\桌面\\YT\\kpimage\\文件管理.ico"
+IDI_ICON4               ICON                    "C:\\Documents and Settings\\Administrator\\桌面\\YT\\kpimage\\系统工具.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -98,14 +101,14 @@ FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     EDITTEXT        IDC_EDITBAIDU,19,24,116,19,ES_AUTOHSCROLL,WS_EX_ACCEPTFILES
     PUSHBUTTON      "百度一下",IDC_BUTTONBAIDU,141,27,41,14
-    CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,11,44,210,228
+    CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,18,49,210,228
 END
 
-IDD_FILE_DIALOG DIALOGEX 0, 0, 405, 305
+IDD_FILE_DIALOG DIALOGEX 0, 0, 250, 305
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_LIST1,"SysListView32",LVS_SHAREIMAGELISTS | WS_BORDER | WS_TABSTOP,7,7,329,288,WS_EX_ACCEPTFILES
+    CONTROL         "",IDC_LIST1,"SysListView32",LVS_SORTASCENDING | LVS_SHAREIMAGELISTS | WS_TABSTOP,7,7,235,288,WS_EX_DLGMODALFRAME | WS_EX_ACCEPTFILES
 END
 
 IDD_SYSTEM_DIALOG DIALOGEX 0, 0, 255, 242
@@ -167,10 +170,10 @@ BEGIN
     BEGIN
         BLOCK "080403a8"
         BEGIN
-            VALUE "CompanyName", "TODO: <公司名>"
-            VALUE "FileDescription", "TODO: <文件说明>"
+            VALUE "CompanyName", "屁屁桌面管理"
+            VALUE "FileDescription", "v1,0"
             VALUE "FileVersion", "1.0.0.1"
-            VALUE "InternalName", "kuaiping.exe"
+            VALUE "InternalName", "屁屁桌面管理.exe"
             VALUE "LegalCopyright", "TODO: (C) <公司名>。保留所有权利。"
             VALUE "OriginalFilename", "kuaiping.exe"
             VALUE "ProductName", "TODO: <产品名>"
@@ -211,7 +214,7 @@ BEGIN
     IDD_FILE_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 397
+        RIGHTMARGIN, 242
         TOPMARGIN, 7
         BOTTOMMARGIN, 295
         HORZGUIDE, 32

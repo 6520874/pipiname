@@ -298,10 +298,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\kpimage\back.png"
-				>
-			</File>
-			<File
 				RelativePath=".\kpimage\ico_VulRepair.BMP"
 				>
 			</File>
@@ -315,6 +311,22 @@
 			</File>
 			<File
 				RelativePath=".\res\kuaiping.rc2"
+				>
+			</File>
+			<File
+				RelativePath=".\res\tuoru.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\YT\kpimage\常用软件.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\YT\kpimage\文件管理.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\YT\kpimage\系统工具.ico"
 				>
 			</File>
 		</Filter>

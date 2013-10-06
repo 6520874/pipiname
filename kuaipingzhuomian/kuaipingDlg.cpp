@@ -120,22 +120,34 @@ BOOL CkuaipingDlg::OnInitDialog()
  _tcscpy(m_nid.szTip, L"屁屁桌面管理"); 
 
  Shell_NotifyIcon(NIM_ADD, &m_nid); // 在托盘区添加图标
-
+ HICON hIcon1 = ::LoadIcon( ::AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_ICON2) );
+ HICON hIcon2 = ::LoadIcon( ::AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_ICON3) );
+ HICON hIcon3 = ::LoadIcon( ::AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_ICON4) );
  TCITEM item;
  RECT      rc;
+ if(0==m_ImageTab.Create(16,16,ILC_COLOR32|ILC_MASK,2,2))
+  {
+  ASSERT(0);
+  return -1;
+  }
  item.mask = TCIF_TEXT;
  item.pszText = L"常用软件";
  item.cchTextMax = 100;
+
+ m_ImageTab.Add(hIcon1);
+  m_tabctr.SetImageList(&m_ImageTab);
  m_para1.Create (IDD_FILE_DIALOG,&m_tabctr);
- m_tabctr.InsertItem(0,item.pszText);
+ m_tabctr.InsertItem(0,item.pszText,0);
 
  item.pszText = L"文件管理";
  m_para2.Create (IDD_SYSTEM_DIALOG,&m_tabctr);
- m_tabctr.InsertItem (1,item.pszText);
+   m_ImageTab.Add(hIcon2);
+ m_tabctr.InsertItem (1,item.pszText,1);
 
  item.pszText = L"私人空间";
  m_para3.Create (IDD_HIDE_DIALOG,&m_tabctr);
- m_tabctr.InsertItem (2,item.pszText);
+  m_ImageTab.Add(hIcon3);
+ m_tabctr.InsertItem (2,item.pszText,2);
  GetClientRect(&rc);
  rc.top += 25;
  rc.left += 1;
