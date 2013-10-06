@@ -32,5 +32,6 @@ public:
 	CString ReadShortcut(CString lpwLnkFile);
 	void GetDeskIco();
 	void EnumDesktopLnkPath();
-
-};
+	afx_msg void OnUpdateDaDesktoplink(CCmdUI *pCmdUI);
+	void CreateDesktopShort(CString cspath,CString csSavePath);
+ };

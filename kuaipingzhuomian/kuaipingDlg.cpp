@@ -378,4 +378,9 @@ void CkuaipingDlg::OnSize(UINT nType, int cx, int cy)
 void CkuaipingDlg::OnBnClickedButtonstart()
  {
  // TODO: 在此添加控件通知处理程序代码
+ CPoint point;	::GetCursorPos(&point);
+ CMenu menu;
+ menu.LoadMenu(IDR_MENU1);
+ CMenu* pPopup = menu.GetSubMenu(0);
+ pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,this);
  }

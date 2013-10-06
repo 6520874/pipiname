@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CFileToolDlg, CDialog)
 	ON_UPDATE_COMMAND_UI(ID_DA_32773, &CFileToolDlg::OnUpdateDaDeleteFile)
 	ON_NOTIFY(NM_RCLICK, IDC_LIST1, &CFileToolDlg::OnNMRClickList1)
 	ON_NOTIFY(NM_DBLCLK, IDC_LIST1, &CFileToolDlg::OnNMDblclkList1)
+	ON_UPDATE_COMMAND_UI(ID_DA_DESKTOPLINK, &CFileToolDlg::OnUpdateDaDesktoplink)
 END_MESSAGE_MAP()
 
 
@@ -51,6 +52,7 @@ BOOL CFileToolDlg::OnInitDialog()
 	m_listctrl.SetImageList(&m_ImageList, LVSIL_NORMAL);
 	m_listctrl.InsertColumn( 0, _T("ID"), LVCFMT_LEFT, 40 );//插入列
 	m_listctrl.InsertColumn( 1, _T("NAME"), LVCFMT_LEFT, 50 );
+		m_listctrl.InsertColumn( 2, _T("path"), LVCFMT_LEFT, 50 );
 	m_listctrl.Init(this);
     EnumDesktopLnkPath();
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -115,6 +117,7 @@ void  CFileToolDlg::EnumDesktopLnkPath()
 			i = m_ImageList.Add(info.hIcon);
 			int index = m_listctrl.InsertItem(i,fd.cFileName,i);
             m_listctrl.SetItemText(index,1,szLnkPath);
+			m_listctrl.SetItemText(index,2,ReadShortcut(szLnkPath));
 		    i++;
 		}
 	}
@@ -168,6 +171,7 @@ void CFileToolDlg::OnNMRClickList1(NMHDR *pNMHDR, LRESULT *pResult)
 	CPoint point;	::GetCursorPos(&point);
 	CMenu menu;
 	menu.LoadMenu(IDR_MENU1);
+	//menu.SetMenuItemBitmaps(0,)
 	CMenu* pPopup = menu.GetSubMenu(0);
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,this);
 	*pResult = 0;
@@ -223,4 +227,66 @@ CString CFileToolDlg::ReadShortcut(CString lpwLnkFile)
 		}
 	}
 	return lpDescFile;
-}
+ }
+void CFileToolDlg::OnUpdateDaDesktoplink(CCmdUI *pCmdUI)
+ {
+ // TODO: 在此添加命令更新用户界面处理程序代码
+  TCHAR strExePath[MAX_PATH] = {0};
+  TCHAR  strPath[MAX_PATH] = {0};
+  
+  int index = m_listctrl.GetSelectionMark();
+  m_listctrl.GetItemText(index, 1,strPath, MAX_PATH);  
+  m_listctrl.GetItemText(index, 2,strExePath, MAX_PATH);  
+  
+  if(!PathFileExists(strPath))
+   {
+     CreateDesktopShort(strExePath,strPath);
+   }
+ }
+
+void CFileToolDlg::CreateDesktopShort(CString cspath,CString csSavePath)
+ {
+ 
+ HRESULT hr;
+ IShellLink*   pISL;
+ IPersistFile* pIPF;
+ // 1. 初始化COM库(让Windows 加载DLLs). 通常在InitInstance()中调用
+ // CoInitialize ( NULL )或其它启动代码。MFC 程序使用AfxOleInit() 。
+ CoInitialize ( NULL );
+ // 2. 使用外壳提供的Shell Link组件对象类创建COM对象。.
+ // 第四个参数通知COM 需要什么接口(这里是IShellLink)。
+
+ hr = CoCreateInstance ( CLSID_ShellLink,
+  NULL,
+  CLSCTX_INPROC_SERVER,
+  IID_IShellLink,
+  (void**) &pISL );
+
+ if ( SUCCEEDED(hr) )
+  {
+  // 3. 设置快捷方式目标的路径。
+  hr = pISL->SetPath(cspath);
+  if ( SUCCEEDED(hr) )
+   {
+   // 4. 获取这个对象的第二个接口(IPersistFile)。
+   hr = pISL->QueryInterface ( IID_IPersistFile, (void**) &pIPF );
+
+   if ( SUCCEEDED(hr) )
+	{
+	// 5. 调用Save() 方法保存某个文件得快捷方式。第一个参数是
+	// Unicode 串。
+	hr = pIPF->Save(csSavePath, FALSE );
+	// 6释放IPersistFile 接口。
+	pIPF->Release();
+	}
+
+   }
+
+  // 6. 释放IShellLink 接口。
+  pISL->Release();
+  } 
+ // 7. 收回COM 库。MFC 程序不用这一步，它自动完成。
+ CoUninitialize();
+ 
+ }
+

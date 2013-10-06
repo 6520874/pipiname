@@ -285,7 +285,7 @@ BEGIN
         MENUITEM "修改资料",                        ID_DA_32778
         MENUITEM "上移图标",                        ID_DA_32779
         MENUITEM "下移图标",                        ID_DA_32780
-        MENUITEM "创建桌面快捷方式",                    ID_DA_32781
+        MENUITEM "创建桌面快捷方式",                    ID_DA_DESKTOPLINK
     END
 END
 
