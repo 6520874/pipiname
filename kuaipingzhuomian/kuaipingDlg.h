@@ -10,6 +10,7 @@
 #include "PasswdDlg.h"
 #include "CheckPasswdDlg.h"
 // CkuaipingDlg 对话框
+#define  TIMER_INITSYS 1000
 class CkuaipingDlg : public CDialog
 {
 // 构造
@@ -44,11 +45,13 @@ public:
 	afx_msg void OnTcnSelchangingTab1(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnUpdatePasswd(CCmdUI *pCmdUI);
 	LRESULT OnShowTask(WPARAM wParam, LPARAM lParam);
+
 private:
 	CPasswdDlg m_CreatePasswddlg;
 	CCheckPasswdDlg m_CheckPasswdDlg;
 	CButtonST    m_BtnStart;
 	CButtonST    m_BtnClearDeskTop;
+	bool         m_bCopyFlag;         //0从原始到目标 ,1从目标到原始
 public:
  afx_msg void OnBnClickedButton1();
  afx_msg void OnBnClickedButtonbaidu();
@@ -57,4 +60,5 @@ public:
  afx_msg void OnBnClickedButtonClearDesktop();
  static DWORD WINAPI CopyFilePro( void* pArguments);
  CString GetFileNameFromPath(const CString &csSavePath);
+ afx_msg void OnTimer(UINT_PTR nIDEvent);
 };

@@ -73,6 +73,7 @@ BEGIN_MESSAGE_MAP(CkuaipingDlg, CDialog)
  ON_WM_SIZE()
  ON_BN_CLICKED(IDC_BUTTONSTART, &CkuaipingDlg::OnBnClickedButtonstart)
  ON_BN_CLICKED(IDC_BUTTONCLEARDESKTOP,&CkuaipingDlg::OnBnClickedButtonClearDesktop)
+ ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
@@ -164,6 +165,8 @@ BOOL CkuaipingDlg::OnInitDialog()
 
  m_BtnStart.SetIcon(IDI_ICONSTARt);
  m_BtnClearDeskTop.SetIcon(IDI_ICONCLEARDESKTOP);
+ SetTimer(TIMER_INITSYS,5000,0);
+
  return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
  }
 
@@ -398,13 +401,22 @@ DWORD WINAPI CkuaipingDlg::CopyFilePro( void* pArguments )
 {
 	CkuaipingDlg * dlg = (CkuaipingDlg*)pArguments;
 	CString  csSavePath = _T("d://ppDesktop");
+	bool bCopyFlag = dlg->m_bCopyFlag;
 	mkdir(CW2A(csSavePath));
 	std::vector<CString> vecLinkPath = dlg->m_para1.m_LinkExepath;
 	int in = vecLinkPath.size();
 	for(int i=0;i<in;i++)
 	{
 		CString csExeName = dlg->GetFileNameFromPath(vecLinkPath[i]);
-		CopyFile(dlg->m_para1.m_LinkExepath[i],csSavePath+_T("//")+csExeName,FALSE);
+		if(bCopyFlag)
+		{
+			CopyFile(csSavePath+_T("//")+csExeName,vecLinkPath[i],FALSE);
+		}
+		else
+		{
+			CopyFile(vecLinkPath[i],csSavePath+_T("//")+csExeName,FALSE);
+			DeleteFile(vecLinkPath[i]);
+		}
 	}
 
 	return 0;
@@ -415,7 +427,27 @@ void CkuaipingDlg::OnBnClickedButtonClearDesktop()
     //开启一个工作线程进行拷贝
    	
      HANDLE handle = CreateThread(NULL,NULL,CopyFilePro,this,0,0);
-	 
-  
+	  m_bCopyFlag = false;
 	 CloseHandle(handle);
+     
+	 //初始化list框从目的获得
+	int in = AfxMessageBox(_T("桌面已清理完毕,是否感觉不漂亮需要还原呢？"),MB_YESNO);
+	 if(IDYES == in)
+	 {    m_bCopyFlag = true;
+		 HANDLE handle = CreateThread(NULL,NULL,CopyFilePro,this,0,0);
+		 CloseHandle(handle);
+	 }
+}
+
+
+void CkuaipingDlg::OnTimer(UINT_PTR nIDEvent)
+{
+// TODO: 在此添加消息处理程序代码和/或调用默认值
+	if(nIDEvent == TIMER_INITSYS)
+	{
+		KillTimer(nIDEvent);
+		AfxMessageBox(_T("软件初次运行，正在准备清理桌面"));
+		OnBnClickedButtonClearDesktop();	
+	}
+CDialog::OnTimer(nIDEvent);
 }
