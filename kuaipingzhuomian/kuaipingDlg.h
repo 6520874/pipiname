@@ -48,6 +48,7 @@ private:
 	CPasswdDlg m_CreatePasswddlg;
 	CCheckPasswdDlg m_CheckPasswdDlg;
 	CButtonST    m_BtnStart;
+	CButtonST    m_BtnClearDeskTop;
 public:
  afx_msg void OnBnClickedButton1();
  afx_msg void OnBnClickedButtonbaidu();

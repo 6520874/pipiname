@@ -78,6 +78,7 @@ IDI_ICON4               ICON                    "res\\系统工具.ico"
 IDI_ICON5               ICON                    "res\\appwiz.ico"
 IDI_ICON6               ICON                    "res\\Hangup.ico"
 IDI_ICONSTARt           ICON                    "res\\Suspend.ico"
+IDI_ICONCLEARDESKTOP    ICON                    "res\\桌面清理.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -106,7 +107,7 @@ BEGIN
     PUSHBUTTON      "百度一下",IDC_BUTTONBAIDU,141,27,41,14
     CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,18,49,212,265
     PUSHBUTTON      "开始",IDC_BUTTONSTART,7,322,44,18
-    PUSHBUTTON      "清理桌面",IDC_BUTTONCLEARDESKTOP,87,326,42,14
+    PUSHBUTTON      "清理桌面",IDC_BUTTONCLEARDESKTOP,87,322,53,18
 END
 
 IDD_FILE_DIALOG DIALOGEX 0, 0, 241, 305
@@ -298,6 +299,13 @@ BEGIN
     END
 END
 
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+IDB_PNG1                PNG                     "res\\cleandesktp.png"
 
 /////////////////////////////////////////////////////////////////////////////
 //

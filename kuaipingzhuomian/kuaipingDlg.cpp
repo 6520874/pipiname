@@ -47,19 +47,17 @@ END_MESSAGE_MAP()
 
 CkuaipingDlg::CkuaipingDlg(CWnd* pParent /*=NULL*/)
 : CDialog(CkuaipingDlg::IDD, pParent)
- {
- m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
-
- }
+{
+	 m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+}
 
 void CkuaipingDlg::DoDataExchange(CDataExchange* pDX)
- {
+{
  CDialog::DoDataExchange(pDX);
  DDX_Control(pDX, IDC_TAB1, m_tabctr);
  DDX_Control(pDX,IDC_BUTTONSTART,m_BtnStart);
-  //DDX_Control(pDX,IDC_BUTTONSTART,m_BtnStart);
-
- }
+ DDX_Control(pDX,IDC_BUTTONCLEARDESKTOP,m_BtnClearDeskTop);
+}
 
 BEGIN_MESSAGE_MAP(CkuaipingDlg, CDialog)
  ON_WM_SYSCOMMAND()
@@ -165,6 +163,7 @@ BOOL CkuaipingDlg::OnInitDialog()
  SetDlgItemText(IDC_EDITBAIDU,cstr);
 
  m_BtnStart.SetIcon(IDI_ICONSTARt);
+ m_BtnClearDeskTop.SetIcon(IDI_ICONCLEARDESKTOP);
  return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
  }
 
