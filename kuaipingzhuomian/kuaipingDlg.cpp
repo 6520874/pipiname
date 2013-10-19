@@ -6,6 +6,7 @@
 #include "kuaiping.h"
 #include "kuaipingDlg.h"
 #include "PasswdDlg.h"
+#include <direct.h>
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -56,6 +57,8 @@ void CkuaipingDlg::DoDataExchange(CDataExchange* pDX)
  CDialog::DoDataExchange(pDX);
  DDX_Control(pDX, IDC_TAB1, m_tabctr);
  DDX_Control(pDX,IDC_BUTTONSTART,m_BtnStart);
+  //DDX_Control(pDX,IDC_BUTTONSTART,m_BtnStart);
+
  }
 
 BEGIN_MESSAGE_MAP(CkuaipingDlg, CDialog)
@@ -71,6 +74,7 @@ BEGIN_MESSAGE_MAP(CkuaipingDlg, CDialog)
  ON_BN_CLICKED(IDC_BUTTONBAIDU, &CkuaipingDlg::OnBnClickedButtonbaidu)
  ON_WM_SIZE()
  ON_BN_CLICKED(IDC_BUTTONSTART, &CkuaipingDlg::OnBnClickedButtonstart)
+ ON_BN_CLICKED(IDC_BUTTONCLEARDESKTOP,&CkuaipingDlg::OnBnClickedButtonClearDesktop)
 END_MESSAGE_MAP()
 
 
@@ -384,3 +388,35 @@ void CkuaipingDlg::OnBnClickedButtonstart()
  CMenu* pPopup = menu.GetSubMenu(0);
  pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,this);
  }
+
+CString CkuaipingDlg::GetFileNameFromPath(const CString &csSavePath)
+{
+	int iPos  = csSavePath.ReverseFind('\\');
+	return  csSavePath.Mid(iPos+1,csSavePath.GetLength()-1);
+}
+
+DWORD WINAPI CkuaipingDlg::CopyFilePro( void* pArguments )
+{
+	CkuaipingDlg * dlg = (CkuaipingDlg*)pArguments;
+	CString  csSavePath = _T("d://ppDesktop");
+	mkdir(CW2A(csSavePath));
+	std::vector<CString> vecLinkPath = dlg->m_para1.m_LinkExepath;
+	int in = vecLinkPath.size();
+	for(int i=0;i<in;i++)
+	{
+		CString csExeName = dlg->GetFileNameFromPath(vecLinkPath[i]);
+		CopyFile(dlg->m_para1.m_LinkExepath[i],csSavePath+_T("//")+csExeName,FALSE);
+	}
+
+	return 0;
+} 
+
+void CkuaipingDlg::OnBnClickedButtonClearDesktop()
+{  
+    //开启一个工作线程进行拷贝
+   	
+     HANDLE handle = CreateThread(NULL,NULL,CopyFilePro,this,0,0);
+	 
+  
+	 CloseHandle(handle);
+}

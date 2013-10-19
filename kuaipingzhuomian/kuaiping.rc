@@ -72,9 +72,9 @@ END
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\kuaiping.ico"
 IDI_ICON1               ICON                    "res\\tuoru.ico"
-IDI_ICON2               ICON                    "C:\\Documents and Settings\\Administrator\\桌面\\YT\\kpimage\\常用软件.ico"
-IDI_ICON3               ICON                    "C:\\Documents and Settings\\Administrator\\桌面\\YT\\kpimage\\文件管理.ico"
-IDI_ICON4               ICON                    "C:\\Documents and Settings\\Administrator\\桌面\\YT\\kpimage\\系统工具.ico"
+IDI_ICON2               ICON                    "res\\常用软件.ico"
+IDI_ICON3               ICON                    "res\\文件管理.ico"
+IDI_ICON4               ICON                    "res\\系统工具.ico"
 IDI_ICON5               ICON                    "res\\appwiz.ico"
 IDI_ICON6               ICON                    "res\\Hangup.ico"
 IDI_ICONSTARt           ICON                    "res\\Suspend.ico"
@@ -106,6 +106,7 @@ BEGIN
     PUSHBUTTON      "百度一下",IDC_BUTTONBAIDU,141,27,41,14
     CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,18,49,212,265
     PUSHBUTTON      "开始",IDC_BUTTONSTART,7,322,44,18
+    PUSHBUTTON      "清理桌面",IDC_BUTTONCLEARDESKTOP,87,326,42,14
 END
 
 IDD_FILE_DIALOG DIALOGEX 0, 0, 241, 305

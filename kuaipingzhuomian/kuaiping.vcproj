@@ -346,11 +346,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\res\常用软件.ico"
+				>
+			</File>
+			<File
 				RelativePath="..\..\YT\kpimage\常用软件.ico"
 				>
 			</File>
 			<File
+				RelativePath=".\res\文件管理.ico"
+				>
+			</File>
+			<File
 				RelativePath="..\..\YT\kpimage\文件管理.ico"
+				>
+			</File>
+			<File
+				RelativePath=".\res\系统工具.ico"
 				>
 			</File>
 			<File

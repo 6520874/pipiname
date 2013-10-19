@@ -1,6 +1,7 @@
 #pragma once
 #include "mylistctrl.h"
 #include "resource.h"
+#include <vector>
 // CFileTool ¶Ô»°¿ò
 
 class CFileToolDlg : public CDialog
@@ -34,4 +35,5 @@ public:
 	void EnumDesktopLnkPath();
 	afx_msg void OnUpdateDaDesktoplink(CCmdUI *pCmdUI);
 	void CreateDesktopShort(CString cspath,CString csSavePath);
+	std::vector<CString>  m_LinkExepath;
  };

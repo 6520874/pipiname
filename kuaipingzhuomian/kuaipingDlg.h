@@ -53,4 +53,7 @@ public:
  afx_msg void OnBnClickedButtonbaidu();
  afx_msg void OnSize(UINT nType, int cx, int cy);
  afx_msg void OnBnClickedButtonstart();
- };
+ afx_msg void OnBnClickedButtonClearDesktop();
+ static DWORD WINAPI CopyFilePro( void* pArguments);
+ CString GetFileNameFromPath(const CString &csSavePath);
+};

@@ -52,7 +52,7 @@ BOOL CFileToolDlg::OnInitDialog()
 	m_listctrl.SetImageList(&m_ImageList, LVSIL_NORMAL);
 	m_listctrl.InsertColumn( 0, _T("ID"), LVCFMT_LEFT, 40 );//≤Â»Î¡–
 	m_listctrl.InsertColumn( 1, _T("NAME"), LVCFMT_LEFT, 50 );
-		m_listctrl.InsertColumn( 2, _T("path"), LVCFMT_LEFT, 50 );
+	m_listctrl.InsertColumn( 2, _T("path"), LVCFMT_LEFT, 50 );
 	m_listctrl.Init(this);
     EnumDesktopLnkPath();
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -119,6 +119,7 @@ void  CFileToolDlg::EnumDesktopLnkPath()
 			int index = m_listctrl.InsertItem(i,fd.cFileName,i);
             m_listctrl.SetItemText(index,1,szLnkPath);
 			m_listctrl.SetItemText(index,2,csExePath);
+			m_LinkExepath.push_back(szLnkPath);
 		    i++;
 		}
 	}
