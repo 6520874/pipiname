@@ -2,6 +2,7 @@
 #include "mylistctrl.h"
 #include "resource.h"
 #include <vector>
+#include <map>
 // CFileTool ¶Ô»°¿ò
 
 class CFileToolDlg : public CDialog
@@ -35,5 +36,12 @@ public:
 	void EnumDesktopLnkPath();
 	afx_msg void OnUpdateDaDesktoplink(CCmdUI *pCmdUI);
 	void CreateDesktopShort(CString cspath,CString csSavePath);
+	CString GetFileNameFromPath(const CString &csSavePath);
+	void EnumSavePath();
 	std::vector<CString>  m_LinkExepath;
+	std::map<CString,CString>   m_mapExepathName;
+private:
+	 int m_index;
+
+	 bool   m_bmodify;
  };

@@ -13,7 +13,7 @@ IMPLEMENT_DYNAMIC(CFileToolDlg, CDialog)
 CFileToolDlg::CFileToolDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CFileToolDlg::IDD, pParent)
 {
-
+   m_bmodify  = 0;
 }
 
 CFileToolDlg::~CFileToolDlg()
@@ -55,10 +55,60 @@ BOOL CFileToolDlg::OnInitDialog()
 	m_listctrl.InsertColumn( 2, _T("path"), LVCFMT_LEFT, 50 );
 	m_listctrl.Init(this);
     EnumDesktopLnkPath();
+	EnumSavePath();
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
 }
 
+CString CFileToolDlg::GetFileNameFromPath(const CString &csSavePath)
+{
+	int iPos  = csSavePath.ReverseFind('\\');
+	return  csSavePath.Mid(iPos+1,csSavePath.GetLength()-1);
+}
+
+void CFileToolDlg::EnumSavePath()
+{ 
+	std::map<CString,CString>::iterator iter = m_mapExepathName.begin();
+	
+	
+       CFileFind s;
+	   BOOL bWorking = s.FindFile(_T("d://ppDesktop//*.lnk"));
+	   while(bWorking)
+	   {
+		 bWorking = s.FindNextFile();
+
+		 if (s.IsDots())
+		 {
+			 continue;
+		 }
+
+       CString sz = s.GetFileName();
+
+	   for(iter = m_mapExepathName.begin();iter!=m_mapExepathName.end();iter++)
+	   {
+		   if( GetFileNameFromPath(iter->first) == sz)
+		   {     
+			    m_bmodify = 1;
+			    break;
+		   }
+	   }
+       
+	   if(m_bmodify == 0)
+	   {
+
+	   SHFILEINFO info;
+	   memset((char*)&info,0,sizeof(info));
+	   SHGetFileInfo(s.GetFilePath(),0,&info,sizeof(info),SHGFI_ICON | SHGFI_USEFILEATTRIBUTES );
+	  int  i = m_ImageList.Add(info.hIcon);
+	  int index = m_listctrl.InsertItem(m_index++,sz,i);
+	   m_listctrl.SetItemText(index,1, s.GetFilePath());
+	   m_listctrl.SetItemText(index,2,ReadShortcut(s.GetFilePath()));
+	   }
+	   //CString str = iter->first;
+	 }
+	
+
+}
 // 枚举桌面上应用程序的lnk路径
 void  CFileToolDlg::EnumDesktopLnkPath()
 {
@@ -120,6 +170,8 @@ void  CFileToolDlg::EnumDesktopLnkPath()
             m_listctrl.SetItemText(index,1,szLnkPath);
 			m_listctrl.SetItemText(index,2,csExePath);
 			m_LinkExepath.push_back(szLnkPath);
+		    m_mapExepathName[szLnkPath] = csExePath;
+			m_index = i;
 		    i++;
 		}
 	}
@@ -152,7 +204,7 @@ void CFileToolDlg::OnUpdateDaLocateFile(CCmdUI *pCmdUI)
 	TCHAR  strPath[MAX_PATH] = {0};
 	TCHAR szPath[MAX_PATH] = {0};
 	int index = m_listctrl.GetSelectionMark();
-	m_listctrl.GetItemText(index, 1, szPath, MAX_PATH);
+	m_listctrl.GetItemText(index, 2, szPath, MAX_PATH);
 	wsprintfW(strPath,L"Explorer /select, %s", szPath);
 	USES_CONVERSION;
 	WinExec(W2A(strPath), SW_SHOWNORMAL);	
