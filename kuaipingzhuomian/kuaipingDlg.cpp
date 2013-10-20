@@ -431,7 +431,7 @@ void CkuaipingDlg::OnBnClickedButtonClearDesktop()
 	 CloseHandle(handle);
      
 	 //初始化list框从目的获得
-	int in = AfxMessageBox(_T("桌面已清理完毕,是否感觉不漂亮需要还原呢？"),MB_YESNO);
+	int in = AfxMessageBox(_T("桌面已清理完毕,是否需要保存本次清理？"),MB_YESNO);
 	 if(IDYES == in)
 	 {    m_bCopyFlag = true;
 		 HANDLE handle = CreateThread(NULL,NULL,CopyFilePro,this,0,0);
@@ -444,10 +444,11 @@ void CkuaipingDlg::OnTimer(UINT_PTR nIDEvent)
 {
 // TODO: 在此添加消息处理程序代码和/或调用默认值
 	if(nIDEvent == TIMER_INITSYS)
-	{
-		KillTimer(nIDEvent);
-		AfxMessageBox(_T("软件初次运行，正在准备清理桌面"));
-		OnBnClickedButtonClearDesktop();	
+	{  
+	
+			KillTimer(nIDEvent);
+			OnBnClickedButtonClearDesktop();	
+		
 	}
 CDialog::OnTimer(nIDEvent);
 }

@@ -171,8 +171,9 @@ void  CFileToolDlg::EnumDesktopLnkPath()
 			m_listctrl.SetItemText(index,2,csExePath);
 			m_LinkExepath.push_back(szLnkPath);
 		    m_mapExepathName[szLnkPath] = csExePath;
-			m_index = i;
+			
 		    i++;
+			m_index = i;
 		}
 	}
 	pEnum->Release();
