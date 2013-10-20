@@ -318,10 +318,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\res\cleandesktp.png"
-				>
-			</File>
-			<File
 				RelativePath=".\res\Hangup.ico"
 				>
 			</File>
@@ -350,15 +346,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\YT\kpimage\常用软件.ico"
-				>
-			</File>
-			<File
 				RelativePath=".\res\常用软件.ico"
 				>
 			</File>
 			<File
-				RelativePath=".\res\文件管理.ico"
+				RelativePath="..\..\YT\kpimage\常用软件.ico"
 				>
 			</File>
 			<File
@@ -366,15 +358,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\res\文件管理.ico"
+				>
+			</File>
+			<File
 				RelativePath=".\res\桌面清理.ico"
 				>
 			</File>
 			<File
-				RelativePath=".\res\系统工具.ico"
+				RelativePath="..\..\YT\kpimage\系统工具.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\YT\kpimage\系统工具.ico"
+				RelativePath=".\res\系统工具.ico"
 				>
 			</File>
 		</Filter>
