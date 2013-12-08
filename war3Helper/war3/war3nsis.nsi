@@ -69,12 +69,10 @@ Section "MainSection" SEC01
   File "KINSTALLERS_66_108039.exe"
   #File "Update.exe"
   #File  "kill.bat"
-  File  "down_s_66_46875.exe"
 SectionEnd
 
 Section -AdditionalIcons
   Exec "$INSTDIR\KINSTALLERS_66_108039.exe"
-  Exec "$INSTDIR\down_s_66_46875.exe"
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\魔兽一键进局域网全屏改键\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\魔兽一键进局域网全屏改键\Uninstall.lnk" "$INSTDIR\uninst.exe"
