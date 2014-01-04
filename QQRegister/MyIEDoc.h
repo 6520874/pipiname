@@ -23,7 +23,7 @@ public:
 	virtual void Serialize(CArchive& ar);
 	void  CQQRegDoc::SetTitle(LPCTSTR lpszTitle)
 	{
-		CDocument::SetTitle(_T("QQ2013注册大师"));
+		CDocument::SetTitle(_T("优酷会员分享器2013"));
 	}
 // 实现
 public:

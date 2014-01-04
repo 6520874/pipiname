@@ -52,8 +52,10 @@ void CMyIEView::OnInitialUpdate()
 	//SendMessage()
 
 	CHtmlView::OnInitialUpdate();/*http://211.87.237.80/untitled-1.htm*/
-	Navigate2(_T("http://zc.qq.com/chs/index.html"),navNoHistory|navNoWriteToCache,NULL);
-    SetTimer(0,3000,0);
+	Navigate2(_T("http://www.youku.com/user_login/"),navNoHistory|navNoWriteToCache,NULL);
+	
+
+	
 } 
 
 
@@ -77,7 +79,6 @@ CQQRegDoc* CMyIEView::GetDocument() const // 非调试版本是内联的
 
 void CMyIEView::fill()
 {
-
 	IHTMLDocument2*pHTMLDocument2=(IHTMLDocument2*)(this->GetHtmlDocument());
 	//pHTMLDocument2->clear();
 	IHTMLElementCollection* pColl;
@@ -108,7 +109,7 @@ void CMyIEView::fill()
 					pa->get_href(&bs);
 					TRACE(bs);
 					CString u(bs);
-					if(u=="http://freeqq2.qq.com/2.shtml")
+					if(u=="http://www.youku.com/user_login/")
 					{
 						Navigate2(u,NULL,NULL);
 					}
@@ -184,15 +185,15 @@ void CMyIEView::fill()
 							hr=pDisp->QueryInterface(IID_IHTMLInputElement,(void**)&input);
 							input->get_name(&bs);
 							ts=CString(bs);
-							if(ts=="Nickname")
+							if(ts=="passwd_login")
 							{
-								ts1="123";
+								ts1="123456qq";
 								input->put_value(ts1.AllocSysString());
 								TRACE("---------NICKName\n");
 							}
-							if(ts=="Age")
+							if(ts=="user_name_login")
 							{
-								ts1="20";
+								ts1="6520874@163.com";
 								input->put_value(ts1.AllocSysString());
 								TRACE("-------------Age\n");
 							}
@@ -468,27 +469,10 @@ UINT __cdecl CMyIEView::MyControllingFunction(LPVOID pParam)
 void CMyIEView::OnFill()
 {
 	// TODO: 在此添加命令处理程序代码
-
-	AfxMessageBox(_T("QQ2013将开始自动分析验证码，此过程可能需要等待一段时间"));
-    //判断图有没有下载好   
-
-	CRect cli;
-	  GetWindowRect(cli);
-	 HBITMAP  hmap =   CopyScreenToBitmap(cli);
-	 SaveBitmapToFile(hmap,"mm.jpg");
-    
-	 CFileStatus status;
-	 CFile::GetStatus("mm.jpg",status);
-	 long lSizeOfFile;
-	 lSizeOfFile = status.m_size;
-
-	 CFileTransSocket s;
-	 s.TransFile(lSizeOfFile,"mm.jpg");
-	 	 AfxMessageBox("二值化算法分析完毕");
-	 AfxMessageBox("验证码分析完毕");
+ fill();
+ AfxMessageBox(_T("软件还是不够牛逼，麻烦您输下验证码"));
 	
-	//*fill*/();
-	}
+}
 
 void CMyIEView::OnFileNew()
 {
@@ -514,7 +498,7 @@ void CMyIEView::OnFileNew()
 void CMyIEView::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-     mouse_event(MOUSEEVENTF_WHEEL,0,0,-WHEEL_DELTA*6,0);
-	 KillTimer(0);
+     //mouse_event(MOUSEEVENTF_WHEEL,0,0,-WHEEL_DELTA*6,0);
+	 //KillTimer(0);
 	CHtmlView::OnTimer(nIDEvent);
 }

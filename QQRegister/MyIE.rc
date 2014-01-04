@@ -102,7 +102,19 @@ END
 
 IDR_MAINFRAME MENU 
 BEGIN
-    POPUP "文件(&F)"
+    POPUP "会员之旅"
+    BEGIN
+        MENUITEM "开始你的会员之旅",                    ID_Fill
+    END
+    POPUP "强大"
+    BEGIN
+        MENUITEM "撤消\tCtrl+Z(&U)",              ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "剪切\tCtrl+X(&T)",              ID_EDIT_CUT
+        MENUITEM "复制\tCtrl+C(&C)",              ID_EDIT_COPY
+        MENUITEM "粘贴\tCtrl+V(&P)",              ID_EDIT_PASTE
+    END
+    POPUP "好用"
     BEGIN
         MENUITEM "新建\tCtrl+N(&N)",              ID_FILE_NEW
         MENUITEM "打开...\tCtrl+O(&O)",           ID_FILE_OPEN
@@ -116,15 +128,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "退出(&X)",                      ID_APP_EXIT
     END
-    POPUP "编辑(&E)"
-    BEGIN
-        MENUITEM "撤消\tCtrl+Z(&U)",              ID_EDIT_UNDO
-        MENUITEM SEPARATOR
-        MENUITEM "剪切\tCtrl+X(&T)",              ID_EDIT_CUT
-        MENUITEM "复制\tCtrl+C(&C)",              ID_EDIT_COPY
-        MENUITEM "粘贴\tCtrl+V(&P)",              ID_EDIT_PASTE
-    END
-    POPUP "视图(&V)"
+    POPUP "专业"
     BEGIN
         MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
         MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
@@ -133,10 +137,7 @@ BEGIN
     BEGIN
         MENUITEM "关于 MyIE(&A)...",              ID_APP_ABOUT
     END
-    POPUP "操作"
-    BEGIN
-        MENUITEM "开始自动注册,请等待",                  ID_Fill
-    END
+    MENUITEM "想终身看视频不要广告联系QQ 1146439885",   0
 END
 
 
