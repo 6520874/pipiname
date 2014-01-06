@@ -50,12 +50,9 @@ void CMyIEView::OnInitialUpdate()
 {
 	time=0;
 	//SendMessage()
-
-	CHtmlView::OnInitialUpdate();/*http://211.87.237.80/untitled-1.htm*/
+	CHtmlView::OnInitialUpdate();
 	Navigate2(_T("http://www.youku.com/user_login/"),navNoHistory|navNoWriteToCache,NULL);
-	
-
-	
+	SetTimer(0,3000,0);
 } 
 
 
@@ -91,6 +88,11 @@ void CMyIEView::fill()
 	{
 		LONG celem;
 		hr=pColl->get_length(&celem);
+		if(celem>=20)
+		{
+			return;
+		}
+
 		if(hr==S_OK)
 		{
 			VARIANT varIndex,var2;
@@ -139,7 +141,6 @@ void CMyIEView::fill()
 					hr=pDisp->QueryInterface(IID_IHTMLElement,(void**)&pElem);
 					if(hr==S_OK)
 					{
-						///time+=1;
 						CString ts,ts1,tss;
 						tss="";
 						BSTR bs;
@@ -197,12 +198,28 @@ void CMyIEView::fill()
 								input->put_value(ts1.AllocSysString());
 								TRACE("-------------Age\n");
 							}
-							if((ts=="Passwd")||(ts=="Passwd1"))
-							{
+                           
+							if(ts=="captcha")
+							{ 
+							  AfxMessageBox(_T("麻烦您输下验证码，输完后软件会自动点击回车"));
+							   BSTR  cs;
+                               input->get_value(&cs);
+							   CString s = COLE2CT(cs); //将BSTR转换为LPCTSTR，不可使用OLE2CT
+							   if(s.GetLength() >= 4)
+							   {
+								  KillTimer(0);
+								  CString sq1,sq2;
+								  sq1="goApply()";
+								  sq2="javascript";
+								  if(time==1)
+								  {
+								  pHTMLDocument2->get_parentWindow(&win);
+								  win->execScript(sq1.AllocSysString(),sq2.AllocSysString(),&var2);
+								  }
+								  form->submit();
+								  
+							   }
 
-								ts1="123456";
-								input->put_value(ts1.AllocSysString());
-								TRACE("-----------------password\n");
 							}
 							if((ts=="Validatecode"))
 							{
@@ -228,7 +245,6 @@ void CMyIEView::fill()
 							if(ts=="Email")
 							{
 								input->select();
-								MessageBox("ok");
 							}
 							
 						}
@@ -470,7 +486,6 @@ void CMyIEView::OnFill()
 {
 	// TODO: 在此添加命令处理程序代码
  fill();
- AfxMessageBox(_T("软件还是不够牛逼，麻烦您输下验证码"));
 	
 }
 
@@ -497,8 +512,7 @@ void CMyIEView::OnFileNew()
 
 void CMyIEView::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
-     //mouse_event(MOUSEEVENTF_WHEEL,0,0,-WHEEL_DELTA*6,0);
-	 //KillTimer(0);
+	fill();
+	
 	CHtmlView::OnTimer(nIDEvent);
 }
