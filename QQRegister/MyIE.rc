@@ -137,7 +137,10 @@ BEGIN
     BEGIN
         MENUITEM "关于 MyIE(&A)...",              ID_APP_ABOUT
     END
-    MENUITEM "想终身看视频不要广告联系QQ 1146439885",   0
+    POPUP "想终身看视频不要广告联系点这"
+    BEGIN
+        MENUITEM "联系作者",                        ID_32774, CHECKED
+    END
 END
 
 
@@ -172,7 +175,7 @@ END
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "关于 QQ2013注册大师"
+CAPTION "关于 优酷会员分享2013"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20

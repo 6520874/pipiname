@@ -24,6 +24,7 @@ BEGIN_MESSAGE_MAP(CMyIEView, CHtmlView)
 	ON_COMMAND(ID_Fill, OnFill)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
 	ON_WM_TIMER()
+	ON_UPDATE_COMMAND_UI(ID_32774, &CMyIEView::OnCallMeQQ)
 END_MESSAGE_MAP()
 
 // CMyIEView 构造/析构
@@ -515,4 +516,10 @@ void CMyIEView::OnTimer(UINT_PTR nIDEvent)
 	fill();
 	
 	CHtmlView::OnTimer(nIDEvent);
+}
+
+void CMyIEView::OnCallMeQQ(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	system("start http://wpa.qq.com/msgrd?v=3\"&\"uin=1146439885");                          
 }

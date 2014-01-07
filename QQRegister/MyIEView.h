@@ -47,6 +47,7 @@ public:
 	HBITMAP CopyScreenToBitmap(LPRECT lpRect) /*lpRect 代表选定区域 */;
 	UINT  static __cdecl MyControllingFunction( LPVOID pParam );
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnUpdate32774(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // MyIEView.cpp 的调试版本
