@@ -40,6 +40,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	void fill();
 	int time;
+	bool  m_bstartyanzhi;
 public:
 	afx_msg void OnFill();
 	afx_msg void OnFileNew();
@@ -47,6 +48,10 @@ public:
 	HBITMAP CopyScreenToBitmap(LPRECT lpRect) /*lpRect 代表选定区域 */;
 	UINT  static __cdecl MyControllingFunction( LPVOID pParam );
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnUpdateThunderVip(CCmdUI *pCmdUI);
+	void FillWeb(CString csWebSite,CString csAccountname,CString csPasswdName);
+
+	afx_msg void OnUpdate32775(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // MyIEView.cpp 的调试版本

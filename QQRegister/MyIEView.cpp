@@ -24,6 +24,8 @@ BEGIN_MESSAGE_MAP(CMyIEView, CHtmlView)
 	ON_COMMAND(ID_Fill, OnFill)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
 	ON_WM_TIMER()
+	ON_UPDATE_COMMAND_UI(ID_32774, &CMyIEView::OnUpdateThunderVip)
+	ON_UPDATE_COMMAND_UI(ID_32775, &CMyIEView::OnUpdate32775)
 END_MESSAGE_MAP()
 
 // CMyIEView 构造/析构
@@ -31,7 +33,7 @@ END_MESSAGE_MAP()
 CMyIEView::CMyIEView()
 {
 	// TODO: 在此处添加构造代码
-
+  m_bstartyanzhi = false;
 }
 
 CMyIEView::~CMyIEView()
@@ -52,7 +54,7 @@ void CMyIEView::OnInitialUpdate()
 	//SendMessage()
 	CHtmlView::OnInitialUpdate();
 	Navigate2(_T("http://www.youku.com/user_login/"),navNoHistory|navNoWriteToCache,NULL);
-	SetTimer(0,3000,0);
+	SetTimer(0,4000,0);
 } 
 
 
@@ -201,10 +203,19 @@ void CMyIEView::fill()
                            
 							if(ts=="captcha")
 							{ 
-							  AfxMessageBox(_T("麻烦您输下验证码，输完后软件会自动点击回车"));
+
+                             if(!m_bstartyanzhi)   
+							 AfxMessageBox("麻烦您输下验证码，输完后软件会自动点击回车");
+
 							   BSTR  cs;
                                input->get_value(&cs);
 							   CString s = COLE2CT(cs); //将BSTR转换为LPCTSTR，不可使用OLE2CT
+							   if(s.GetLength() >=1)
+							   {
+                                    m_bstartyanzhi = true;
+							   }
+                              
+
 							   if(s.GetLength() >= 4)
 							   {
 								  KillTimer(0);
@@ -219,33 +230,13 @@ void CMyIEView::fill()
 								  form->submit();
 								  
 							   }
+								   if(s.GetLength()<=0)
+								   {
+                                     m_bstartyanzhi  = false;
+								   }
 
 							}
-							if((ts=="Validatecode"))
-							{
-								time=(++time)%2;
-								input->get_value(&bs);
-								tss=CString(bs);
-								TRACE("%s\n",tss);
-								if(tss!="")
-								{
-										CString sq1,sq2;
-										sq1="goApply()";
-										sq2="javascript";
-									/*MessageBox("ok");
-									if(time==1)
-									{
-									pHTMLDocument2->get_parentWindow(&win);
-									win->execScript(sq1.AllocSysString(),sq2.AllocSysString(),&var2);
-									}
-									form->submit();*/
-								}
-									
-							}
-							if(ts=="Email")
-							{
-								input->select();
-							}
+							
 							
 						}
 						TRACE("%d:%s\n",i,ts);
@@ -515,4 +506,202 @@ void CMyIEView::OnTimer(UINT_PTR nIDEvent)
 	fill();
 	
 	CHtmlView::OnTimer(nIDEvent);
+}
+
+int i = 1;
+void CMyIEView::OnUpdateThunderVip(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	//迅雷会员登录
+	KillTimer(0);
+	if(i==1)
+	{
+		
+		Navigate2(_T("http://i.xunlei.com/login.html?redirect_url="),navNoHistory|navNoWriteToCache,NULL);
+	}
+
+    
+	
+    
+	
+}
+
+
+void  CMyIEView::FillWeb(CString csWebSite,CString csAccountname,CString csPasswdName)
+{
+	IHTMLDocument2*pHTMLDocument2=(IHTMLDocument2*)(this->GetHtmlDocument());
+	////pHTMLDocument2->clear();
+	IHTMLElementCollection* pColl;
+	IHTMLWindow2 *win;
+	IHTMLFormElement *form;
+	HRESULT hr;
+	hr=pHTMLDocument2->get_links(&pColl);
+
+	if(hr==S_OK)
+	{
+		LONG celem;
+		hr=pColl->get_length(&celem);
+		if(celem>=20)
+		{
+			return;
+		}
+
+		if(hr==S_OK)
+		{
+			VARIANT varIndex,var2;
+			for(int i=0;i<celem;i++)
+			{
+				varIndex.vt=VT_UINT;
+				varIndex.lVal=i;
+				VariantInit(&var2);
+				IDispatch* pDisp;
+				hr=pColl->item(varIndex,var2,&pDisp);
+				if(hr==S_OK)
+				{
+					BSTR bs;
+					IHTMLAnchorElement*pa;
+					hr=pDisp->QueryInterface(IID_IHTMLAnchorElement,(void**)&pa);
+					pa->get_href(&bs);
+					TRACE(bs);
+					CString u(bs);
+					if(u==csWebSite)
+					{
+						Navigate2(u,NULL,NULL);
+					}
+				}
+			}
+		}
+	}
+	hr=pHTMLDocument2->get_all(&pColl);
+	if(hr==S_OK)
+	{
+		LONG celem;
+		hr=pColl->get_length(&celem);
+		if(hr==S_OK)
+		{
+			VARIANT varIndex,var2;
+			for(int i=0;i<celem;i++)
+			{
+				varIndex.vt=VT_UINT;
+				varIndex.lVal=i;
+				VariantInit(&var2);
+				IDispatch* pDisp;
+				hr=pColl->item(varIndex,var2,&pDisp);
+
+				if(hr==S_OK)
+				{
+					IHTMLElement*pElem;
+					hr=pDisp->QueryInterface(IID_IHTMLElement,(void**)&pElem);
+					if(hr==S_OK)
+					{
+						CString ts,ts1,tss;
+						tss="";
+						BSTR bs;
+						pElem->get_tagName(&bs);
+						ts=CString(bs);
+						if(ts=="SELECT")
+						{
+							IHTMLSelectElement *pp;
+							hr=pDisp->QueryInterface(IID_IHTMLSelectElement,(void**)&pp);
+							pp->get_name(&bs);
+							ts=CString(bs);
+							if(ts=="sltCountry")
+								pp->put_selectedIndex(0);
+							if(ts=="sltProvinceId")
+							{
+								pp->put_selectedIndex(1);
+								pHTMLDocument2->get_parentWindow(&win);
+								CString sq1,sq2;
+								sq1="SelectProvice()";
+								sq2="javascript";
+								hr=win->execScript(sq1.AllocSysString(),sq2.AllocSysString(),&var2);
+								if(hr!=S_OK)
+									MessageBox("error");
+
+							}
+							if(ts=="sltAllLocId")
+							{
+								pp->put_selectedIndex(0);
+
+							}
+						}
+						if(ts=="FORM")
+						{
+							hr=pDisp->QueryInterface(IID_IHTMLFormElement,(void**)&form);
+							if(hr!=S_OK)
+								MessageBox("error form");
+							continue;
+
+						}
+						if(ts=="INPUT")
+						{
+							IHTMLInputElement* input;
+							hr=pDisp->QueryInterface(IID_IHTMLInputElement,(void**)&input);
+							input->get_name(&bs);
+							ts=CString(bs);
+							if(ts==csAccountname)
+							{
+								ts1="123456qq";
+								input->put_value(ts1.AllocSysString());
+								TRACE("---------NICKName\n");
+							}
+							if(ts==csPasswdName)
+							{
+								ts1="6520874@163.com";
+								input->put_value(ts1.AllocSysString());
+								TRACE("-------------Age\n");
+							}
+
+							if(ts=="verifycode")
+							{ 
+
+								//if(!m_bstartyanzhi)   
+									//AfxMessageBox("麻烦您输下验证码，输完后软件会自动点击回车");
+
+								BSTR  cs;
+								input->get_value(&cs);
+								CString s = COLE2CT(cs); //将BSTR转换为LPCTSTR，不可使用OLE2CT
+								if(s.GetLength() >=1)
+								{
+									m_bstartyanzhi = true;
+								}
+
+
+								if(s.GetLength() >= 4)
+								{
+									KillTimer(0);
+									CString sq1,sq2;
+									sq1="goApply()";
+									sq2="javascript";
+									if(time==1)
+									{
+										pHTMLDocument2->get_parentWindow(&win);
+										win->execScript(sq1.AllocSysString(),sq2.AllocSysString(),&var2);
+									}
+									form->submit();
+
+								}
+								if(s.GetLength()<=0)
+								{
+									m_bstartyanzhi  = false;
+								}
+
+							}
+
+
+						}
+						TRACE("%d:%s\n",i,ts);
+					}
+				}
+			}
+		}
+	}
+
+
+}
+
+void CMyIEView::OnUpdate32775(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	FillWeb("http://i.xunlei.com/login.html?redirect_url=","u","p");
 }

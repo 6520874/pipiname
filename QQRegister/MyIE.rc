@@ -102,17 +102,17 @@ END
 
 IDR_MAINFRAME MENU 
 BEGIN
-    POPUP "会员之旅"
-    BEGIN
-        MENUITEM "开始你的会员之旅",                    ID_Fill
-    END
-    POPUP "强大"
+    POPUP "默认账户为会员账户，输入验证码即可"
     BEGIN
         MENUITEM "撤消\tCtrl+Z(&U)",              ID_EDIT_UNDO
         MENUITEM SEPARATOR
         MENUITEM "剪切\tCtrl+X(&T)",              ID_EDIT_CUT
         MENUITEM "复制\tCtrl+C(&C)",              ID_EDIT_COPY
         MENUITEM "粘贴\tCtrl+V(&P)",              ID_EDIT_PASTE
+    END
+    POPUP "会员之旅"
+    BEGIN
+        MENUITEM "开始你的会员之旅",                    ID_Fill
     END
     POPUP "好用"
     BEGIN
@@ -136,8 +136,12 @@ BEGIN
     POPUP "帮助(&H)"
     BEGIN
         MENUITEM "关于 MyIE(&A)...",              ID_APP_ABOUT
+        MENUITEM "开始迅雷",                        ID_32775
     END
-    MENUITEM "想终身看视频不要广告联系QQ 1146439885",   0
+    POPUP "想终身看视频不要广告联系QQ 1146439885"
+    BEGIN
+        MENUITEM "迅雷会员",                        ID_32774
+    END
 END
 
 
