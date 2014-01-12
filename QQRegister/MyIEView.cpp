@@ -205,7 +205,13 @@ void CMyIEView::fill()
 							{ 
 
                              if(!m_bstartyanzhi)   
-							 AfxMessageBox("麻烦您输下验证码，输完后软件会自动点击回车");
+							 {
+								 CWnd *h1 = FindWindow(NULL,"pp提醒");
+								 if(h1==NULL)
+								 ::MessageBox(m_hWnd,"麻烦您输下验证码，输完后软件会自动点击回车","pp提醒",MB_OK);
+
+								
+							 }
 
 							   BSTR  cs;
                                input->get_value(&cs);
