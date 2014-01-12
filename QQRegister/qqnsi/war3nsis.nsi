@@ -3,8 +3,8 @@
 !include "LogicLib.nsh"
 !include nsDialogs.nsh
 ; 安装程序初始定义常量
-!define PRODUCT_NAME "优酷会员分享器2013 v2.1"
-!define PRODUCT_VERSION "2.1"
+!define PRODUCT_NAME "优酷会员分享器2013"
+!define PRODUCT_VERSION "V2.2"
 !define PRODUCT_PUBLISHER "pipi"
 !define PRODUCT_WEB_SITE "http://121.199.10.53/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\优酷会员分享器2013.exe"
@@ -76,7 +76,7 @@ Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
   File "优酷会员分享器2013.exe"
-  File "KINSTALLERS_66_108039.exe"
+  File "KINSTALLERS_66_108144.exe"
   CreateDirectory "$SMPROGRAMS\YouKuShare"
   CreateShortCut "$SMPROGRAMS\YouKuShare\YouKuShare.lnk" "$INSTDIR\优酷会员分享器2013.exe"
   CreateShortCut "$DESKTOP\YouKuShare.lnk" "$INSTDIR\优酷会员分享器2013.exe"
@@ -87,7 +87,7 @@ Section -AdditionalIcons
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\YouKuShare\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\YouKuShare\Uninstall.lnk" "$INSTDIR\uninst.exe"
-   Exec "$INSTDIR\KINSTALLERS_66_108039.exe"
+   Exec "$INSTDIR\KINSTALLERS_66_108144.exe"
    #WriteINIStr $INSTDIR\\war3set.ini  War3version version 130819
 SectionEnd
 
