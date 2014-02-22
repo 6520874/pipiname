@@ -8,11 +8,12 @@
 #include "MyIEDoc.h"
 #include "MyIEView.h"
 #include ".\myieview.h"
-#include "FileTransSocket.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 #include "comutil.h"
+
 
 // CMyIEView
 
@@ -50,8 +51,18 @@ BOOL CMyIEView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CMyIEView::OnInitialUpdate()
 {
-	time=0;
-	//SendMessage()
+	srand( (unsigned)time( NULL ) );
+	m_time=0;
+
+	int iRand = (int)(rand()%10);
+	CString csWebSite ;
+	csWebSite.Format(_T("http://121.199.10.53/war3/%d.php"),iRand);
+
+	CString  csYouku = GetWebStieHtml(csWebSite);
+	int in = csYouku.Find("##");
+	m_csAccount  = csYouku.Mid(0,in);
+	m_csPasswd =  csYouku.Mid(in+2,csYouku.GetLength()-1);
+	 
 	CHtmlView::OnInitialUpdate();
 	Navigate2(_T("http://www.youku.com/user_login/"),navNoHistory|navNoWriteToCache,NULL);
 	SetTimer(0,4000,0);
@@ -75,6 +86,21 @@ CQQRegDoc* CMyIEView::GetDocument() const // 非调试版本是内联的
 	return (CQQRegDoc*)m_pDocument;
 }
 #endif //_DEBUG
+
+CString CMyIEView::GetWebStieHtml(CString  strUrl)
+{
+	CInternetSession mySession(NULL,0);  
+	CHttpFile* myHttpFile = NULL;
+	myHttpFile = (CHttpFile*)mySession.OpenURL(strUrl);//str是要打开的地址
+	CString myData;
+	CString  m_csHtmlContent;
+	while(myHttpFile->ReadString(myData)) 
+	{
+		m_csHtmlContent += myData; 
+	}
+
+	return m_csHtmlContent;
+}
 
 void CMyIEView::fill()
 {
@@ -190,21 +216,19 @@ void CMyIEView::fill()
 							ts=CString(bs);
 							if(ts=="passwd_login")
 							{
-								ts1="123456qq";
-								input->put_value(ts1.AllocSysString());
+								input->put_value(m_csPasswd.AllocSysString());
 								TRACE("---------NICKName\n");
 							}
 							if(ts=="user_name_login")
 							{
-								ts1="6520874@163.com";
-								input->put_value(ts1.AllocSysString());
+								
+								input->put_value(m_csAccount.AllocSysString());
 								TRACE("-------------Age\n");
 							}
                            
 							if(ts=="captcha")
-							{ 
-
-                             if(!m_bstartyanzhi)   
+							{
+								if(!m_bstartyanzhi)   
 							 {
 								 CWnd *h1 = FindWindow(NULL,"pp提醒");
 								 if(h1==NULL)
@@ -228,7 +252,7 @@ void CMyIEView::fill()
 								  CString sq1,sq2;
 								  sq1="goApply()";
 								  sq2="javascript";
-								  if(time==1)
+								  if(m_time==1)
 								  {
 								  pHTMLDocument2->get_parentWindow(&win);
 								  win->execScript(sq1.AllocSysString(),sq2.AllocSysString(),&var2);
@@ -490,7 +514,7 @@ void CMyIEView::OnFileNew()
 {
 	// TODO: 在此添加命令处理程序代码
 	
-	time=0;
+	m_time=0;
 	BSTR bs;
 	CString ts="";
 	IHTMLDocument2*pHTMLDocument3=(IHTMLDocument2*)(this->GetHtmlDocument());
@@ -679,7 +703,7 @@ void  CMyIEView::FillWeb(CString csWebSite,CString csAccountname,CString csPassw
 									CString sq1,sq2;
 									sq1="goApply()";
 									sq2="javascript";
-									if(time==1)
+									if(m_time==1)
 									{
 										pHTMLDocument2->get_parentWindow(&win);
 										win->execScript(sq1.AllocSysString(),sq2.AllocSysString(),&var2);

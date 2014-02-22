@@ -42,3 +42,6 @@
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
 #include <afxhtml.h>			// MFC HTML  ”Õº÷ß≥÷
+#include "atlbase.h"
+#include "afxinet.h"
+CString GetWebStieHtml(CString strUrl);

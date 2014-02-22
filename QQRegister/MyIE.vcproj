@@ -194,10 +194,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\FileTransSocket.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\MainFrm.cpp"
 				>
 			</File>
@@ -241,6 +237,10 @@
 			>
 			<File
 				RelativePath=".\Bitpicture.h"
+				>
+			</File>
+			<File
+				RelativePath=".\FileTransSocket.cpp"
 				>
 			</File>
 			<File

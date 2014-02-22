@@ -6,3 +6,17 @@
 #include "stdafx.h"
 
 
+CString GetWebStieHtml(CString  strUrl)
+{
+	CInternetSession mySession(NULL,0);  
+	CHttpFile* myHttpFile = NULL;
+	myHttpFile = (CHttpFile*)mySession.OpenURL(strUrl);//str是要打开的地址
+	CString myData;
+	CString  m_csHtmlContent;
+	while(myHttpFile->ReadString(myData)) 
+	{
+		m_csHtmlContent += myData; 
+	}
+
+	return m_csHtmlContent;
+}

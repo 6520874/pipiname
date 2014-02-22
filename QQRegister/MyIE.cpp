@@ -13,7 +13,6 @@
 #define new DEBUG_NEW
 #endif
 
-
 // CMyIEApp
 
 BEGIN_MESSAGE_MAP(CMyIEApp, CWinApp)
@@ -68,6 +67,15 @@ BOOL CMyIEApp::InitInstance()
 	LoadStdProfileSettings(4);  // 加载标准 INI 文件选项(包括 MRU)
 	// 注册应用程序的文档模板。文档模板
 	// 将用作文档、框架窗口和视图之间的连接
+   CString csVersionNow = "140221";
+   CString csVerisonWeb  = GetWebStieHtml("http://121.199.10.53/war3");
+
+   if(csVersionNow!=csVerisonWeb)
+   {
+	   WinExec("Update.exe",SW_HIDE);
+      return FALSE;
+   }
+ 
 	CSingleDocTemplate* pDocTemplate;
 	pDocTemplate = new CSingleDocTemplate(
 		IDR_MAINFRAME,
