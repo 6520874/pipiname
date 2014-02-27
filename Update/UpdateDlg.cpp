@@ -74,6 +74,14 @@ END_MESSAGE_MAP()
 
 
 
+UINT __cdecl CUpdateDlg::UpdateThreadPro(LPVOID pParam )
+{
+	CUpdateDlg * dlg = (CUpdateDlg *)pParam;
+
+	TCHAR  strExePath[MAX_PATH] = {_T("http://121.199.10.53/war3/Setup.exe")};
+	dlg->InternetGetFile(strExePath,_T("YouKuShare.exe"));
+	return 0;
+}
 
 
 BOOL CUpdateDlg::OnInitDialog()
@@ -104,19 +112,15 @@ BOOL CUpdateDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
-    WinExec("kill.bat",SW_HIDE);
-	TCHAR  strExePath[MAX_PATH] = {0};
-	GetCurrentDirectory(MAX_PATH,strExePath);
-	m_CsExePath = strExePath;
+    
 
-	TCHAR szValue[MAX_PATH] = {0};
-	GetPrivateProfileString(_T("War3version"),_T("UpdateExeUrl"),_T("http://pipihaha.sinaapp.com/qyk/Setup.exe"),szValue,MAX_PATH,m_CsExePath+_T("//war3set.ini"));
+	AfxBeginThread(UpdateThreadPro,this,0,0,0,0);
 
-    InternetGetFile(szValue,_T("Setup.exe"));
-	// TODO: 在此添加额外的初始化代码
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
+
+
 
 
 void CUpdateDlg::OnSysCommand(UINT nID, LPARAM lParam)

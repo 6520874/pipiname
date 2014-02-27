@@ -31,9 +31,11 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 	int InternetGetFile(CString szUrl,CString szFileName);
-
+    static UINT __cdecl UpdateThreadPro( LPVOID pParam);
 	CString GetWebStieHtml(CString strUrl);
+
 private:
 	CProgressCtrl m_process;
 	CString     m_CsExePath;
 };
+	
