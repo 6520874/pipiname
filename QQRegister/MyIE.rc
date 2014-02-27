@@ -124,7 +124,7 @@ BEGIN
         MENUITEM "打印...\tCtrl+P(&P)",           ID_FILE_PRINT
         MENUITEM "打印设置(&R)...",                 ID_FILE_PRINT_SETUP
         MENUITEM SEPARATOR
-        MENUITEM "最近的文件",                       ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM "最近的文件",                       ID_FILE_MRU_FILE1
         MENUITEM SEPARATOR
         MENUITEM "退出(&X)",                      ID_APP_EXIT
     END
@@ -133,14 +133,14 @@ BEGIN
         MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
         MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
     END
-    POPUP "帮助(&H)"
+    POPUP "想终身看视频无广告联系我"
     BEGIN
+        MENUITEM "联系作者(&G)",                    ID_CALLME
         MENUITEM "关于 MyIE(&A)...",              ID_APP_ABOUT
-        MENUITEM "开始迅雷",                        ID_32775
     END
-    POPUP "想终身看视频不要广告联系QQ 1146439885"
+    POPUP "我要分享我的会员账户"
     BEGIN
-        MENUITEM "迅雷会员",                        ID_32774
+        MENUITEM "开始分享",                        ID_StartShare
     END
 END
 
@@ -176,7 +176,7 @@ END
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "关于 QQ2013注册大师"
+CAPTION "关于优酷会员2014"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
@@ -359,6 +359,11 @@ END
 STRINGTABLE 
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "关闭打印预览模式\n取消预览"
+END
+
+STRINGTABLE 
+BEGIN
+    32776                   "谢谢你的支持"
 END
 
 #endif    // 中文(中华人民共和国) resources

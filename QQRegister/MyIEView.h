@@ -50,11 +50,13 @@ public:
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnUpdateThunderVip(CCmdUI *pCmdUI);
 	void FillWeb(CString csWebSite,CString csAccountname,CString csPasswdName);
-	afx_msg void OnUpdate32775(CCmdUI *pCmdUI);
 	CString GetWebStieHtml(CString  strUrl);
 private:
 	CString m_csAccount;
 	CString m_csPasswd;
+public:
+	afx_msg void OnUpdateCallme(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateStartshare(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // MyIEView.cpp µÄµ÷ÊÔ°æ±¾

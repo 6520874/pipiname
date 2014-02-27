@@ -26,7 +26,8 @@ BEGIN_MESSAGE_MAP(CMyIEView, CHtmlView)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
 	ON_WM_TIMER()
 	ON_UPDATE_COMMAND_UI(ID_32774, &CMyIEView::OnUpdateThunderVip)
-	ON_UPDATE_COMMAND_UI(ID_32775, &CMyIEView::OnUpdate32775)
+	ON_UPDATE_COMMAND_UI(ID_CALLME, &CMyIEView::OnUpdateCallme)
+	ON_UPDATE_COMMAND_UI(ID_StartShare, &CMyIEView::OnUpdateStartshare)
 END_MESSAGE_MAP()
 
 // CMyIEView 构造/析构
@@ -726,12 +727,15 @@ void  CMyIEView::FillWeb(CString csWebSite,CString csAccountname,CString csPassw
 			}
 		}
 	}
-
-
 }
 
-void CMyIEView::OnUpdate32775(CCmdUI *pCmdUI)
+
+void CMyIEView::OnUpdateCallme(CCmdUI *pCmdUI)
 {
-	// TODO: 在此添加命令更新用户界面处理程序代码
-	FillWeb("http://i.xunlei.com/login.html?redirect_url=","u","p");
+   ShellExecute(m_hWnd,"open","http://wpa.qq.com/msgrd?v=3&uin=1146439885",NULL,NULL,SW_SHOW);
+}
+
+void CMyIEView::OnUpdateStartshare(CCmdUI *pCmdUI)
+{
+	ShellExecute(m_hWnd,"open","http://121.199.10.53/Youku/",NULL,NULL,SW_SHOW);
 }
