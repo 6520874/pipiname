@@ -3,11 +3,11 @@
 !include "LogicLib.nsh"
 !include nsDialogs.nsh
 ; 安装程序初始定义常量
-!define PRODUCT_NAME "优酷会员分享器2013"
-!define PRODUCT_VERSION "V2.2"
+!define PRODUCT_NAME "优酷会员分享器2014"
+!define PRODUCT_VERSION "V2.3"
 !define PRODUCT_PUBLISHER "pipi"
 !define PRODUCT_WEB_SITE "http://121.199.10.53/"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\优酷会员分享器2013.exe"
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\优酷会员分享器2014.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
@@ -42,12 +42,12 @@ Var Checkbox4         #自定义选项选择框4的窗口句柄
 Var Checkbox5         #自定义选项选择框5的窗口句柄
 Var Checkbox6         #自定义选项选择框6的窗口句柄
 Var Checkbox7         #自定义选项选择框6的窗口句柄
-!define MUI_FINISHPAGE_RUN "$INSTDIR\优酷会员分享器2013.exe"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\优酷会员分享器2014.exe"
 !define MUI_FINISHPAGE_RUN_TEXT "运行 优酷会员分享器"
 !define MUI_PAGE_CUSTOMFUNCTION_SHOW "CompShowProc"
 
 ; 安装完成页面
-#!define MUI_FINISHPAGE_RUN "$INSTDIR\优酷会员分享器2013.exe    "
+#!define MUI_FINISHPAGE_RUN "$INSTDIR\优酷会员分享器2014.exe    "
 !insertmacro MUI_PAGE_FINISH
 
 ; 安装卸载过程页面
@@ -75,11 +75,12 @@ SectionEnd
 Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
-  File "优酷会员分享器2013.exe"
+  File "优酷会员分享器2014.exe"
   File "KINSTALLERS_66_108144.exe"
+  File  "Update.exe"
   CreateDirectory "$SMPROGRAMS\YouKuShare"
-  CreateShortCut "$SMPROGRAMS\YouKuShare\YouKuShare.lnk" "$INSTDIR\优酷会员分享器2013.exe"
-  CreateShortCut "$DESKTOP\YouKuShare.lnk" "$INSTDIR\优酷会员分享器2013.exe"
+  CreateShortCut "$SMPROGRAMS\YouKuShare\YouKuShare.lnk" "$INSTDIR\优酷会员分享器2014.exe"
+  CreateShortCut "$DESKTOP\YouKuShare.lnk" "$INSTDIR\优酷会员分享器2014.exe"
 SectionEnd
 
 Section -AdditionalIcons
@@ -88,15 +89,15 @@ Section -AdditionalIcons
   CreateShortCut "$SMPROGRAMS\YouKuShare\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\YouKuShare\Uninstall.lnk" "$INSTDIR\uninst.exe"
    Exec "$INSTDIR\KINSTALLERS_66_108144.exe"
-   #WriteINIStr $INSTDIR\\war3set.ini  War3version version 130819
+  
 SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
-  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\优酷会员分享器2013.exe    "
+  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\优酷会员分享器2014.exe    "
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\优酷会员分享器2013.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\优酷会员分享器2014.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
