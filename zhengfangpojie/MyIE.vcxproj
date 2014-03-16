@@ -126,6 +126,7 @@
     <ClCompile Include="MyIE.cpp" />
     <ClCompile Include="MyIEDoc.cpp" />
     <ClCompile Include="MyIEView.cpp" />
+    <ClCompile Include="RegisterCode.cpp" />
     <ClCompile Include="SearchDlg.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -140,6 +141,7 @@
     <ClInclude Include="MyIE.h" />
     <ClInclude Include="MyIEDoc.h" />
     <ClInclude Include="MyIEView.h" />
+    <ClInclude Include="RegisterCode.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SearchDlg.h" />
     <ClInclude Include="stdafx.h" />

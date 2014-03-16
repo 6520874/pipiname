@@ -126,6 +126,7 @@ protected:
 public:
 	afx_msg void OnUpdateThunderVip(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateNowweb(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateZhucema(CCmdUI *pCmdUI);
 };
 
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
@@ -139,6 +140,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	
+
 END_MESSAGE_MAP()
 
 // 用于运行对话框的应用程序命令
@@ -147,14 +149,3 @@ void CMyIEApp::OnAppAbout()
 	CAboutDlg aboutDlg;
 	aboutDlg.DoModal();
 }
-
-
-// CMyIEApp 消息处理程序
-
-
-void CAboutDlg::OnUpdateThunderVip(CCmdUI *pCmdUI)
-{
-	// TODO: 在此添加命令更新用户界面处理程序代码
-}
-
-

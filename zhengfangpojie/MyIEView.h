@@ -36,8 +36,8 @@ public:
 		CString csNew = cstr+_T("readimagexs.aspx?xh=")+csXuehao;
 		Navigate2(csNew,navNoHistory,NULL);
 		}
-		
 	}
+
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -71,6 +71,7 @@ public:
 	afx_msg void OnUpdateStartshare(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateNowweb(CCmdUI *pCmdUI);
 	afx_msg void OnClose();
+	afx_msg void OnUpdateZhucema(CCmdUI *pCmdUI);
 };
 
 

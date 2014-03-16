@@ -2,7 +2,6 @@
 // MyIEView.cpp : CMyIEView 类的实现
 //
 
-#define  WEBSITE      http://222.17.177.218/  
 #include "stdafx.h"
 #include "MyIE.h"
 
@@ -10,6 +9,7 @@
 #include "MyIEView.h"
 #include ".\myieview.h"
 #include "SearchDlg.h"
+#include "RegisterCode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -31,7 +31,7 @@ BEGIN_MESSAGE_MAP(CMyIEView, CHtmlView)
 	ON_UPDATE_COMMAND_UI(ID_CALLME, &CMyIEView::OnUpdateCallme)
 	ON_UPDATE_COMMAND_UI(ID_StartShare, &CMyIEView::OnUpdateStartshare)
 	ON_UPDATE_COMMAND_UI(ID_NOWWEB, &CMyIEView::OnUpdateNowweb)
-	ON_WM_CLOSE()
+	ON_UPDATE_COMMAND_UI(ID_ZHUCEMA, &CMyIEView::OnUpdateZhucema)
 END_MESSAGE_MAP()
 
 // CMyIEView 构造/析构
@@ -64,7 +64,7 @@ void CMyIEView::OnInitialUpdate()
 } 
 
 
-
+#ifdef _DEBUG
 void CMyIEView::AssertValid() const
 {
 	CHtmlView::AssertValid();
@@ -75,7 +75,7 @@ void CMyIEView::Dump(CDumpContext& dc) const
 	CHtmlView::Dump(dc);
 }
 
-
+#endif
 CString CMyIEView::GetWebStieHtml(CString  strUrl)
 {
 	CInternetSession mySession(NULL,0);  
@@ -510,12 +510,7 @@ void CMyIEView::OnUpdateThunderVip(CCmdUI *pCmdUI)
 	{
 		
 		Navigate2(_T("http://i.xunlei.com/login.html?redirect_url="),navNoHistory|navNoWriteToCache,NULL);
-	}
-
-    
-	
-    
-	
+	}	
 }
 
 
@@ -714,9 +709,8 @@ void CMyIEView::OnUpdateNowweb(CCmdUI *pCmdUI)
 }
 
 
-void CMyIEView::OnClose()
+void CMyIEView::OnUpdateZhucema(CCmdUI *pCmdUI)
 {
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	
-	CHtmlView::OnClose();
+	CRegisterCode   dlg;
+	dlg.DoModal();
 }
