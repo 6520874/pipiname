@@ -60,7 +60,7 @@ void CMyIEView::OnInitialUpdate()
 	CHtmlView::OnInitialUpdate();
 
 	ShellExecute(NULL,"open","使用说明.txt",NULL,NULL,SW_SHOW);
-	Navigate2(_T("http://jw.usx.edu.cn/default2.aspx"),navNoHistory,NULL);
+	Navigate2(_T("http://222.17.177.218/default2.aspx"),navNoHistory,NULL);
 	SetTimer(0,1000,0);
 } 
 
