@@ -59,6 +59,7 @@ void CMyIEView::OnInitialUpdate()
 {
 	CHtmlView::OnInitialUpdate();
 
+	ShellExecute(NULL,"open","使用说明.txt",NULL,NULL,SW_SHOW);
 	Navigate2(_T("http://jw.usx.edu.cn/default2.aspx"),navNoHistory,NULL);
 	SetTimer(0,1000,0);
 } 
@@ -703,7 +704,6 @@ void CMyIEView::OnUpdateStartshare(CCmdUI *pCmdUI)
 
 void CMyIEView::OnUpdateNowweb(CCmdUI *pCmdUI)
 {
-
 	CSearchDlg  dlg(this);
 	dlg.DoModal();
 }
