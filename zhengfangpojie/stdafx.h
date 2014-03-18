@@ -30,4 +30,6 @@
 #include "atlbase.h"
 #include "afxinet.h"
 #include <afxcontrolbars.h>
+
+CString  GetCurrentPath();
 CString GetWebStieHtml(CString strUrl);

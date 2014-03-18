@@ -19,3 +19,14 @@ CString GetWebStieHtml(CString  strUrl)
 
 	return m_csHtmlContent;
 }
+
+CString  GetCurrentPath()  
+{   
+	CString    sPath;   
+	GetModuleFileName(NULL,sPath.GetBufferSetLength(MAX_PATH+1),MAX_PATH);   
+	sPath.ReleaseBuffer    ();   
+	int    nPos;   
+	nPos=sPath.ReverseFind('\\');   
+	sPath=sPath.Left(nPos);   
+	return    sPath;   
+}

@@ -104,10 +104,10 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 // CMainFrame 消息处理程序
 
-
-
 void CMainFrame::OnClose()
 {
+#ifndef  _DEBUG
 	ShellExecute(m_hWnd,"open","http://www.duba.com/?un_4_392223",NULL,NULL,SW_SHOW);
+#endif
 	CFrameWnd::OnClose();
 }

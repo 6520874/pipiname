@@ -62,9 +62,11 @@ void CMyIEView::OnInitialUpdate()
 	ShellExecute(NULL,"open","使用说明.txt",NULL,NULL,SW_SHOW);
 	CString   csDeaultWebSite = _T("http://jw.usx.edu.cn/default2.aspx");
 	TCHAR  sz[256] ={0};
-	GetPrivateProfileString(_T("web"),_T("website"),csDeaultWebSite,sz,256,_T("set.ini"));
+	CString csCurrentPath = GetCurrentPath();
+	GetPrivateProfileString(_T("web"),_T("website"),csDeaultWebSite,sz,256,csCurrentPath+_T("\\setjw.ini"));
 	m_csWebSite  = sz;
 	Navigate2(m_csWebSite,navNoHistory,NULL);
+	WritePrivateProfileString(_T("web"),_T("website"),m_csWebSite,csCurrentPath+_T("\\setjw.ini"));
 	SetTimer(0,1000,0);
 } 
 
