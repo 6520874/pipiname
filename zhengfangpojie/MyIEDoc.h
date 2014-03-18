@@ -23,7 +23,7 @@ public:
 	virtual void Serialize(CArchive& ar);
 	void  CQQRegDoc::SetTitle(LPCTSTR lpszTitle)
 	{
-		CDocument::SetTitle(_T("绍兴文理美女查看器"));
+		CDocument::SetTitle(_T("三亚学院照片查看器"));
 	}
 // 实现
 public:

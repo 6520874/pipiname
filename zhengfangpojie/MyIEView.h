@@ -66,6 +66,7 @@ private:
 	CString m_csPasswd;
 	IHTMLDocument2 * m_pHTMLDocument2;
 	bool    m_bFirst;
+	CString  m_csWebSite;
 public:
 	afx_msg void OnUpdateCallme(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateStartshare(CCmdUI *pCmdUI);

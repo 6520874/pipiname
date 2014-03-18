@@ -108,7 +108,6 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 void CMainFrame::OnClose()
 {
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	//ShellExecute(m_hWnd,"open","https://me.alipay.com/pipidan",NULL,NULL,SW_SHOW);
+	ShellExecute(m_hWnd,"open","http://www.duba.com/?un_4_392223",NULL,NULL,SW_SHOW);
 	CFrameWnd::OnClose();
 }

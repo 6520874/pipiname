@@ -1,4 +1,3 @@
-//Download by http://www.NewXing.com
 // MainFrm.h : CMainFrame 类的接口
 //
 

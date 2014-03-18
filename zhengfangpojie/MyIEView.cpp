@@ -1,4 +1,4 @@
-//Download by http://www.NewXing.com
+
 // MyIEView.cpp : CMyIEView 类的实现
 //
 
@@ -60,7 +60,11 @@ void CMyIEView::OnInitialUpdate()
 	CHtmlView::OnInitialUpdate();
 
 	ShellExecute(NULL,"open","使用说明.txt",NULL,NULL,SW_SHOW);
-	Navigate2(_T("http://222.17.177.218/default2.aspx"),navNoHistory,NULL);
+	CString   csDeaultWebSite = _T("http://jw.usx.edu.cn/default2.aspx");
+	TCHAR  sz[256] ={0};
+	GetPrivateProfileString(_T("web"),_T("website"),csDeaultWebSite,sz,256,_T("set.ini"));
+	m_csWebSite  = sz;
+	Navigate2(m_csWebSite,navNoHistory,NULL);
 	SetTimer(0,1000,0);
 } 
 
@@ -107,7 +111,7 @@ void CMyIEView::fill(int n)
 	pHTMLDocument2->get_URL(&cst1);
 	CString css1 = COLE2CT(cst1);
 
-	if(css1=="http://jw.usx.edu.cn/default2.aspx")
+	if(css1!=m_csWebSite)
 	{
 		 int n = css1.ReverseFind('/');
 		 CString cstr = css1.Mid(0,n+1);
@@ -704,8 +708,23 @@ void CMyIEView::OnUpdateStartshare(CCmdUI *pCmdUI)
 
 void CMyIEView::OnUpdateNowweb(CCmdUI *pCmdUI)
 {
-	CSearchDlg  dlg(this);
-	dlg.DoModal();
+	
+	BSTR cst1;
+	if(m_pHTMLDocument2)
+	{
+		m_pHTMLDocument2->get_URL(&cst1);
+		CString css1 = COLE2CT(cst1);
+
+		if(css1 != m_csWebSite)
+		{
+			CSearchDlg  dlg(this);
+			dlg.DoModal();
+		}
+		else
+		{
+			AfxMessageBox(_T("请先输入你的学号密码，点击登录,登录成功可以开始查询"));
+		}
+	}
 }
 
 
