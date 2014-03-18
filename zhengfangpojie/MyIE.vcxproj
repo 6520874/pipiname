@@ -122,6 +122,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddSchoolDlg.cpp" />
     <ClCompile Include="Bitpicture.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MyIE.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="FileTransSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddSchoolDlg.h" />
     <ClInclude Include="Bitpicture.h" />
     <ClInclude Include="FileTransSocket.h" />
     <ClInclude Include="MainFrm.h" />

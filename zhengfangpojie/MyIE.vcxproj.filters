@@ -45,6 +45,9 @@
     <ClCompile Include="RegisterCode.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="AddSchoolDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bitpicture.h">
@@ -75,6 +78,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="RegisterCode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AddSchoolDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -114,6 +114,10 @@ BEGIN
     BEGIN
         MENUITEM "注册码",                         ID_ZHUCEMA
     END
+    POPUP "添加我们学校支持"
+    BEGIN
+        MENUITEM "开始添加",                        ID_AddSchool
+    END
 END
 
 
@@ -178,6 +182,16 @@ BEGIN
     LTEXT           "激活码：",IDC_STATIC,24,51,36,13
 END
 
+IDD_DIALOGADDSCHOOL DIALOGEX 0, 0, 206, 104
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "添加学校"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,14,30,185,21,ES_AUTOHSCROLL
+    LTEXT           "请输入学校系统网址（带http）",IDC_STATIC,36,14,133,8
+    PUSHBUTTON      "确认",IDC_BUTTON_ADDOK,62,66,50,14
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -203,10 +217,10 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "TODO: <公司名>"
             VALUE "FileDescription", "TODO: <文件说明>"
-            VALUE "FileVersion", "1.0.0.1"
-            VALUE "InternalName", "MyIE.exe"
+            VALUE "FileVersion", "2.1"
+            VALUE "InternalName", "校园FaceBook.exe"
             VALUE "LegalCopyright", "TODO: (C) <公司名>。保留所有权利。"
-            VALUE "OriginalFilename", "MyIE.exe"
+            VALUE "OriginalFilename", "校园FaceBook.exe"
             VALUE "ProductName", "TODO: <产品名>"
             VALUE "ProductVersion", "1.0.0.1"
         END
@@ -248,6 +262,14 @@ BEGIN
         RIGHTMARGIN, 188
         TOPMARGIN, 7
         BOTTOMMARGIN, 116
+    END
+
+    IDD_DIALOGADDSCHOOL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 199
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 97
     END
 END
 #endif    // APSTUDIO_INVOKED

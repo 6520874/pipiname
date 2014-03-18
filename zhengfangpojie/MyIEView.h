@@ -73,6 +73,8 @@ public:
 	afx_msg void OnUpdateNowweb(CCmdUI *pCmdUI);
 	afx_msg void OnClose();
 	afx_msg void OnUpdateZhucema(CCmdUI *pCmdUI);
+	afx_msg void OnAddschool();
+	afx_msg void OnUpdateAddschool(CCmdUI *pCmdUI);
 };
 
 

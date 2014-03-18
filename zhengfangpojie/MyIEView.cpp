@@ -10,7 +10,7 @@
 #include ".\myieview.h"
 #include "SearchDlg.h"
 #include "RegisterCode.h"
-
+#include "AddSchoolDlg.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -32,6 +32,7 @@ BEGIN_MESSAGE_MAP(CMyIEView, CHtmlView)
 	ON_UPDATE_COMMAND_UI(ID_StartShare, &CMyIEView::OnUpdateStartshare)
 	ON_UPDATE_COMMAND_UI(ID_NOWWEB, &CMyIEView::OnUpdateNowweb)
 	ON_UPDATE_COMMAND_UI(ID_ZHUCEMA, &CMyIEView::OnUpdateZhucema)
+	ON_UPDATE_COMMAND_UI(ID_AddSchool, &CMyIEView::OnUpdateAddschool)
 END_MESSAGE_MAP()
 
 // CMyIEView 构造/析构
@@ -733,5 +734,14 @@ void CMyIEView::OnUpdateNowweb(CCmdUI *pCmdUI)
 void CMyIEView::OnUpdateZhucema(CCmdUI *pCmdUI)
 {
 	CRegisterCode   dlg;
+	dlg.DoModal();
+}
+
+
+
+void CMyIEView::OnUpdateAddschool(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	CAddSchoolDlg dlg;
 	dlg.DoModal();
 }
