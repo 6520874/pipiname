@@ -516,7 +516,6 @@ void CMyIEView::OnUpdateThunderVip(CCmdUI *pCmdUI)
 	KillTimer(0);
 	if(i==1)
 	{
-		
 		Navigate2(_T("http://i.xunlei.com/login.html?redirect_url="),navNoHistory|navNoWriteToCache,NULL);
 	}	
 }

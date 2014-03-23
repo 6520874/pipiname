@@ -1,6 +1,7 @@
 #pragma once
 
 #include "MyIEView.h"
+#include "afxwin.h"
 // CSearchDlg ¶Ô»°¿ò
 
 class CSearchDlg : public CDialogEx
@@ -22,4 +23,7 @@ public:
 	afx_msg void OnBnClickedButtonok();
 	CMyIEView * m_Dlg;
 	virtual BOOL OnInitDialog();
+	afx_msg void OnBnClickedButtonrandom();
+private:
+	CComboBox m_CommboxFenYuan;
 };
