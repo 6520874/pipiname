@@ -26,4 +26,6 @@ public:
 	afx_msg void OnBnClickedButtonrandom();
 private:
 	CComboBox m_CommboxFenYuan;
+public:
+	afx_msg void OnCbnSelchangeComboFenyuan();
 };

@@ -150,6 +150,7 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Update\Update.vcproj" />
     <None Include="res\MyIE.ico" />
     <None Include="res\MyIE.rc2" />
     <None Include="res\MyIEDoc.ico" />
