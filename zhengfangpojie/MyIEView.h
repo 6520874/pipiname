@@ -26,13 +26,10 @@ public:
 	virtual ~CMyIEView();
 	void Changeweb(CString csXuehao)
 	{
-		if(m_pHTMLDocument2!=NULL)
+		//if(m_pHTMLDocument2!=NULL)
 		{
-			BSTR cst1;
-		m_pHTMLDocument2->get_URL(&cst1);
-		CString css1 = COLE2CT(cst1);
-		int n = css1.ReverseFind('/');
-		CString cstr = css1.Mid(0,n+1);
+
+		CString cstr = _T("http://jw.usx.edu.cn/");
 		CString csNew = cstr+_T("readimagexs.aspx?xh=")+csXuehao;
 		Navigate2(csNew,navNoHistory,NULL);
 		}
@@ -75,6 +72,7 @@ public:
 	afx_msg void OnUpdateZhucema(CCmdUI *pCmdUI);
 	afx_msg void OnAddschool();
 	afx_msg void OnUpdateAddschool(CCmdUI *pCmdUI);
+	void StartPost();
 };
 
 

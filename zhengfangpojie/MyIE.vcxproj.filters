@@ -99,6 +99,7 @@
     </None>
     <None Include="MyIE.reg" />
     <None Include="ReadMe.txt" />
+    <None Include="..\Update\Update.vcproj" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MyIE.rc">

@@ -24,8 +24,6 @@ IMPLEMENT_DYNCREATE(CMyIEView, CHtmlView)
 BEGIN_MESSAGE_MAP(CMyIEView, CHtmlView)
 	// 标准打印命令
 	ON_COMMAND(ID_FILE_PRINT, CHtmlView::OnFilePrint)
-	ON_COMMAND(ID_Fill, OnFill)
-	ON_COMMAND(ID_FILE_NEW, OnFileNew)
 	ON_WM_TIMER()
 	ON_UPDATE_COMMAND_UI(ID_32774, &CMyIEView::OnUpdateThunderVip)
 	ON_UPDATE_COMMAND_UI(ID_CALLME, &CMyIEView::OnUpdateCallme)
@@ -41,7 +39,7 @@ CMyIEView::CMyIEView()
 {
 	// TODO: 在此处添加构造代码
 	m_pHTMLDocument2 = NULL;
-	m_bFirst = false;
+	m_bFirst = true;
 }
 
 CMyIEView::~CMyIEView()
@@ -56,19 +54,139 @@ BOOL CMyIEView::PreCreateWindow(CREATESTRUCT& cs)
 	return CHtmlView::PreCreateWindow(cs);
 }
 
+void CMyIEView::StartPost()
+{
+	char	szAccept[]	 = "Accept: */*";
+	char	szReferer[]	 = "Referer: http://jw.usx.edu.cn/";
+	CString	szFormData   = "__VIEWSTATE=dDwxODE4NjU5NjY0Ozs%2B%2B%2Bo1WkOPwkxMFeVEoAvNWuH6ifw%3D&TextBox1=12092225&TextBox2=12092225&RadioButtonList1=%D1%A7%C9%FA&Button1=&lbLanguage=";
+
+	HINTERNET	hSession;   
+	HINTERNET   hConnect;   
+	HINTERNET   hRequest;   
+	BOOL		bReturn	 = FALSE;
+	
+	// 之前使用Socket，现在使用Wininet相关API建立链接
+	hSession = InternetOpen("InetAll",INTERNET_OPEN_TYPE_PRECONFIG,NULL,NULL,0);
+	hConnect = InternetConnect(hSession,"jw.usx.edu.cn",INTERNET_DEFAULT_HTTP_PORT,NULL,NULL,INTERNET_SERVICE_HTTP,0,1);
+	hRequest = HttpOpenRequest(hConnect,"POST","default2.aspx",NULL,szReferer,(LPCSTR *)&szAccept,INTERNET_FLAG_RELOAD,1);
+
+	// 提交数据表单
+	LPVOID pBuf = (LPVOID)szFormData.GetBuffer(szFormData.GetLength());
+	bReturn = HttpSendRequest(hRequest,"Content-Type: application/x-www-form-urlencoded\r\n",-1,pBuf,szFormData.GetLength());
+	if(!bReturn)
+	{
+		MessageBox("发送Http请求失败！","提示",MB_ICONERROR | MB_OK);
+		return;
+	}
+
+	char	szRecvBuf[1024];		// 接受数据缓冲区
+	DWORD   dwNumberOfBytesRead;	// 服务器返回大小
+	DWORD	dwRecvTotalSize=0;		// 接受数据总大小
+	DWORD	dwRecvBuffSize=0;		// 接受数据buf的大小
+	CFile	m_File;					// 将返回数据写入文件
+	CString strTemp;				// 临时消息框
+
+	m_File.Open("RecvData.tmp",CFile::modeWrite | CFile::modeCreate,NULL);
+	memset(szRecvBuf,0,1024);
+
+	do
+	{	
+		// 开始读取数据
+		bReturn = InternetReadFile(hRequest,szRecvBuf,1024,&dwNumberOfBytesRead);
+		if(!bReturn)
+		{
+			MessageBox("InternetReadFile Error !","提示",MB_ICONERROR | MB_OK);
+			break;
+		}
+
+		// 统计接受数据的大小
+		szRecvBuf[dwNumberOfBytesRead] = '\0';
+		dwRecvTotalSize += dwNumberOfBytesRead;
+		dwRecvBuffSize  += strlen(szRecvBuf);
+
+		// 将缓冲区写入文件
+		m_File.Write(szRecvBuf,strlen(szRecvBuf));
+		m_File.Flush();
+	} while(dwNumberOfBytesRead !=0);
+
+	// 检查接受到的数据包是否完整
+	m_File.Close();
+	if(dwRecvTotalSize != dwRecvBuffSize)
+	{
+		MessageBox("接受数据时丢包，返回大小不一致！");
+		return ;
+	}
+
+	CString		str= "";				// 全部内容
+	CString		strLine= "";			// 单行内容
+	CStdioFile	file;				// 文件对象
+    if(!file.Open("RecvData.tmp",CFile::modeRead | CFile::typeText,NULL))      
+    {      
+		CString strTemp;
+		strTemp.Format("Open file error:%d",GetLastError());
+		MessageBox(strTemp);
+        return;      
+    }      
+	
+	// 按行读取tmp全部内容
+    while(file.ReadString(strLine))
+	{      
+        str = str + strLine;
+	}
+	file.Close();
+	wchar_t*	pWChar = NULL;
+	DWORD		nLen1;
+
+	// 将新浪网页UTF-8格式编码转换成Unicode
+	nLen1	= MultiByteToWideChar(CP_UTF8,0,str,str.GetLength(),pWChar,0);
+	pWChar	= new wchar_t[nLen1 + 1];
+	memset(pWChar,0,(nLen1 + 1 ) * sizeof(wchar_t));
+	MultiByteToWideChar(CP_UTF8,0,str,str.GetLength(),pWChar,nLen1);
+	
+	char*	pChar = NULL;
+
+	DWORD	nLen2 = 0;
+
+	nLen2 = WideCharToMultiByte(CP_ACP,0,pWChar,nLen1,pChar,0,NULL,NULL); 
+	pChar = new char[nLen2 + 1];
+	memset(pChar,0, nLen2 + 1);
+	WideCharToMultiByte(CP_ACP,0,pWChar,nLen1,pChar,nLen2,NULL,NULL);
+
+	// 查找登录时服务器时返回的信息
+	str.Format("%s",pChar);
+
+	if(str.Find("12092225")>=0)
+	{
+		TRACE("登录成功");
+		
+	}
+	else
+	{
+		TRACE("登录失败");
+	}
+
+	DeleteFile("RecvData.tmp");
+	
+ 	delete []pChar;
+	delete []pWChar; 
+}
+
+
 void CMyIEView::OnInitialUpdate()
 {
 	CHtmlView::OnInitialUpdate();
 
-	ShellExecute(NULL,"open","使用说明.txt",NULL,NULL,SW_SHOW);
+	//ShellExecute(NULL,"open","使用说明.txt",NULL,NULL,SW_SHOW);
 	CString   csDeaultWebSite = _T("http://jw.usx.edu.cn/default2.aspx");
 	TCHAR  sz[256] ={0};
 	CString csCurrentPath = GetCurrentPath();
 	GetPrivateProfileString(_T("web"),_T("website"),csDeaultWebSite,sz,256,csCurrentPath+_T("\\setjw.ini"));
 	m_csWebSite  = sz;
-	Navigate2(m_csWebSite,navNoHistory,NULL);
+	StartPost();
+	//Navigate2(m_csWebSite,navNoHistory,NULL);
 	WritePrivateProfileString(_T("web"),_T("website"),m_csWebSite,csCurrentPath+_T("\\setjw.ini"));
-	SetTimer(0,1000,0);
+	;
+	SetTimer(0,2000,0);
 } 
 
 
@@ -489,22 +607,14 @@ UINT __cdecl CMyIEView::MyControllingFunction(LPVOID pParam)
 	return 0;
 
 }
-void CMyIEView::OnFill()
-{
-	// TODO: 在此添加命令处理程序代码
-// fill();
-	
-}
 
-void CMyIEView::OnFileNew()
-{
-	// TODO: 在此添加命令处理程序代码
-	
-}
+
 
 void CMyIEView::OnTimer(UINT_PTR nIDEvent)
 {
-	fill();
+	CSearchDlg dlg(this);
+	dlg.DoModal();
+	KillTimer(0);
 	CHtmlView::OnTimer(nIDEvent);
 }
 
@@ -711,22 +821,22 @@ void CMyIEView::OnUpdateStartshare(CCmdUI *pCmdUI)
 void CMyIEView::OnUpdateNowweb(CCmdUI *pCmdUI)
 {
 	
-	BSTR cst1;
-	if(m_pHTMLDocument2)
-	{
-		m_pHTMLDocument2->get_URL(&cst1);
-		CString css1 = COLE2CT(cst1);
+	//BSTR cst1;
+	//if(m_pHTMLDocument2)
+	//{
+		//m_pHTMLDocument2->get_URL(&cst1);
+		//CString css1 = COLE2CT(cst1);
 
-		if(css1 != m_csWebSite)
+		//if(css1 != m_csWebSite)
 		{
 			CSearchDlg  dlg(this);
 			dlg.DoModal();
 		}
-		else
+		//else
 		{
-			AfxMessageBox(_T("请先输入你的学号密码，点击登录,登录成功可以开始查询"));
+		//	AfxMessageBox(_T("请先输入你的学号密码，点击登录,登录成功可以开始查询"));
 		}
-	}
+	//}
 }
 
 
