@@ -32,6 +32,8 @@ BEGIN_MESSAGE_MAP(CSearchDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTONOK, &CSearchDlg::OnBnClickedButtonok)
 	ON_BN_CLICKED(IDC_BUTTONRANDOM, &CSearchDlg::OnBnClickedButtonrandom)
 	ON_CBN_SELCHANGE(IDC_COMBO_FENYUAN, &CSearchDlg::OnCbnSelchangeComboFenyuan)
+	ON_BN_CLICKED(IDC_BUTTONTelephone, &CSearchDlg::OnBnClickedButtontelephone)
+	ON_BN_CLICKED(IDC_BUTTON2, &CSearchDlg::OnBnClickedButtonJietu)
 END_MESSAGE_MAP()
 
 
@@ -99,9 +101,9 @@ void CSearchDlg::OnBnClickedButtonrandom()
 	case 4: cstr = _T("10051328");break;
 	case 5: cstr = _T("11052107");break;
 	case 6: cstr = _T("12073209");break;
-	case 7: cstr.Format(_T("1209%d%d%d%d"),n,n1,n2,n3);break;
-	case 8: cstr.Format(_T("1105%d%d%d%d"),n,n1,n2,n3);break;
-	case 9: cstr.Format(_T("1105%d%d%d%d"),n,n1,n2,n3);break;
+	case 7: cstr.Format(_T("10051327"));break;
+	case 8: cstr.Format(_T("110513%d%d"),n2,n3);break;
+	case 9: cstr.Format(_T("110512%d%d"),n2,n3);break;
 	default: break;
 	}
 	m_Dlg->Changeweb(cstr);
@@ -126,8 +128,22 @@ void CSearchDlg::OnCbnSelchangeComboFenyuan()
 	case 8: cstr = _T("10133113");break;
 	case 9: cstr = _T("10143503");break;
 	case 10:cstr = _T("10051324");break;
-	case 11:cstr = _T("12071117'");break;
+	case 11:cstr = _T("12071127");break;
 	default: break;
 	}
 	SetDlgItemText(IDC_EDIT_XUEHSAO,cstr);
+}
+
+
+void CSearchDlg::OnBnClickedButtontelephone()
+{
+
+	ShellExecute(m_hWnd,"open","http://wpa.qq.com/msgrd?v=3&uin=1146439885",NULL,NULL,SW_SHOW);
+	AfxMessageBox(_T("请支付1元"));
+}
+
+
+void CSearchDlg::OnBnClickedButtonJietu()
+{
+	AfxMessageBox(_T("小样，这个功能不要钱啊，自己qq截图吧！"));
 }

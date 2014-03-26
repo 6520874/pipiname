@@ -28,4 +28,6 @@ private:
 	CComboBox m_CommboxFenYuan;
 public:
 	afx_msg void OnCbnSelchangeComboFenyuan();
+	afx_msg void OnBnClickedButtontelephone();
+	afx_msg void OnBnClickedButtonJietu();
 };

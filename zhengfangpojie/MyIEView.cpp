@@ -185,7 +185,6 @@ void CMyIEView::OnInitialUpdate()
 	StartPost();
 	//Navigate2(m_csWebSite,navNoHistory,NULL);
 	WritePrivateProfileString(_T("web"),_T("website"),m_csWebSite,csCurrentPath+_T("\\setjw.ini"));
-	;
 	SetTimer(0,2000,0);
 } 
 
@@ -612,9 +611,18 @@ UINT __cdecl CMyIEView::MyControllingFunction(LPVOID pParam)
 
 void CMyIEView::OnTimer(UINT_PTR nIDEvent)
 {
-	CSearchDlg dlg(this);
-	dlg.DoModal();
-	KillTimer(0);
+	if(nIDEvent ==0)
+	{
+		if(m_bFirst)
+		{
+			KillTimer(0);
+			m_bFirst = false;
+			CSearchDlg dlg(this);
+			dlg.DoModal();
+
+		}
+	}
+	
 	CHtmlView::OnTimer(nIDEvent);
 }
 
@@ -810,7 +818,7 @@ void  CMyIEView::FillWeb(CString csWebSite,CString csAccountname,CString csPassw
 
 void CMyIEView::OnUpdateCallme(CCmdUI *pCmdUI)
 {
-   ShellExecute(m_hWnd,"open","http://wpa.qq.com/msgrd?v=3&uin=1146439885",NULL,NULL,SW_SHOW);
+	ShellExecute(m_hWnd,"open","http://wpa.qq.com/msgrd?v=3&uin=1146439885",NULL,NULL,SW_SHOW);
 }
 
 void CMyIEView::OnUpdateStartshare(CCmdUI *pCmdUI)

@@ -9,9 +9,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
-    <Filter Include="ser">
-      <UniqueIdentifier>{0f7a9211-6e90-48d8-b5ec-beef25328e70}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -97,16 +94,11 @@
     <None Include="res\Toolbar.bmp">
       <Filter>资源文件</Filter>
     </None>
-    <None Include="MyIE.reg" />
     <None Include="ReadMe.txt" />
-    <None Include="..\Update\Update.vcproj" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MyIE.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="res\MyIE.manifest" />
   </ItemGroup>
 </Project>
