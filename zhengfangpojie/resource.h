@@ -20,12 +20,13 @@
 #define IDC_BUTTON_ADDOK                1004
 #define IDC_BUTTONRANDOM                1004
 #define IDC_BUTTON2                     1005
+#define IDC_BUTTONJieTu                 1005
 #define IDC_RADIO1                      1006
 #define IDC_RADIO2                      1007
 #define IDC_COMBO1                      1008
 #define IDC_COMBO_FENYUAN               1008
-#define IDC_BUTTON3                     1010
 #define IDC_BUTTONTelephone             1010
+#define IDC_COMBO2                      1011
 #define ID_Fill                         32772
 #define ID_32773                        32773
 #define ID_32774                        32774
@@ -41,14 +42,14 @@
 #define ID_ZHUCEMA                      32785
 #define ID_32786                        32786
 #define ID_AddSchool                    32787
-
+#define IDC_BUTTONJieTU                 32799
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        132
 #define _APS_NEXT_COMMAND_VALUE         32788
-#define _APS_NEXT_CONTROL_VALUE         1011
+#define _APS_NEXT_CONTROL_VALUE         1012
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

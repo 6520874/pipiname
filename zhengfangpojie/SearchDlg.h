@@ -1,10 +1,9 @@
 #pragma once
 
 #include "MyIEView.h"
-#include "afxwin.h"
 // CSearchDlg ¶Ô»°¿ò
 
-class CSearchDlg : public CDialogEx
+class CSearchDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CSearchDlg)
 
@@ -21,11 +20,11 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedButtonok();
-	CMyIEView * m_Dlg;
 	virtual BOOL OnInitDialog();
 	afx_msg void OnBnClickedButtonrandom();
 private:
 	CComboBox m_CommboxFenYuan;
+	CMyIEView * m_Dlg;
 public:
 	afx_msg void OnCbnSelchangeComboFenyuan();
 	afx_msg void OnBnClickedButtontelephone();

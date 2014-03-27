@@ -12,7 +12,7 @@
 IMPLEMENT_DYNAMIC(CSearchDlg, CDialogEx)
 
 CSearchDlg::CSearchDlg(CMyIEView *dlg,CWnd* pParent /*=NULL*/)
-	: CDialogEx(CSearchDlg::IDD, pParent)
+	: CDialog(CSearchDlg::IDD, pParent)
 {
 	m_Dlg = dlg;
 }
@@ -23,17 +23,17 @@ CSearchDlg::~CSearchDlg()
 
 void CSearchDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialogEx::DoDataExchange(pDX);
+	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_COMBO_FENYUAN, m_CommboxFenYuan);
 }
 
 
-BEGIN_MESSAGE_MAP(CSearchDlg, CDialogEx)
+BEGIN_MESSAGE_MAP(CSearchDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTONOK, &CSearchDlg::OnBnClickedButtonok)
 	ON_BN_CLICKED(IDC_BUTTONRANDOM, &CSearchDlg::OnBnClickedButtonrandom)
 	ON_CBN_SELCHANGE(IDC_COMBO_FENYUAN, &CSearchDlg::OnCbnSelchangeComboFenyuan)
 	ON_BN_CLICKED(IDC_BUTTONTelephone, &CSearchDlg::OnBnClickedButtontelephone)
-	ON_BN_CLICKED(IDC_BUTTON2, &CSearchDlg::OnBnClickedButtonJietu)
+	ON_BN_CLICKED(IDC_BUTTONJieTU, &CSearchDlg::OnBnClickedButtonJietu)
 END_MESSAGE_MAP()
 
 
@@ -65,7 +65,7 @@ void CSearchDlg::OnBnClickedButtonok()
 
 BOOL CSearchDlg::OnInitDialog()
 {
-	CDialogEx::OnInitDialog();
+	CDialog::OnInitDialog();
 
 	SetDlgItemText(IDC_EDIT_XUEHSAO,_T("11052107"));
 

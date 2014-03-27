@@ -51,9 +51,7 @@ void CAddSchoolDlg::OnBnClickedButtonAddok()
 BOOL CAddSchoolDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-
-	// TODO:  在此添加额外的初始化
-	  SetDlgItemText(IDC_EDIT1,_T("http://"));
+	SetDlgItemText(IDC_EDIT1,_T("http://"));
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
 }
