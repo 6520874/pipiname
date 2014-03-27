@@ -1,4 +1,4 @@
-//Download by http://www.NewXing.com
+
 // MyIEView.h : CMyIEView 类的接口
 //
 

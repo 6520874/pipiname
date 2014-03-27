@@ -25,6 +25,7 @@
 #define IDC_RADIO2                      1007
 #define IDC_COMBO1                      1008
 #define IDC_COMBO_FENYUAN               1008
+#define IDC_COMBO_FENYUAN2              1009
 #define IDC_BUTTONTelephone             1010
 #define IDC_COMBO2                      1011
 #define ID_Fill                         32772
@@ -43,6 +44,7 @@
 #define ID_32786                        32786
 #define ID_AddSchool                    32787
 #define IDC_BUTTONJieTU                 32799
+
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED

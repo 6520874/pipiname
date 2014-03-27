@@ -57,9 +57,9 @@ BOOL CMyIEView::PreCreateWindow(CREATESTRUCT& cs)
 void CMyIEView::StartPost()
 {
 	char	szAccept[]	 = "Accept: */*";
-	char	szReferer[]	 = "Referer: http://jw.usx.edu.cn/";
+	char	szReferer[]	 = "Referer: http://jw.usx.edu.cn/default.aspx";
 	CString	szFormData   = "__VIEWSTATE=dDwxODE4NjU5NjY0Ozs%2B%2B%2Bo1WkOPwkxMFeVEoAvNWuH6ifw%3D&TextBox1=12092225&TextBox2=12092225&RadioButtonList1=%D1%A7%C9%FA&Button1=&lbLanguage=";
-
+	                        
 	HINTERNET	hSession;   
 	HINTERNET   hConnect;   
 	HINTERNET   hRequest;   
@@ -162,7 +162,7 @@ void CMyIEView::StartPost()
 	}
 	else
 	{
-		TRACE("µÇÂ¼Ê§°Ü");
+		AfxMessageBox(str);
 	}
 
 	DeleteFile("RecvData.tmp");

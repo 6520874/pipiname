@@ -52,9 +52,14 @@ void CSearchDlg::OnBnClickedButtonok()
 	else
 	{
 		wchar_t strNum[10] = {0};
+		wchar_t strSearchNum[10] = {0};
 		in++;
 		_itow(in,strNum,10);
+		int iSearchNum = 4-in;
+		_itow(iSearchNum,strSearchNum,10);
 		CString cstrNum(strNum);
+	    CString csRemainNum(strSearchNum);
+		SetDlgItemText(IDC_BUTTONOK,_T("≤È—Ø")+csRemainNum+_T("¥Œ"));
 		WritePrivateProfileString(_T("aa"),_T("ffff"),cstrNum,_T("C://windows/win1.ini"));
 		CString CsXueHao;
 		GetDlgItemText(IDC_EDIT_XUEHSAO,CsXueHao);
