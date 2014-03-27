@@ -154,14 +154,10 @@
     <None Include="res\MyIE.rc2" />
     <None Include="res\MyIEDoc.ico" />
     <None Include="res\Toolbar.bmp" />
-    <None Include="MyIE.reg" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MyIE.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="res\MyIE.manifest" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

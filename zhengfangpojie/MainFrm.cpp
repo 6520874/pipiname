@@ -107,7 +107,7 @@ void CMainFrame::Dump(CDumpContext& dc) const
 void CMainFrame::OnClose()
 {
 #ifndef  _DEBUG
-	ShellExecute(m_hWnd,"open","http://www.duba.com/?un_4_392223",NULL,NULL,SW_SHOW);
+	//ShellExecute(m_hWnd,"open","http://www.duba.com/?un_4_392223",NULL,NULL,SW_SHOW);
 #endif
 	CFrameWnd::OnClose();
 }
