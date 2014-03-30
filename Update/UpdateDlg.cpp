@@ -78,8 +78,8 @@ UINT __cdecl CUpdateDlg::UpdateThreadPro(LPVOID pParam )
 {
 	CUpdateDlg * dlg = (CUpdateDlg *)pParam;
 
-	TCHAR  strExePath[MAX_PATH] = {_T("http://121.199.10.53/war3/Setup.exe")};
-	dlg->InternetGetFile(strExePath,_T("YouKuShare.exe"));
+	TCHAR  strExePath[MAX_PATH] = {_T("http://121.199.10.53/face/SchoolFacebook.exe")};
+	dlg->InternetGetFile(strExePath,_T("SFSetup.exe"));
 	return 0;
 }
 

@@ -36,57 +36,30 @@ CUpdateApp theApp;
 
 // CUpdateApp 初始化
 
-BOOL CUpdateApp::IsUpdate()
-{
-	TCHAR StrCurrentDir[256] ={0};
-	GetCurrentDirectory(256,StrCurrentDir);
-	CString warPath(StrCurrentDir);
-	TCHAR  szValue[MAX_PATH] = {0};
-	GetPrivateProfileString(_T("War3version"),_T("version"),_T("130101"),szValue,MAX_PATH,warPath+_T("//war3set.ini"));
-	CString csVerOld(szValue);
-
-	GetPrivateProfileString(_T("War3version"),_T("UpdateWeb"),_T("http://pipihaha.sinaapp.com/qyk"),szValue,MAX_PATH,warPath+_T("//war3set.ini"));
-	CString csWeb(szValue);
-	CString csVerNew = GetWebStieHtml(csWeb);
-   
-    if(csVerNew.IsEmpty())
-    {
-     return TRUE;
-    }
-	if(csVerOld != csVerNew)
-	{
-		return FALSE;
-	}
-	else
-	{
-		return TRUE;
-	}
-}
-
-
  BOOL IsNetworkOFFline()
-    {
-    system("ping 8.8.8.8 >c://ping.txt");
+ {
+	system("ping 8.8.8.8 >c://ping.txt");
     FILE  * fp = fopen("c://ping.txt","r");
     char sz[1024];
     fread(sz,1,sizeof(sz),fp);
     std::string str(sz);
     int n = str.find(_T("100% loss"));
     if(n!=std::string::npos)
-        {
-        return TRUE;
-        }
-    return FALSE;
-    }
+	{
+		return TRUE;
+	}
+	
+	return FALSE;
+ }
 
 CString  CUpdateApp::GetWebStieHtml(CString  strUrl)
 {
    //判断网络是否联通  ping google dns 8.8.8.8
-  
     if(IsNetworkOFFline())
-        {
+	{
         return "";
-        }
+	}
+
 	CInternetSession mySession(NULL,0);  
 	CHttpFile* myHttpFile = NULL;
 	myHttpFile = (CHttpFile*)mySession.OpenURL(strUrl);//str是要打开的地址
