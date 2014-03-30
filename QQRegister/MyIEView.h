@@ -57,6 +57,9 @@ private:
 public:
 	afx_msg void OnUpdateCallme(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateStartshare(CCmdUI *pCmdUI);
+	afx_msg void OnAdblock();
+	afx_msg void OnUpdateAndroiddown(CCmdUI *pCmdUI);
+	virtual void OnDraw(CDC* /*pDC*/);
 };
 
 #ifndef _DEBUG  // MyIEView.cpp µÄµ÷ÊÔ°æ±¾

@@ -28,6 +28,8 @@ BEGIN_MESSAGE_MAP(CMyIEView, CHtmlView)
 	ON_UPDATE_COMMAND_UI(ID_32774, &CMyIEView::OnUpdateThunderVip)
 	ON_UPDATE_COMMAND_UI(ID_CALLME, &CMyIEView::OnUpdateCallme)
 	ON_UPDATE_COMMAND_UI(ID_StartShare, &CMyIEView::OnUpdateStartshare)
+	ON_COMMAND(ID_ADBLOCK, &CMyIEView::OnAdblock)
+	ON_UPDATE_COMMAND_UI(ID_ANDROIDDOWN, &CMyIEView::OnUpdateAndroiddown)
 END_MESSAGE_MAP()
 
 // CMyIEView 构造/析构
@@ -54,19 +56,15 @@ void CMyIEView::OnInitialUpdate()
 {
 	srand( (unsigned)time( NULL ) );
 	m_time=0;
-
-	int iRand = (int)(rand()%10);
 	CString csWebSite ;
-	csWebSite.Format(_T("http://121.199.10.53/war3/%d.php"),iRand);
-
+	csWebSite.Format(_T("http://121.199.10.53/war3/2.php"));
 	CString  csYouku = GetWebStieHtml(csWebSite);
 	int in = csYouku.Find("##");
 	m_csAccount  = csYouku.Mid(0,in);
 	m_csPasswd =  csYouku.Mid(in+2,csYouku.GetLength()-1);
-	 
 	CHtmlView::OnInitialUpdate();
 	Navigate2(_T("http://www.youku.com/user_login/"),navNoHistory|navNoWriteToCache,NULL);
-	SetTimer(0,4000,0);
+    SetTimer(0,3500,0);
 } 
 
 
@@ -233,9 +231,11 @@ void CMyIEView::fill()
 							 {
 								 CWnd *h1 = FindWindow(NULL,"pp提醒");
 								 if(h1==NULL)
-								 ::MessageBox(m_hWnd,"麻烦您输下验证码，输完后软件会自动点击回车","pp提醒",MB_OK);
+								 {
+									 ::MessageBox(m_hWnd,"麻烦您输下验证码，输完后软件会自动点击回车","pp提醒",MB_OK);
 
-								
+								 }
+
 							 }
 
 							   BSTR  cs;
@@ -737,5 +737,24 @@ void CMyIEView::OnUpdateCallme(CCmdUI *pCmdUI)
 
 void CMyIEView::OnUpdateStartshare(CCmdUI *pCmdUI)
 {
-	ShellExecute(m_hWnd,"open","http://121.199.10.53/Youku/",NULL,NULL,SW_SHOW);
+	KillTimer(0);
+	Navigate2(_T("http://121.199.10.53/Youku/"),navNoHistory|navNoWriteToCache,NULL);
+}
+
+
+void CMyIEView::OnAdblock()
+{
+	KillTimer(0);
+	Navigate2(_T("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http%3A%2F%2F121.199.10.53%2FYouku%2F&showcount=1&desc=&summary=&title=&site=&pics=&style=101&width=199&height=30&otype=share"),navNoHistory|navNoWriteToCache,NULL);
+}
+
+
+void CMyIEView::OnUpdateAndroiddown(CCmdUI *pCmdUI)
+{
+	OnInitialUpdate();
+}
+
+
+void CMyIEView::OnDraw(CDC* /*pDC*/)
+{
 }

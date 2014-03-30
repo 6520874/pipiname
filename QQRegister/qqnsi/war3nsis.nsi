@@ -4,7 +4,7 @@
 !include nsDialogs.nsh
 ; 安装程序初始定义常量
 !define PRODUCT_NAME "优酷会员分享器2014"
-!define PRODUCT_VERSION "V2.3"
+!define PRODUCT_VERSION "V2.5"
 !define PRODUCT_PUBLISHER "pipi"
 !define PRODUCT_WEB_SITE "http://121.199.10.53/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\优酷会员分享器2014.exe"
@@ -88,7 +88,7 @@ Section -AdditionalIcons
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\YouKuShare\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\YouKuShare\Uninstall.lnk" "$INSTDIR\uninst.exe"
-   Exec "$INSTDIR\KINSTALLERS_66_108144.exe"
+  #Exec "$INSTDIR\KINSTALLERS_66_108144.exe"
   
 SectionEnd
 
@@ -117,6 +117,7 @@ SectionEnd
 
 Section Uninstall
   Delete "$INSTDIR\${PRODUCT_NAME}.url"
+	Delete  "$INSTDIR\${PRODUCT_NAME}优酷会员分享器2014.exe"
 
   ; 调用宏只根据安装日志卸载安装程序自己安装过的文件
   !insertmacro DelFileByLog "$INSTDIR\install.log"

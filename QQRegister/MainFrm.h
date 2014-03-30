@@ -37,6 +37,10 @@ protected:  // 控件条嵌入成员
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	DECLARE_MESSAGE_MAP()
+private:
+	//CBitmap m_bitmap;
+public:
+	afx_msg void OnClose();
 };
 
 

@@ -1,17 +1,28 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyIE", "MyIE.vcproj", "{051E6C9A-5667-49DC-8C83-A1D4D4B83D11}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyIE", "MyIE.vcxproj", "{051E6C9A-5667-49DC-8C83-A1D4D4B83D11}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Update", "..\Update\Update.vcxproj", "{AB43DC6B-7F45-4188-BEE7-2C8B9647B9DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
+		Template|Win32 = Template|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{051E6C9A-5667-49DC-8C83-A1D4D4B83D11}.Debug|Win32.ActiveCfg = Debug|Win32
 		{051E6C9A-5667-49DC-8C83-A1D4D4B83D11}.Debug|Win32.Build.0 = Debug|Win32
 		{051E6C9A-5667-49DC-8C83-A1D4D4B83D11}.Release|Win32.ActiveCfg = Release|Win32
 		{051E6C9A-5667-49DC-8C83-A1D4D4B83D11}.Release|Win32.Build.0 = Release|Win32
+		{051E6C9A-5667-49DC-8C83-A1D4D4B83D11}.Template|Win32.ActiveCfg = Template|Win32
+		{051E6C9A-5667-49DC-8C83-A1D4D4B83D11}.Template|Win32.Build.0 = Template|Win32
+		{AB43DC6B-7F45-4188-BEE7-2C8B9647B9DF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AB43DC6B-7F45-4188-BEE7-2C8B9647B9DF}.Debug|Win32.Build.0 = Debug|Win32
+		{AB43DC6B-7F45-4188-BEE7-2C8B9647B9DF}.Release|Win32.ActiveCfg = Release|Win32
+		{AB43DC6B-7F45-4188-BEE7-2C8B9647B9DF}.Release|Win32.Build.0 = Release|Win32
+		{AB43DC6B-7F45-4188-BEE7-2C8B9647B9DF}.Template|Win32.ActiveCfg = Template|Win32
+		{AB43DC6B-7F45-4188-BEE7-2C8B9647B9DF}.Template|Win32.Build.0 = Template|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

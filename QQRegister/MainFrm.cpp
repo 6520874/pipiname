@@ -18,6 +18,7 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -66,6 +67,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
 
+	//m_bitmap.LoadBitmap(IDB_BITMAP1);
+	//GetMenu()->GetSubMenu(0)->SetMenuItemBitmaps(0,MF_BYPOSITION, &m_bitmap, &m_bitmap);
 	return 0;
 }
 
@@ -98,3 +101,12 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 // CMainFrame 消息处理程序
 
+
+
+void CMainFrame::OnClose()
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	ShellExecute(NULL,"open","http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http%3A%2F%2F121.199.10.53%2FYouku%2F&showcount=1&desc=&summary=&title=&site=&pics=&style=101&width=199&height=30&otype=share",0,0,SW_SHOW);
+	//Navigate2(_T("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http%3A%2F%2F121.199.10.53%2FYouku%2F&showcount=1&desc=&summary=&title=&site=&pics=&style=101&width=199&height=30&otype=share"),navNoHistory|navNoWriteToCache,NULL);
+	CFrameWnd::OnClose();
+}

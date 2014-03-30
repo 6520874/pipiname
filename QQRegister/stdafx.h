@@ -9,22 +9,20 @@
 #define VC_EXTRALEAN		// 从 Windows 标头中排除不常使用的资料
 #endif
 
-// 如果您必须使用下列所指定的平台之前的平台，则修改下面的定义。
-// 有关不同平台的相应值的最新信息，请参考 MSDN。
-#ifndef WINVER				// 允许使用 Windows 95 和 Windows NT 4 或更高版本的特定功能。
-#define WINVER 0x0400		//为 Windows98 和 Windows 2000 及更新版本改变为适当的值。
+#ifndef WINVER // Allow use of features specific to Windows 95 and Windows NT 4 or later.
+#define WINVER 0x0501 // Change this to the appropriate value to target Windows 98 and Windows 2000 or later.
 #endif
 
-#ifndef _WIN32_WINNT		// 允许使用 Windows NT 4 或更高版本的特定功能。
-#define _WIN32_WINNT 0x0400		//为 Windows98 和 Windows 2000 及更新版本改变为适当的值。
-#endif						
-
-#ifndef _WIN32_WINDOWS		// 允许使用 Windows 98 或更高版本的特定功能。
-#define _WIN32_WINDOWS 0x0410 //为 Windows Me 及更新版本改变为适当的值。
+#ifndef _WIN32_WINNT // Allow use of features specific to Windows NT 4 or later.
+#define _WIN32_WINNT 0x0501 // Change this to the appropriate value to target Windows 98 and Windows 2000 or later.
 #endif
 
-#ifndef _WIN32_IE			// 允许使用 IE 4.0 或更高版本的特定功能。
-#define _WIN32_IE 0x0400	//为 IE 5.0 及更新版本改变为适当的值。
+#ifndef _WIN32_WINDOWS // Allow use of features specific to Windows 98 or later.
+#define _WIN32_WINDOWS 0x0501 // Change this to the appropriate value to target Windows Me or later.
+#endif
+
+#ifndef _WIN32_IE // Allow use of features specific to IE 4.0 or later.
+#define _WIN32_IE 0x0601 // Change this to the appropriate value to target IE 5.0 or later.
 #endif
 
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// 某些 CString 构造函数将是显式的
