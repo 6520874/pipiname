@@ -155,6 +155,7 @@
     <None Include="res\MyIEDoc.ico" />
     <None Include="res\Toolbar.bmp" />
     <None Include="ReadMe.txt" />
+    <None Include="res\zhifubao.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MyIE.rc" />

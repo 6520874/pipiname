@@ -95,6 +95,9 @@
       <Filter>资源文件</Filter>
     </None>
     <None Include="ReadMe.txt" />
+    <None Include="res\zhifubao.bmp">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MyIE.rc">

@@ -86,7 +86,10 @@ void CMyIEView::StartPost()
 	CFile	m_File;					// 将返回数据写入文件
 	CString strTemp;				// 临时消息框
 
-	m_File.Open("RecvData.tmp",CFile::modeWrite | CFile::modeCreate,NULL);
+	if(0 == m_File.Open("C://RecvData.tmp",CFile::modeWrite | CFile::modeCreate,NULL))
+	{
+		AfxMessageBox("open error");
+	}
 	memset(szRecvBuf,0,1024);
 
 	do
@@ -120,7 +123,7 @@ void CMyIEView::StartPost()
 	CString		str= "";				// 全部内容
 	CString		strLine= "";			// 单行内容
 	CStdioFile	file;				// 文件对象
-    if(!file.Open("RecvData.tmp",CFile::modeRead | CFile::typeText,NULL))      
+    if(!file.Open("C://RecvData.tmp",CFile::modeRead | CFile::typeText,NULL))      
     {      
 		CString strTemp;
 		strTemp.Format("Open file error:%d",GetLastError());
@@ -165,7 +168,7 @@ void CMyIEView::StartPost()
 		AfxMessageBox(str);
 	}
 
-	DeleteFile("RecvData.tmp");
+	DeleteFile("C://RecvData.tmp");
 	
  	delete []pChar;
 	delete []pWChar; 
