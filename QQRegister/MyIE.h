@@ -14,6 +14,8 @@
 // 有关此类的实现，请参阅 MyIE.cpp
 //
 
+
+
 class CMyIEApp : public CWinApp
 {
 public:
