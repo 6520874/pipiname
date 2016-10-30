@@ -1,14 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "war3Tool", "war3Helper.vcproj", "{1042A8BA-5B37-4A1F-B959-8CC1F950DD0A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{0705EBB7-30AA-4538-9853-D6F915AB45F8} = {0705EBB7-30AA-4538-9853-D6F915AB45F8}
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "war3Tool", "war3Helper.vcxproj", "{1042A8BA-5B37-4A1F-B959-8CC1F950DD0A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pipilibrary", "..\pipilibrary\pipilibrary.vcproj", "{0705EBB7-30AA-4538-9853-D6F915AB45F8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pipilibrary", "..\pipilibrary\pipilibrary.vcxproj", "{0705EBB7-30AA-4538-9853-D6F915AB45F8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Update", "..\Update\Update.vcproj", "{AB43DC6B-7F45-4188-BEE7-2C8B9647B9DF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Update", "..\Update\Update.vcxproj", "{AB43DC6B-7F45-4188-BEE7-2C8B9647B9DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
